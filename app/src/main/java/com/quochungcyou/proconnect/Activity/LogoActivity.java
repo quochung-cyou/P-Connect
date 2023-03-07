@@ -1,7 +1,6 @@
 package com.quochungcyou.proconnect.Activity;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,16 +24,11 @@ public class LogoActivity extends AppCompatActivity {
 
     public void initVar() {
         videoView = findViewById(R.id.gifLogo);
-        videoView = (VideoView) findViewById(R.id.gifLogo);
+        videoView = findViewById(R.id.gifLogo);
 
         Uri video = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.logo);
         videoView.setVideoURI(video);
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                videoView.start();
-            }
-        });
+        videoView.setOnPreparedListener(mp -> videoView.start());
     }
 
     @Override

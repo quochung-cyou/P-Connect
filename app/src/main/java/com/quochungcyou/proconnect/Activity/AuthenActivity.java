@@ -16,7 +16,7 @@ public class AuthenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //hide status bar (called before content)
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
@@ -29,7 +29,7 @@ public class AuthenActivity extends AppCompatActivity {
     }
 
     public void initFragment() {
-        Fragment mFragment = null;
+        Fragment mFragment;
         mFragment = new LoginFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()

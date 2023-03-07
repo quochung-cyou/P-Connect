@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#2D9B7F"
     tools:context=".Fragment.LoginFragment">
 
 
-    <ImageView
+    <VideoView
+        android:id="@+id/videoViewLogin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/login_background"
-        android:scaleType="centerCrop">
-    </ImageView>
+        android:scaleType="fitXY"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        >
+    </VideoView>
 
 
     <LinearLayout
@@ -28,6 +36,7 @@
         android:layout_marginLeft="30dp"
         android:fontFamily="@font/opensanbold"
         android:gravity="center"
+        android:id="@+id/fragmentLoginTitle"
         android:text="@string/loginFragmentTitle"
         android:textAlignment="viewStart"
         android:textColor="@color/white"
@@ -41,6 +50,7 @@
             android:layout_marginRight="30dp"
             android:paddingTop="7dp"
             android:fontFamily="@font/opensanlight"
+            android:id="@+id/fragmentLoginSubTitle"
             android:gravity="center"
             android:text="@string/loginFragmentSubTitle"
             android:textAlignment="textStart"
@@ -69,6 +79,7 @@
             android:backgroundTint="@color/white"
             app:cornerRadius="8dp"
             android:fontFamily="@font/opensanbold"
+            android:id="@+id/fragmentLogin_LoginButton"
             android:layout_marginTop="20dp">
         </com.google.android.material.button.MaterialButton>
 
@@ -84,6 +95,7 @@
             android:textAllCaps="false"
             app:cornerRadius="8dp"
             android:backgroundTint="@color/white"
+            android:id="@+id/fragmentLogin_RegisterButton"
             android:fontFamily="@font/opensanbold"
             android:layout_marginTop="5dp">
         </com.google.android.material.button.MaterialButton>
@@ -92,4 +104,4 @@
     </LinearLayout>
 
 
-</FrameLayout>
+</RelativeLayout>
