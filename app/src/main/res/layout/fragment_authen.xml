@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#2D9B7F"
+    tools:context=".Fragment.AuthenFragment">
+
+
+    <VideoView
+        android:id="@+id/videoViewLogin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:layout_alignParentTop="true"
+        android:background="#2D9B7F"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        >
+    </VideoView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:layout_alignTop="@id/videoViewLogin"
+        android:layout_marginTop="220dp"
+        android:orientation="vertical">
+
+    <TextView
+        android:layout_width="229dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:fontFamily="@font/opensanbold"
+        android:gravity="center"
+        android:id="@+id/fragmentLoginTitle"
+        android:text="@string/loginFragmentTitle"
+        android:textAlignment="viewStart"
+        android:textColor="@color/white"
+        android:textSize="40dp"
+        tools:ignore="RtlCompat"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:paddingTop="7dp"
+            android:fontFamily="@font/opensanlight"
+            android:id="@+id/fragmentLoginSubTitle"
+            android:gravity="center"
+            android:text="@string/loginFragmentSubTitle"
+            android:textAlignment="textStart"
+            android:textColor="@color/white"
+            android:textSize="12dp"
+            tools:ignore="RtlCompat"></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginBottom="18dp"
+        android:gravity="bottom">
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="Login"
+            android:textColor="@color/green"
+            android:textSize="15dp"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/white"
+            app:cornerRadius="8dp"
+            android:fontFamily="@font/opensanbold"
+            android:id="@+id/fragmentLogin_LoginButton"
+            android:layout_marginTop="20dp">
+        </com.google.android.material.button.MaterialButton>
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="Register"
+            android:textColor="@color/green"
+            android:textSize="15dp"
+            android:textAllCaps="false"
+            app:cornerRadius="8dp"
+            android:backgroundTint="@color/white"
+            android:id="@+id/fragmentLogin_RegisterButton"
+            android:fontFamily="@font/opensanbold"
+            android:layout_marginTop="5dp">
+        </com.google.android.material.button.MaterialButton>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

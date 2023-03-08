@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.quochungcyou.proconnect.Fragment.LoginFragment;
+import com.quochungcyou.proconnect.Fragment.AuthenFragment;
 import com.quochungcyou.proconnect.R;
 
 public class AuthenActivity extends AppCompatActivity {
@@ -30,7 +30,7 @@ public class AuthenActivity extends AppCompatActivity {
 
     public void initFragment() {
         Fragment mFragment;
-        mFragment = new LoginFragment();
+        mFragment = new AuthenFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.authenFrameLayout, mFragment).commit();
