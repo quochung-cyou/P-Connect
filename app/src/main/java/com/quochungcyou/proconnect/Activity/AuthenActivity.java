@@ -3,6 +3,7 @@ package com.quochungcyou.proconnect.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.Window;
@@ -32,8 +33,11 @@ public class AuthenActivity extends AppCompatActivity {
         Fragment mFragment;
         mFragment = new AuthenFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.authenFrameLayout, mFragment).commit();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+        transaction.replace(R.id.authenFrameLayout, new AuthenFragment());
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
 

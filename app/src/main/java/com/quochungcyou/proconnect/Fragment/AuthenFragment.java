@@ -4,12 +4,9 @@ import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.VideoView;
@@ -17,6 +14,7 @@ import android.widget.VideoView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.quochungcyou.proconnect.R;
 
@@ -80,16 +78,20 @@ public class AuthenFragment extends Fragment {
         });
 
 
-        Animation slideupAnimation = new AnimationUtils().loadAnimation(getActivity(), R.anim.bounce);
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+                ;
+
+
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 LoginFragment loginFragment = new LoginFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.authenFrameLayout, loginFragment).setCustomAnimations(
-                        R.anim.slide_in,  // enter
-                        R.anim.slide_out  // exit
-                ).commit();
+                transaction.replace(R.id.authenFrameLayout, loginFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+
             }
         });
 
@@ -97,10 +99,9 @@ public class AuthenFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 RegisterFragment registerFragment = new RegisterFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.authenFrameLayout, registerFragment).setCustomAnimations(
-                        R.anim.slide_in,  // enter
-                        R.anim.slide_out  // exit
-                ).commit();
+                transaction.replace(R.id.authenFrameLayout, registerFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "425716358324",
+    "project_id": "p-connect-586cb",
+    "storage_bucket": "p-connect-586cb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:425716358324:android:a9fe0427cae149d8b3cbe1",
+        "android_client_info": {
+          "package_name": "com.quochungcyou.proconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "425716358324-72hc0b7t8ka7ndidastrlts75o485vls.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWyEMiaSh2SCasX8wHWxs282MQNtFDY8Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "425716358324-72hc0b7t8ka7ndidastrlts75o485vls.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
