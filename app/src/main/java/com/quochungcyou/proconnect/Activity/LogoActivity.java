@@ -8,6 +8,8 @@ import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.quochungcyou.proconnect.R;
 
 public class LogoActivity extends AppCompatActivity {
@@ -35,10 +37,21 @@ public class LogoActivity extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         new Handler().postDelayed(() -> {
-            Intent intentMainActivity = new Intent(LogoActivity.this, AuthenActivity.class);
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            startActivity(intentMainActivity);
-            finish();
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (user != null) {
+                // User is signed in
+                Intent intentMainActivity = new Intent(LogoActivity.this, MainActivity.class);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                startActivity(intentMainActivity);
+                finish();
+            } else {
+                // User is signed out
+                Intent intentMainActivity = new Intent(LogoActivity.this, AuthenActivity.class);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                startActivity(intentMainActivity);
+                finish();
+            }
+
         }, 2500);
 
     }

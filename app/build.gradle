@@ -48,12 +48,15 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation 'com.github.bumptech.glide:glide:4.15.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.15.0'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 
 
     //Other project
-    implementation 'com.github.ibrahimsn98:android-particles:2.0'
     implementation 'com.github.Spikeysanju:MotionToast:1.4'
+    implementation 'com.github.ibrahimsn98:android-particles:2.0'
+    implementation 'com.gauravk.bubblenavigation:bubblenavigation:1.0.7'
 
 
     //Firebase
