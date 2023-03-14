@@ -54,6 +54,7 @@ dependencies {
     //Other project
     implementation 'com.github.Spikeysanju:MotionToast:1.4'
     implementation 'com.github.ibrahimsn98:android-particles:2.0'
+    implementation 'com.gauravk.bubblenavigation:bubblenavigation:1.0.7'
 
     //Firebase
     implementation platform('com.google.firebase:firebase-bom:31.2.3')
