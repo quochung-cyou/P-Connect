@@ -12,13 +12,13 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:background="@drawable/roundwhite"
-    android:paddingBottom="25dp"
+    android:paddingBottom="15dp"
     android:layout_height="wrap_content">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:text="Profile"
         android:fontFamily="@font/helveticabold"
         android:textColor="@color/black"
@@ -33,19 +33,19 @@
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/headerProfile"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="160dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="15dp"
             android:scaleType="fitXY"
             android:src="@drawable/headerprofile"
-            app:riv_corner_radius="25dp"></com.makeramen.roundedimageview.RoundedImageView>
+            app:riv_corner_radius="25dp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="match_parent"
             android:id="@+id/profile_image"
-            android:layout_height="120dp"
+            android:layout_height="100dp"
             app:civ_border_width="4dp"
             app:civ_border_color="#ffffff"
             android:layout_marginTop="125dp"
@@ -56,7 +56,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:text="Nguyen Quoc Hung"
         android:fontFamily="@font/helveticabold"
         android:textColor="@color/black"
@@ -78,7 +78,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="17dp"
+            android:textSize="17sp"
             android:text="0"
             android:textStyle="bold"
             android:fontFamily="@font/blinker"
@@ -89,9 +89,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="15sp"
             android:text="Friend"
-
             android:fontFamily="@font/opensanregular"
             android:textColor="@color/gray"
             android:layout_gravity="center_horizontal"
@@ -107,7 +106,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="17dp"
+                android:textSize="17sp"
                 android:text="0"
                 android:textStyle="bold"
                 android:fontFamily="@font/blinker"
@@ -118,7 +117,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="15sp"
                 android:text="Like"
                 android:fontFamily="@font/opensanregular"
                 android:textColor="@color/gray"
@@ -135,7 +134,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="17dp"
+                android:textSize="17sp"
                 android:text="0"
                 android:fontFamily="@font/blinker"
                 android:textColor="@color/black"
@@ -146,7 +145,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="15sp"
                 android:text="Post"
                 android:fontFamily="@font/opensanregular"
                 android:textColor="@color/gray"
@@ -169,29 +168,32 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_marginStart="15dp"
+            android:foreground="@drawable/effectclick"
+            android:id="@+id/gotoEditProfile"
+            android:clickable="true"
             android:layout_marginEnd="15dp"
-            app:cardCornerRadius="8dp"
+            app:cardCornerRadius="10dp"
             app:cardBackgroundColor="@color/white">
+
             <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
                 android:layout_gravity="start|center_vertical"
                 android:layout_marginStart="20dp"
-                android:src="@drawable/userprofileicon"></ImageView>
+                android:src="@drawable/settings_18" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
+                android:textSize="14sp"
                 android:text="Personal Information"
-                android:layout_marginStart="80dp"
-                android:fontFamily="@font/opensanregular"
-                android:textStyle="bold"
+                android:layout_marginStart="70dp"
+                android:fontFamily="@font/blinker"
                 android:textColor="@color/black"
                 android:layout_gravity="start|center_vertical" />
             <ImageView
-                android:tint="@color/gray"
+                app:tint="@color/gray"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_gravity="end|center_vertical"
@@ -202,30 +204,31 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:layout_marginStart="15dp"
+            android:foreground="@drawable/effectclick"
+            android:clickable="true"
             android:layout_marginEnd="15dp"
-
-            app:cardCornerRadius="8dp"
+            app:cardCornerRadius="10dp"
             app:cardBackgroundColor="@color/white">
+
             <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
                 android:layout_gravity="start|center_vertical"
                 android:layout_marginStart="20dp"
-                android:src="@drawable/lockprofileicon"></ImageView>
+                android:src="@drawable/lock_18" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
+                android:textSize="14sp"
                 android:text="Change Password"
-                android:layout_marginStart="80dp"
-                android:fontFamily="@font/opensanregular"
-                android:textStyle="bold"
+                android:layout_marginStart="70dp"
+                android:fontFamily="@font/blinker"
                 android:textColor="@color/black"
                 android:layout_gravity="start|center_vertical" />
             <ImageView
-                android:tint="@color/gray"
+                app:tint="@color/gray"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_gravity="end|center_vertical"
@@ -236,30 +239,33 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
+            android:id="@+id/aboutCard"
             android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
+            android:foreground="@drawable/effectclick"
 
-            app:cardCornerRadius="8dp"
+            android:clickable="true"
+            android:layout_marginEnd="15dp"
+            app:cardCornerRadius="10dp"
             app:cardBackgroundColor="@color/white">
+
             <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
                 android:layout_gravity="start|center_vertical"
                 android:layout_marginStart="20dp"
-                android:src="@drawable/infoprofileicon"></ImageView>
+                android:src="@drawable/globe_18" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:text="About P-Connect and TOS"
-                android:layout_marginStart="80dp"
-                android:fontFamily="@font/opensanregular"
-                android:textStyle="bold"
+                android:textSize="14sp"
+                android:text="About P-Connect"
+                android:layout_marginStart="70dp"
+                android:fontFamily="@font/blinker"
                 android:textColor="@color/black"
                 android:layout_gravity="start|center_vertical" />
             <ImageView
-                android:tint="@color/gray"
+                app:tint="@color/gray"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_gravity="end|center_vertical"
@@ -267,7 +273,21 @@
                 android:src="@drawable/rightarrow"></ImageView>
         </androidx.cardview.widget.CardView>
 
-
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_marginTop="25dp"
+            android:layout_width="300dp"
+            android:layout_height="75dp"
+            android:layout_gravity="bottom|center"
+            android:text="Sign out"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:textAllCaps="false"
+            android:backgroundTint="#B12341"
+            app:cornerRadius="10dp"
+            android:fontFamily="@font/opensanbold"
+            android:id="@+id/signoutFunction">
+        </com.google.android.material.button.MaterialButton>
 
     </LinearLayout>
 
