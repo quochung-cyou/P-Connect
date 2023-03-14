@@ -73,6 +73,8 @@
                     android:layout_width="match_parent"
                     app:boxBackgroundColor="#FDCE84"
                     app:boxStrokeWidth="0dp"
+                    android:textColorHint="@color/black"
+                    app:placeholderTextColor="@color/black"
                     app:boxStrokeWidthFocused="0dp"
                     android:layout_height="match_parent">
 
@@ -80,6 +82,8 @@
                         android:layout_width="match_parent"
                         android:id="@+id/emailLogin"
                         android:background="#FDCE84"
+                        android:textColorHint="@color/black"
+                        android:textColor="@color/black"
                         android:hint="Enter your email"
                         android:textSize="14dp"
                         android:layout_marginStart="10dp"
@@ -104,6 +108,9 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     app:boxBackgroundColor="#F5F5F5"
+                    android:textColorHint="@color/black"
+                    app:placeholderTextColor="@color/black"
+                    app:passwordToggleTint="@color/black"
                     app:boxStrokeWidth="0dp"
                     app:boxStrokeWidthFocused="0dp"
                     app:passwordToggleEnabled="true"
@@ -115,8 +122,10 @@
                         android:background="#F5F5F5"
                         android:hint="Password"
                         android:textSize="14dp"
-                        android:inputType="textPassword"
                         android:layout_marginStart="10dp"
+                        android:textColorHint="@color/black"
+                        android:textColor="@color/black"
+                        android:inputType="textPassword"
                         android:fontFamily="@font/opensanlight"
                         android:layout_height="match_parent">
 
