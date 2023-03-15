@@ -51,7 +51,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        viewPagerMain.setVisibility(View.VISIBLE);
+        //viewPagerMain.setVisibility(View.VISIBLE);
     }
 
     public void initVar(View view) {
@@ -81,10 +81,7 @@ public class ProfileFragment extends Fragment {
         });
 
         gotoEditProfile.setOnClickListener(v -> {
-            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-            viewPagerMain.setVisibility(View.GONE);
-            transaction.replace(R.id.mainactivityFrameLayout, new EditProfileFragment()).addToBackStack(null).commit();
+
 
         });
 

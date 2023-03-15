@@ -1,6 +1,5 @@
 package com.quochungcyou.proconnect.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -58,7 +57,7 @@ public class RegisterFragment extends Fragment {
         password = view.findViewById(R.id.passwordLogin);
 
         transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+        //transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
 
         gotoSignin.setOnClickListener(v -> transaction.replace(R.id.authenFrameLayout, new LoginFragment()).addToBackStack(null).commit());
         gobackAuthen.setOnClickListener(v -> transaction.replace(R.id.authenFrameLayout, new AuthenFragment()).addToBackStack(null).commit());

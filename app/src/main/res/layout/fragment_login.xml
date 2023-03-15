@@ -3,17 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/loginView"
     android:background="@color/white"
+    android:transitionName="loginTrans"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-
-
 
     <me.ibrahimsn.particle.ParticleView
         android:id="@+id/particleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:particleCount="60"
+        app:particleCount="10"
         app:particleMinRadius="3"
         app:particleMaxRadius="10"
         app:particlesBackgroundColor="@color/white"
@@ -173,7 +172,5 @@
                 android:text="Go back?" />
 
         </LinearLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

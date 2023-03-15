@@ -50,9 +50,7 @@ public class AuthenActivity extends AppCompatActivity {
         mFragment = new AuthenFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
         transaction.replace(R.id.authenFrameLayout, new AuthenFragment());
-        transaction.addToBackStack(null);
         transaction.commit();
     }
 

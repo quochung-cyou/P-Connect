@@ -66,40 +66,55 @@
         android:orientation="vertical"
         android:layout_marginBottom="18dp"
         android:gravity="bottom">
+        <LinearLayout
+            android:transitionName="loginTrans"
+            android:id="@+id/transformLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:text="Login"
+                android:textColor="@color/green"
+                android:textSize="15dp"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/white"
+                app:cornerRadius="8dp"
+                android:fontFamily="@font/opensanbold"
+                android:id="@+id/fragmentLogin_LoginButton"
+                android:layout_marginTop="20dp">
+        </com.google.android.material.button.MaterialButton>
+        </LinearLayout>
 
-        <com.google.android.material.button.MaterialButton
-            style="@style/Widget.MaterialComponents.Button"
+        <LinearLayout
+            android:id="@+id/transformRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:text="Login"
-            android:textColor="@color/green"
-            android:textSize="15dp"
-            android:textAllCaps="false"
-            android:backgroundTint="@color/white"
-            app:cornerRadius="8dp"
-            android:fontFamily="@font/opensanbold"
-            android:id="@+id/fragmentLogin_LoginButton"
-            android:layout_marginTop="20dp">
-        </com.google.android.material.button.MaterialButton>
+            android:transitionName="registerTrans">
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:text="Register"
+                android:textColor="@color/green"
+                android:textSize="15dp"
+                android:textAllCaps="false"
+                app:cornerRadius="8dp"
+                android:backgroundTint="@color/white"
+                android:id="@+id/fragmentLogin_RegisterButton"
+                android:fontFamily="@font/opensanbold"
+                android:layout_marginTop="5dp">
+            </com.google.android.material.button.MaterialButton>
 
-        <com.google.android.material.button.MaterialButton
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:text="Register"
-            android:textColor="@color/green"
-            android:textSize="15dp"
-            android:textAllCaps="false"
-            app:cornerRadius="8dp"
-            android:backgroundTint="@color/white"
-            android:id="@+id/fragmentLogin_RegisterButton"
-            android:fontFamily="@font/opensanbold"
-            android:layout_marginTop="5dp">
-        </com.google.android.material.button.MaterialButton>
+
+        </LinearLayout>
+
+
 
 
     </LinearLayout>
