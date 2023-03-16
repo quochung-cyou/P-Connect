@@ -13,17 +13,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.transition.Transition;
+import androidx.transition.TransitionInflater;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.transition.platform.MaterialContainerTransform;
-import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback;
 import com.google.firebase.auth.FirebaseAuth;
 import com.quochungcyou.proconnect.Activity.MainActivity;
 import com.quochungcyou.proconnect.R;
 
+import me.ibrahimsn.particle.ParticleView;
 import www.sanju.motiontoast.MotionToast;
 import www.sanju.motiontoast.MotionToastStyle;
 
@@ -35,11 +37,12 @@ public class LoginFragment extends Fragment {
     MaterialButton loginFunction;
     FirebaseAuth mAuth;
     ConstraintLayout loginLayout;
+    ParticleView particleView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+
 
 
 
@@ -67,6 +70,13 @@ public class LoginFragment extends Fragment {
         loginFunction = view.findViewById(R.id.loginFunction);
         mAuth = FirebaseAuth.getInstance();
         loginLayout = view.findViewById(R.id.loginView);
+        particleView = view.findViewById(R.id.particleView);
+        Transition transition = TransitionInflater.from(requireContext())
+                .inflateTransition(R.transition.shared_image);
+        setSharedElementEnterTransition(transition);
+        ViewCompat.setTransitionName(loginLayout, "loginTrans");
+
+
 
         //transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
         gotoSignup.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +84,8 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 Log.d("Debug", "Go to Signup");
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                particleView.setVisibility(View.GONE);
+                transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
                 transaction.replace(R.id.authenFrameLayout, new RegisterFragment()).addToBackStack(null).commit();
             }
         });
@@ -83,6 +95,9 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 Log.d("Debug", "Go to authen");
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.setReorderingAllowed(true);
+                particleView.setVisibility(View.GONE);
+                transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
                 transaction.replace(R.id.authenFrameLayout, new AuthenFragment()).addToBackStack(null).commit();
             }
         });
@@ -91,6 +106,15 @@ public class LoginFragment extends Fragment {
         loginFunction.setOnClickListener(
                 v -> login()
         );
+
+        //Handler delay 2s
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        particleView.setVisibility(View.VISIBLE);
+                    }
+                },
+                1500);
     }
 
     public void login() {

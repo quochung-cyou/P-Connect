@@ -1,0 +1,11 @@
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android">
+    <changeBounds>
+        <arcMotion
+            android:maximumAngle="90"
+            android:minimumHorizontalAngle="90"
+            android:minimumVerticalAngle="0" />
+    </changeBounds>
+    <changeTransform android:duration="2000" />
+    <changeClipBounds />
+    <changeImageTransform android:duration="2000" />
+</transitionSet>
