@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,9 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -38,6 +42,7 @@ public class ProfileFragment extends Fragment {
     FirebaseAuth mAuth;
     CardView aboutCard, gotoEditProfile;
     TextView profileName;
+    ImageView profileImage;
     private  DatabaseReference databaseReference;
 
     @Override
@@ -62,6 +67,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        updateData();
         //viewPagerMain.setVisibility(View.VISIBLE);
     }
 
@@ -71,6 +77,7 @@ public class ProfileFragment extends Fragment {
         gotoEditProfile = view.findViewById(R.id.gotoEditProfile);
         mAuth = FirebaseAuth.getInstance();
         profileName = view.findViewById(R.id.profileName);
+        profileImage = view.findViewById(R.id.profile_image);
 
 
 
@@ -111,6 +118,16 @@ public class ProfileFragment extends Fragment {
                     databaseReference.child("name").setValue("Guess");
                 }
                 profileName.setText(name);
+
+                String avatar = snapshot.child("avatar").getValue(String.class);
+                if (avatar != null && !avatar.isEmpty()) {
+                    Glide.with(getActivity())
+                            .load(avatar)
+                            .fitCenter()
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .priority(Priority.HIGH)
+                            .placeholder(R.drawable.loadinganim).into(profileImage);
+                }
 
             }
 
