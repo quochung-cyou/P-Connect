@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         pagerAdapter.createFragment(1);
         pagerAdapter.createFragment(2);
         viewPager.setAdapter(pagerAdapter);
+        PopTransformation transformation = new PopTransformation();
+        viewPager.setPageTransformer(transformation);
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
@@ -62,5 +64,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         bubbleNavigationLinearView.setNavigationChangeListener((view, position) -> viewPager.setCurrentItem(position, true));
+    }
+}
+
+ class PopTransformation implements ViewPager2.PageTransformer {
+    @Override
+    public void transformPage(View page, float position) {
+
+        page.setTranslationX(-position * page.getWidth());
+
+        if (Math.abs(position) < 0.5) {
+            page.setVisibility(View.VISIBLE);
+            page.setScaleX(1 - Math.abs(position));
+            page.setScaleY(1 - Math.abs(position));
+        } else if (Math.abs(position) > 0.5) {
+            page.setVisibility(View.GONE);
+        }
+
+
     }
 }
