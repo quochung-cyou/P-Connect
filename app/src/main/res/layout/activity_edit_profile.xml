@@ -3,54 +3,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/gradientgray"
+
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Activity.EditProfileActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_alignParentTop="true"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_marginTop="60dp"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="15dp"
-            android:id="@+id/gobackArrow"
-            android:layout_gravity="center"
-            android:src="@drawable/goback"
-            app:tint="@color/black">
-        </ImageView>
 
-        <TextView
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="90dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="15dp"
+                android:id="@+id/gobackArrow"
+                android:layout_gravity="center"
+                android:src="@drawable/goback"
+                app:tint="@color/white">
+            </ImageView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:text="Profile"
+                android:layout_marginEnd="39dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/robotobold"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:text="Edit Profile"
-            android:layout_marginEnd="24dp"
-            android:textAlignment="center"
-            android:fontFamily="@font/robotobold"
-            android:textColor="@color/black"
-            android:layout_gravity="center_horizontal" />
-
-    </LinearLayout>
-
-
-
+            android:paddingBottom="110dp"
+            android:id="@+id/roundedProfile"
+            android:layout_alignParentBottom="true"
+            android:paddingTop="25dp"
+            android:background="@drawable/roundlightred"
+            android:orientation="vertical">
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="30dp"
             app:cardCornerRadius="10dp"
-            app:strokeColor="@color/gray"
-            app:strokeWidth="1dp"
             android:layout_marginEnd="30dp"
             android:layout_height="59dp">
             <com.google.android.material.textfield.TextInputLayout
@@ -68,11 +75,12 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:id="@+id/displayNameEditProfile"
-                    android:background="#F3F8FF"
+                    android:background="#F2F5FC"
                     android:hint="Full name"
+                    android:textCursorDrawable="@null"
                     android:text="Puerto Rico"
                     android:autofillHints="name"
-                    android:textSize="14dp"
+                    android:textSize="14sp"
                     android:textColorHint="@color/black"
                     android:textColor="@color/black"
                     android:fontFamily="@font/robotoregular"
@@ -86,8 +94,6 @@
         android:layout_width="match_parent"
         android:layout_marginStart="30dp"
         app:cardCornerRadius="10dp"
-        app:strokeColor="@color/gray"
-        app:strokeWidth="1dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
         android:layout_height="59dp">
@@ -104,11 +110,12 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:id="@+id/userNameEditProfile"
-                android:background="#F3F8FF"
+                android:background="#F2F5FC"
                 android:hint="Username"
                 android:text="puerto_rico"
+                android:textCursorDrawable="@null"
                 android:autofillHints="username"
-                android:textSize="14dp"
+                android:textSize="14sp"
                 android:textColorHint="@color/black"
                 android:textColor="@color/black"
                 android:fontFamily="@font/robotoregular"
@@ -121,8 +128,6 @@
         android:layout_width="match_parent"
         android:layout_marginStart="30dp"
         app:cardCornerRadius="10dp"
-        app:strokeColor="@color/gray"
-        app:strokeWidth="1dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
         android:layout_height="59dp">
@@ -139,11 +144,12 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:id="@+id/dateEditProfile"
-                android:background="#F3F8FF"
+                android:background="#F2F5FC"
                 android:hint="Date of birth"
                 android:text="dd/mm/yyyy"
                 android:autofillHints=""
-                android:textSize="14dp"
+                android:textCursorDrawable="@null"
+                android:textSize="14sp"
                 android:textColorHint="@color/black"
                 android:textColor="@color/black"
                 android:fontFamily="@font/robotoregular"
@@ -156,8 +162,6 @@
         android:layout_width="match_parent"
         android:layout_marginStart="30dp"
         app:cardCornerRadius="10dp"
-        app:strokeColor="@color/gray"
-        app:strokeWidth="1dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
         android:layout_height="59dp">
@@ -172,12 +176,13 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:id="@+id/phoneEditProfile"
-                android:background="#F3F8FF"
+                android:background="#F2F5FC"
                 android:hint="Phone Number"
                 android:text="0123456789"
                 android:autofillHints="phone"
-                android:textSize="14dp"
+                android:textSize="14sp"
                 android:textColorHint="@color/black"
+                android:textCursorDrawable="@null"
                 android:textColor="@color/black"
                 android:fontFamily="@font/robotoregular"
                 android:layout_height="match_parent">
@@ -189,6 +194,8 @@
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:weightSum="10"
+        android:paddingBottom="2dp"
+        android:layout_marginTop="20dp"
         android:layout_height="wrap_content">
 
         <com.google.android.material.card.MaterialCardView
@@ -196,9 +203,6 @@
             android:layout_weight="5"
             android:layout_marginStart="30dp"
             app:cardCornerRadius="10dp"
-            app:strokeColor="@color/gray"
-            app:strokeWidth="1dp"
-            android:layout_marginTop="20dp"
             android:layout_marginEnd="15dp"
             android:layout_height="59dp">
             <com.google.android.material.textfield.TextInputLayout
@@ -214,10 +218,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:id="@+id/classEditProfile"
-                    android:background="#F3F8FF"
+                    android:background="#F2F5FC"
                     android:hint="Class"
                     android:text="E21CQCN05-B"
-                    android:textSize="14dp"
+                    android:textCursorDrawable="@null"
+                    android:textSize="14sp"
                     android:textColorHint="@color/black"
                     android:textColor="@color/black"
                     android:fontFamily="@font/robotoregular"
@@ -231,9 +236,6 @@
             android:layout_width="0dp"
             android:layout_weight="5"
             app:cardCornerRadius="10dp"
-            app:strokeColor="@color/gray"
-            app:strokeWidth="1dp"
-            android:layout_marginTop="20dp"
             android:layout_marginEnd="30dp"
             android:layout_height="59dp">
             <com.google.android.material.textfield.TextInputLayout
@@ -249,10 +251,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:id="@+id/studentIDEditProfile"
-                    android:background="#F3F8FF"
+                    android:background="#F2F5FC"
                     android:hint="Student ID"
                     android:text="B21DCVT220"
-                    android:textSize="14dp"
+                    android:textSize="14sp"
+                    android:textCursorDrawable="@null"
                     android:textColorHint="@color/black"
                     android:textColor="@color/black"
                     android:fontFamily="@font/robotoregular"
@@ -266,8 +269,6 @@
         android:layout_width="match_parent"
         android:layout_marginStart="30dp"
         app:cardCornerRadius="10dp"
-        app:strokeColor="@color/gray"
-        app:strokeWidth="1dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
         android:layout_height="59dp">
@@ -284,11 +285,12 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:id="@+id/locationEditProfile"
-                android:background="#F3F8FF"
+                android:background="#F2F5FC"
                 android:hint="Location"
+                android:textCursorDrawable="@null"
                 android:text="Vietnam"
                 android:autofillHints="phone"
-                android:textSize="14dp"
+                android:textSize="14sp"
                 android:textColorHint="@color/black"
                 android:textColor="@color/black"
                 android:fontFamily="@font/robotoregular"
@@ -296,19 +298,28 @@
             </com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
     </com.google.android.material.card.MaterialCardView>
-
-
     </LinearLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignTop="@+id/roundedProfile"
+        android:layout_marginTop="-56dp"
+        android:layout_marginBottom="60dp"
+        android:src="@drawable/defaultprofile"
+        app:civ_border_color="#ffffff"
+        app:civ_border_width="4dp"></de.hdodenhof.circleimageview.CircleImageView>
 
     <com.google.android.material.button.MaterialButton
         style="@style/Widget.MaterialComponents.Button"
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
-        android:layout_marginStart="30dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:layout_height="65dp"
-        android:layout_marginBottom="40dp"
         android:layout_gravity="bottom|center"
         android:text="SUBMIT"
         android:textColor="@color/white"
