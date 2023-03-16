@@ -67,7 +67,6 @@
         android:layout_marginBottom="18dp"
         android:gravity="bottom">
         <LinearLayout
-            android:transitionName="loginTrans"
             android:id="@+id/transformLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

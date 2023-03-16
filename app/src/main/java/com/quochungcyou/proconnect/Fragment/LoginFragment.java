@@ -18,8 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.transition.platform.MaterialContainerTransform;
-import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback;
+import com.google.android.material.transition.MaterialContainerTransform;
 import com.google.firebase.auth.FirebaseAuth;
 import com.quochungcyou.proconnect.Activity.MainActivity;
 import com.quochungcyou.proconnect.R;
@@ -67,8 +66,11 @@ public class LoginFragment extends Fragment {
         loginFunction = view.findViewById(R.id.loginFunction);
         mAuth = FirebaseAuth.getInstance();
         loginLayout = view.findViewById(R.id.loginView);
+        Transition transition = TransitionInflater.from(requireContext())
+                .inflateTransition(R.transition.shared_image);
+        setSharedElementEnterTransition(new MaterialContainerTransform());
 
-        //transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+
         gotoSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -4,8 +4,6 @@ import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.transition.Transition;
-import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +14,12 @@ import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.material.transition.MaterialElevationScale;
-import com.google.android.material.transition.platform.MaterialContainerTransform;
-import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback;
 import com.quochungcyou.proconnect.R;
-import com.skydoves.transformationlayout.TransformationCompat;
+
 
 public class AuthenFragment extends Fragment {
 
@@ -65,6 +61,7 @@ public class AuthenFragment extends Fragment {
         loginButton = view.findViewById(R.id.fragmentLogin_LoginButton);
         registerButton = view.findViewById(R.id.fragmentLogin_RegisterButton);
         loginTrans = view.findViewById(R.id.transformLogin);
+        ViewCompat.setTransitionName(loginTrans, "loginTransStart");
         runVideoStart();
 
 
@@ -72,13 +69,8 @@ public class AuthenFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 LoginFragment loginFragment = new LoginFragment();
-                
-                Transition explodeTransform = TransitionInflater.from(this).
-                        inflateTransition(android.R.transition.explode);
-
-
-
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.addSharedElement(loginTrans, "loginTransEnd");
                 transaction.replace(R.id.authenFrameLayout, loginFragment).addToBackStack(null).commit();
 
             }
