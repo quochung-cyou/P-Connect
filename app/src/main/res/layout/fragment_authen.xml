@@ -90,9 +90,9 @@
 
         <LinearLayout
             android:id="@+id/transformRegister"
+
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:transitionName="registerTrans">
+            android:layout_height="wrap_content">
             <com.google.android.material.button.MaterialButton
                 style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="match_parent"

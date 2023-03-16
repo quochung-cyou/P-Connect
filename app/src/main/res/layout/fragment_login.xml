@@ -9,6 +9,7 @@
 
     <me.ibrahimsn.particle.ParticleView
         android:id="@+id/particleView"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:particleCount="10"

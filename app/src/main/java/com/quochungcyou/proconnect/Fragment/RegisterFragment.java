@@ -9,15 +9,20 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.transition.Transition;
+import androidx.transition.TransitionInflater;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.quochungcyou.proconnect.R;
 
+import me.ibrahimsn.particle.ParticleView;
 import www.sanju.motiontoast.MotionToast;
 import www.sanju.motiontoast.MotionToastStyle;
 
@@ -28,7 +33,8 @@ public class RegisterFragment extends Fragment {
     TextInputEditText email, password;
     MaterialButton registerFunction;
     FirebaseAuth mAuth;
-    FragmentTransaction transaction;
+    ParticleView particleView;
+    ConstraintLayout registerLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,16 +61,38 @@ public class RegisterFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         email = view.findViewById(R.id.emailLogin);
         password = view.findViewById(R.id.passwordLogin);
+        particleView = view.findViewById(R.id.particleView);
+        registerLayout = view.findViewById(R.id.regisView);
+        Transition transition = TransitionInflater.from(requireContext())
+                .inflateTransition(R.transition.shared_image);
+        setSharedElementEnterTransition(transition);
+        ViewCompat.setTransitionName(registerLayout, "regisTrans");
 
-        transaction = getActivity().getSupportFragmentManager().beginTransaction();
+
         //transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-
-        gotoSignin.setOnClickListener(v -> transaction.replace(R.id.authenFrameLayout, new LoginFragment()).addToBackStack(null).commit());
-        gobackAuthen.setOnClickListener(v -> transaction.replace(R.id.authenFrameLayout, new AuthenFragment()).addToBackStack(null).commit());
+        gotoSignin.setOnClickListener(v -> {
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            transaction.setReorderingAllowed(true);
+            transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+            transaction.replace(R.id.authenFrameLayout, new LoginFragment()).addToBackStack(null).commit();
+        });
+        gobackAuthen.setOnClickListener(v -> {
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            transaction.setReorderingAllowed(true);
+            transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+            transaction.replace(R.id.authenFrameLayout, new AuthenFragment()).addToBackStack(null).commit();
+        });
 
         registerFunction.setOnClickListener(
                 v -> register()
         );
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        particleView.setVisibility(View.VISIBLE);
+                    }
+                },
+                1500);
     }
 
     public void register() {
@@ -128,6 +156,9 @@ public class RegisterFragment extends Fragment {
                                 ResourcesCompat.getFont(getActivity(),R.font.opensanlight));
                         email.setText("");
                         password.setText("");
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        transaction.setReorderingAllowed(true);
+                        transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
                         transaction.replace(R.id.authenFrameLayout, new LoginFragment()).addToBackStack(null).commit();
 
                     } else {

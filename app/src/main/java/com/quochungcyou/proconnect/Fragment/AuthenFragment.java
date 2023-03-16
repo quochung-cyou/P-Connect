@@ -17,9 +17,11 @@ import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.transition.Transition;
+import androidx.transition.TransitionInflater;
 
+import com.google.android.material.transition.platform.MaterialContainerTransform;
 import com.quochungcyou.proconnect.R;
-
 
 public class AuthenFragment extends Fragment {
 
@@ -28,7 +30,7 @@ public class AuthenFragment extends Fragment {
     private TextView subtitle;
     private Button loginButton;
     private Button registerButton;
-    private LinearLayout loginTrans;
+    private LinearLayout loginTrans, regisTrans;
 
 
 
@@ -61,7 +63,7 @@ public class AuthenFragment extends Fragment {
         loginButton = view.findViewById(R.id.fragmentLogin_LoginButton);
         registerButton = view.findViewById(R.id.fragmentLogin_RegisterButton);
         loginTrans = view.findViewById(R.id.transformLogin);
-        ViewCompat.setTransitionName(loginTrans, "loginTransStart");
+        regisTrans = view.findViewById(R.id.transformRegister);
         runVideoStart();
 
 
@@ -70,7 +72,15 @@ public class AuthenFragment extends Fragment {
             public void onClick(View view) {
                 LoginFragment loginFragment = new LoginFragment();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.addSharedElement(loginTrans, "loginTransEnd");
+
+                ViewCompat.setTransitionName(loginTrans, "loginTrans");
+                Transition transition = TransitionInflater.from(requireContext())
+                        .inflateTransition(R.transition.shared_image);
+                setSharedElementReturnTransition(transition);
+
+                transaction.addSharedElement(loginTrans, "loginTrans");
+                transaction.setReorderingAllowed(true);
+
                 transaction.replace(R.id.authenFrameLayout, loginFragment).addToBackStack(null).commit();
 
             }
@@ -80,6 +90,14 @@ public class AuthenFragment extends Fragment {
             public void onClick(View view) {
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();;
                 RegisterFragment registerFragment = new RegisterFragment();
+                ViewCompat.setTransitionName(regisTrans, "regisTrans");
+                Transition transition = TransitionInflater.from(requireContext())
+                        .inflateTransition(R.transition.shared_image);
+                setSharedElementReturnTransition(transition);
+
+                transaction.addSharedElement(regisTrans, "regisTrans");
+                transaction.setReorderingAllowed(true);
+
                 transaction.replace(R.id.authenFrameLayout, registerFragment).addToBackStack(null);
                 transaction.commit();
             }
