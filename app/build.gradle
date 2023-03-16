@@ -57,7 +57,6 @@ dependencies {
     implementation 'com.gauravk.bubblenavigation:bubblenavigation:1.0.7'
     implementation 'com.github.Spikeysanju:MotionToast:1.4'
     implementation 'com.github.ibrahimsn98:android-particles:2.0'
-    implementation("com.github.skydoves:transformationlayout:1.1.2")
 
 
 
@@ -66,5 +65,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-auth:21.1.0'
     implementation 'com.google.android.gms:play-services-gcm:17.0.0'
+
+    //Real time database
+    implementation 'com.google.firebase:firebase-database'
 
 }
