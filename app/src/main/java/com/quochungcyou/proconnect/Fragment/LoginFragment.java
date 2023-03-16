@@ -2,6 +2,7 @@ package com.quochungcyou.proconnect.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,7 +32,7 @@ import www.sanju.motiontoast.MotionToastStyle;
 
 public class LoginFragment extends Fragment {
 
-    TextView gotoSignup, gobackAuthen;
+    TextView gotoSignup, gobackAuthen, gotoForgotPassword;
     TextInputEditText email, password;
 
     MaterialButton loginFunction;
@@ -71,35 +72,40 @@ public class LoginFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         loginLayout = view.findViewById(R.id.loginView);
         particleView = view.findViewById(R.id.particleView);
+        gotoForgotPassword = view.findViewById(R.id.forgotPassword);
         Transition transition = TransitionInflater.from(requireContext())
                 .inflateTransition(R.transition.shared_image);
         setSharedElementEnterTransition(transition);
         ViewCompat.setTransitionName(loginLayout, "loginTrans");
 
+        String text = "<font color=#7A7A7A>Don’t have account? </font> <font color=#B12341><u>Sign up here!</u></font>";
+        gotoSignup.setText(Html.fromHtml(text));
+
 
 
         //transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        gotoSignup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("Debug", "Go to Signup");
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                particleView.setVisibility(View.GONE);
-                transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
-                transaction.replace(R.id.authenFrameLayout, new RegisterFragment()).addToBackStack(null).commit();
-            }
+        gotoForgotPassword.setOnClickListener(v -> {
+            Log.d("Debug", "Go to Forgot Password");
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            particleView.setVisibility(View.GONE);
+            transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+            transaction.replace(R.id.authenFrameLayout, new ForgotPasswordFragment()).addToBackStack(null).commit();
+        });
+        gotoSignup.setOnClickListener(v -> {
+            Log.d("Debug", "Go to Signup");
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            particleView.setVisibility(View.GONE);
+            transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+            transaction.replace(R.id.authenFrameLayout, new RegisterFragment()).addToBackStack(null).commit();
         });
 
-        gobackAuthen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("Debug", "Go to authen");
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.setReorderingAllowed(true);
-                particleView.setVisibility(View.GONE);
-                transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
-                transaction.replace(R.id.authenFrameLayout, new AuthenFragment()).addToBackStack(null).commit();
-            }
+        gobackAuthen.setOnClickListener(v -> {
+            Log.d("Debug", "Go to authen");
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            transaction.setReorderingAllowed(true);
+            particleView.setVisibility(View.GONE);
+            transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+            transaction.replace(R.id.authenFrameLayout, new AuthenFragment()).addToBackStack(null).commit();
         });
 
 
@@ -109,11 +115,7 @@ public class LoginFragment extends Fragment {
 
         //Handler delay 2s
         new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        particleView.setVisibility(View.VISIBLE);
-                    }
-                },
+                () -> particleView.setVisibility(View.VISIBLE),
                 1500);
     }
 

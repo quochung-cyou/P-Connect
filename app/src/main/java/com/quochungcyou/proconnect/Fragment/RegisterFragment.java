@@ -1,7 +1,9 @@
 package com.quochungcyou.proconnect.Fragment;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +31,7 @@ import www.sanju.motiontoast.MotionToastStyle;
 public class RegisterFragment extends Fragment {
 
 
-    TextView gotoSignin, gobackAuthen;
+    TextView gotoSignin, gobackAuthen, gotoForgotPassword;
     TextInputEditText email, password;
     MaterialButton registerFunction;
     FirebaseAuth mAuth;
@@ -63,12 +65,23 @@ public class RegisterFragment extends Fragment {
         password = view.findViewById(R.id.passwordLogin);
         particleView = view.findViewById(R.id.particleView);
         registerLayout = view.findViewById(R.id.regisView);
+        gotoForgotPassword = view.findViewById(R.id.forgotPassword);
+
         Transition transition = TransitionInflater.from(requireContext())
                 .inflateTransition(R.transition.shared_image);
         setSharedElementEnterTransition(transition);
         ViewCompat.setTransitionName(registerLayout, "regisTrans");
 
+        String text = "<font color=#7A7A7A>Already have account? </font> <font color=#B12341><u>Sign in here!</u></font>";
+        gotoSignin.setText(Html.fromHtml(text));
 
+        gotoForgotPassword.setOnClickListener(v -> {
+            Log.d("Debug", "Go to Forgot Password");
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            particleView.setVisibility(View.GONE);
+            transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+            transaction.replace(R.id.authenFrameLayout, new ForgotPasswordFragment()).addToBackStack(null).commit();
+        });
         //transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
         gotoSignin.setOnClickListener(v -> {
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -87,11 +100,7 @@ public class RegisterFragment extends Fragment {
                 v -> register()
         );
         new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        particleView.setVisibility(View.VISIBLE);
-                    }
-                },
+                () -> particleView.setVisibility(View.VISIBLE),
                 1500);
     }
 
