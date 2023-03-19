@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.view_pager);
         bubbleNavigationLinearView = findViewById(R.id.bottom_navigation_view_linear);
         pagerAdapter = new ScreenSlidePageAdapter(this);
-        viewPager.setOffscreenPageLimit(3);
+        //viewPager.setOffscreenPageLimit(2);
 
     }
 

@@ -46,7 +46,7 @@
             android:textSize="25sp"
             android:layout_marginTop="45dp"
             android:layout_marginStart="40dp"
-            android:fontFamily="@font/opensanbold"
+            android:fontFamily="@font/robotobold"
             android:id="@+id/a_loginFragmentTitle"
             android:textColor="@color/black"
             android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
             android:textColor="#7A7A7A"
             android:id="@+id/gotosignin"
             android:layout_marginStart="40dp"
-            android:fontFamily="@font/blinker"
+            android:fontFamily="@font/robotolight"
             android:layout_height="wrap_content"
             android:text="Already have account? Sign in" />
 
@@ -91,7 +91,7 @@
                     android:autofillHints="emailAddress"
                     android:textSize="14dp"
                     android:layout_marginStart="10dp"
-                    android:fontFamily="@font/opensanlight"
+                    android:fontFamily="@font/robotolight"
                     android:layout_height="match_parent">
 
                 </com.google.android.material.textfield.TextInputEditText>
@@ -131,7 +131,7 @@
                     android:textColorHint="@color/black"
                     android:textColor="@color/black"
                     android:inputType="textPassword"
-                    android:fontFamily="@font/opensanlight"
+                    android:fontFamily="@font/robotolight"
                     android:layout_height="match_parent">
 
                 </com.google.android.material.textfield.TextInputEditText>
@@ -158,11 +158,11 @@
             android:layout_gravity="bottom|center"
             android:text="Register"
             android:textColor="@color/white"
-            android:textSize="15dp"
+            android:textSize="18sp"
             android:textAllCaps="false"
             android:backgroundTint="#B12341"
             app:cornerRadius="10dp"
-            android:fontFamily="@font/opensanbold"
+            android:fontFamily="@font/robotobold"
             android:id="@+id/registerFunction">
         </com.google.android.material.button.MaterialButton>
         <TextView
@@ -172,9 +172,9 @@
             android:layout_marginTop="15dp"
             android:layout_gravity="center_horizontal"
             android:id="@+id/goBackauthen"
-            android:fontFamily="@font/blinker"
+            android:fontFamily="@font/robotomedium"
             android:layout_height="wrap_content"
-            android:text="Go back?" />
+            android:text="Go back" />
 
 
     </LinearLayout>

@@ -1,16 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:textSize="30dp"
-        android:text="Home Layout" />
+        <RelativeLayout
+            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-</FrameLayout>
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="10dp"
+                    app:riv_corner_radius="16dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/headerprofile"
+                    android:layout_marginEnd="-50dp"
+                    android:id="@+id/thumbnailavatar">
+
+                </com.makeramen.roundedimageview.RoundedImageView>
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/notif"></ImageView>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="30dp"
+            android:layout_height="wrap_content">
+        <TextView
+            android:layout_alignParentStart="true"
+            android:layout_width="wrap_content"
+            android:textSize="25sp"
+            android:fontFamily="@font/robotobold"
+            android:id="@+id/welcomeMessage"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:text="Welcome Back, Chris 👋" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_alignParentStart="true"
+            android:layout_width="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginStart="30dp"
+            android:fontFamily="@font/robotolight"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:text="We’ve got some exciting new for you! 😀" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:contentDescription="Random"
+            android:layout_marginTop="15dp"
+            android:scrollbars="none"
+            android:layout_marginStart="30dp"
+            android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="100dp"
+            android:src="@drawable/gamecate"
+            android:layout_height="100dp"></ImageView>
+
+        <ImageView
+            android:layout_marginStart="20dp"
+            android:layout_width="100dp"
+            android:src="@drawable/sportcate"
+            android:layout_height="100dp">
+        </ImageView>
+
+         <ImageView
+             android:layout_marginStart="20dp"
+             android:layout_width="100dp"
+             android:src="@drawable/headlinecate"
+             android:layout_height="100dp">
+         </ImageView>
+         <ImageView
+             android:layout_marginStart="20dp"
+             android:layout_width="100dp"
+             android:src="@drawable/gamecate"
+             android:layout_height="100dp">
+         </ImageView>
+        </LinearLayout>
+        </HorizontalScrollView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginStart="30dp"
+            android:layout_height="wrap_content">
+        <TextView
+            android:layout_alignParentStart="true"
+            android:layout_width="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentLeft="true"
+
+            android:fontFamily="@font/robotobold"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:text="🔥 Popular" />
+
+
+
+        </RelativeLayout>
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loadPost"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="loadingpost.json"
+            app:lottie_loop="true"
+            android:scaleType="fitCenter"
+            app:lottie_speed="0.7"
+            app:lottie_cacheComposition="true"
+            app:lottie_renderMode="hardware"
+            app:lottie_repeatMode="restart"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"></com.airbnb.lottie.LottieAnimationView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleViewNew"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="20dp"
+            android:nestedScrollingEnabled="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+</LinearLayout>
