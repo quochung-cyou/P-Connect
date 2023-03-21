@@ -98,13 +98,13 @@ public class EditProfileActivity extends AppCompatActivity {
 
         updateFunction.setOnClickListener(view -> {
             databaseReference = FirebaseDatabase.getInstance().getReference("users" + "/" + Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
-            databaseReference.child("name").setValue(editName.getText().toString());
-            databaseReference.child("studentID").setValue(editStudentID.getText().toString());
-            databaseReference.child("class").setValue(editClass.getText().toString());
-            databaseReference.child("username").setValue(editUsername.getText().toString());
-            databaseReference.child("dateofbirth").setValue(editDateofbirth.getText().toString());
-            databaseReference.child("phone").setValue(editPhone.getText().toString());
-            databaseReference.child("location").setValue(editLocation.getText().toString());
+            databaseReference.child("name").setValue(Objects.requireNonNull(editName.getText()).toString());
+            databaseReference.child("studentID").setValue(Objects.requireNonNull(editStudentID.getText()).toString());
+            databaseReference.child("class").setValue(Objects.requireNonNull(editClass.getText()).toString());
+            databaseReference.child("username").setValue(Objects.requireNonNull(editUsername.getText()).toString());
+            databaseReference.child("dateofbirth").setValue(Objects.requireNonNull(editDateofbirth.getText()).toString());
+            databaseReference.child("phone").setValue(Objects.requireNonNull(editPhone.getText()).toString());
+            databaseReference.child("location").setValue(Objects.requireNonNull(editLocation.getText()).toString());
 
             MotionToast.Companion.createToast(this,
                     "Success 😊",

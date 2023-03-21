@@ -18,8 +18,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -53,7 +51,6 @@ public class ReadActivity extends AppCompatActivity {
 
         date_behavior = findViewById(R.id.date_behavior);
         titleAppbar = findViewById(R.id.title_appbar);
-        imageView = findViewById(R.id.backdrop);
         appbar_subtitle = findViewById(R.id.subtitle_on_appbar);
         final CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
         date =  findViewById(R.id.date);
@@ -75,7 +72,6 @@ public class ReadActivity extends AppCompatActivity {
         //request option
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.error(R.color.lightred);
-        Glide.with(this).load(this.mImg).apply(requestOptions).transition(DrawableTransitionOptions.withCrossFade()).into(this.imageView);
     }
 
     private void getDataIntent() {
@@ -91,7 +87,7 @@ public class ReadActivity extends AppCompatActivity {
         title.setText(mTitle);
 
 
-        String str = "";
+        String str;
         if (mAuthor != null) {
             str = " • " + mAuthor;
         } else {

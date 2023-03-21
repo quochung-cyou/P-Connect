@@ -132,7 +132,7 @@ public class LoginFragment extends Fragment {
         }
 
         //regex check email address
-        if (!email.getText().toString().matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+        if (!email.getText().toString().matches("^[A-Za-z\\d+_.-]+@(.+)$")) {
             MotionToast.Companion.createToast(getActivity(),
                     "Failed ☹️",
                     "You need to enter a valid email address",
