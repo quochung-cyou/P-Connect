@@ -1,8 +1,11 @@
 package com.quochungcyou.proconnect.Fragment;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +18,6 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
@@ -29,8 +31,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.quochungcyou.proconnect.Activity.AuthenActivity;
 import com.quochungcyou.proconnect.Activity.EditProfileActivity;
+import com.quochungcyou.proconnect.Activity.FullScreenImage;
 import com.quochungcyou.proconnect.R;
+import com.quochungcyou.proconnect.Utils.ModelBase64;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Objects;
 
 import www.sanju.motiontoast.MotionToast;
@@ -40,7 +45,7 @@ public class ProfileFragment extends Fragment {
 
     MaterialButton signoutFunction;
     FirebaseAuth mAuth;
-    CardView aboutCard, gotoEditProfile;
+    CardView aboutCard, gotoEditProfile, termofService;
     TextView profileName;
     ImageView profileImage;
     private  DatabaseReference databaseReference;
@@ -74,6 +79,7 @@ public class ProfileFragment extends Fragment {
     public void initVar(View view) {
         signoutFunction = view.findViewById(R.id.signoutFunction);
         aboutCard = view.findViewById(R.id.aboutCard);
+        termofService = view.findViewById(R.id.termofservices);
         gotoEditProfile = view.findViewById(R.id.gotoEditProfile);
         mAuth = FirebaseAuth.getInstance();
         profileName = view.findViewById(R.id.profileName);
@@ -88,6 +94,25 @@ public class ProfileFragment extends Fragment {
                     ResourcesCompat.getFont(getActivity(), www.sanju.motiontoast.R.font.helvetica_regular));
             Intent intent = new Intent(getActivity(), AuthenActivity.class);
             startActivity(intent);
+        });
+
+        profileImage.setOnClickListener(v -> {
+            BitmapDrawable drawable = (BitmapDrawable) profileImage.getDrawable();
+            Bitmap bitmap = drawable.getBitmap();
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            byte[] imageByteArray = stream.toByteArray();
+            ModelBase64.base64Image = Base64.encodeToString(imageByteArray, 0);
+            Intent intent = new Intent(getActivity(), FullScreenImage.class);
+            getActivity().overridePendingTransition(R.anim.pop_enter, R.anim.pop_exit);
+            startActivity(intent);
+        });
+
+        termofService.setOnClickListener(v -> {
+            String url = "https://github.com/quochung-cyou/P-Connect";
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
         });
 
 

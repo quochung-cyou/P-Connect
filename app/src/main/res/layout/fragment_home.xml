@@ -76,9 +76,9 @@
                 <ImageButton
                         android:layout_width="100dp"
                         android:scaleType="fitCenter"
-                        android:background="@null"
                         android:id="@+id/techcate"
                         android:src="@drawable/techcate"
+                        android:background="?attr/selectableItemBackgroundBorderless"
                         android:layout_height="100dp">
                 </ImageButton>
 
@@ -86,9 +86,9 @@
                     android:layout_marginStart="20dp"
                     android:layout_width="100dp"
                     android:scaleType="fitCenter"
-                    android:background="@null"
                     android:id="@+id/newcate"
                     android:src="@drawable/newcate"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:layout_height="100dp">
                 </ImageButton>
 
@@ -96,16 +96,17 @@
              android:layout_marginStart="20dp"
              android:layout_width="100dp"
              android:scaleType="fitCenter"
-             android:background="@null"
+
              android:id="@+id/sportcate"
              android:src="@drawable/sportcate"
+             android:background="?attr/selectableItemBackgroundBorderless"
              android:layout_height="100dp">
          </ImageButton>
          <ImageButton
              android:layout_marginStart="20dp"
              android:layout_width="100dp"
              android:scaleType="fitCenter"
-             android:background="@null"
+             android:background="?attr/selectableItemBackgroundBorderless"
              android:id="@+id/financecate"
              android:src="@drawable/financecate"
              android:layout_height="100dp">
@@ -114,7 +115,7 @@
              android:layout_marginStart="20dp"
              android:layout_width="100dp"
              android:scaleType="fitCenter"
-             android:background="@null"
+             android:background="?attr/selectableItemBackgroundBorderless"
              android:id="@+id/foodcate"
              android:src="@drawable/foodcate"
              android:layout_height="100dp">

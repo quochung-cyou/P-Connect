@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         pagerAdapter.createFragment(2);
 
         viewPager.setAdapter(pagerAdapter);
-        FadeOutTransformation transformation = new FadeOutTransformation();
+        AccordionTransformer transformation = new AccordionTransformer();
         viewPager.setPageTransformer(transformation);
 
         if (getIntent().getExtras() != null) {
@@ -140,14 +140,11 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 
- class FadeOutTransformation implements ViewPager2.PageTransformer{
-    @Override
-    public void transformPage(View page, float position) {
+ class AccordionTransformer implements ViewPager2.PageTransformer {
 
-        page.setTranslationX(-position*page.getWidth());
-
-        page.setAlpha(1-Math.abs(position));
-
-
-    }
-}
+     @Override
+     public void transformPage(@NonNull View view, float position) {
+         view.setPivotX(position < 0 ? 0 : view.getWidth());
+         view.setScaleX(position < 0 ? 1f + position : 1f - position);
+     }
+ }

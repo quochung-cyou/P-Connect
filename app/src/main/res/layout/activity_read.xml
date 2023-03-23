@@ -59,14 +59,15 @@
 
                     <com.airbnb.lottie.LottieAnimationView
                         android:id="@+id/loadPost"
+                        android:layout_marginTop="100dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_centerInParent="true"
+                        android:scaleType="fitStart"
                         app:lottie_autoPlay="true"
                         app:lottie_cacheComposition="true"
-                        app:lottie_fileName="9844-loading-40-paperplane.json"
+                        app:lottie_fileName="8418-skeleton-loading-animation.json"
                         app:lottie_loop="true"
-                        android:scaleType="fitCenter"
                         app:lottie_renderMode="hardware"
                         app:lottie_repeatMode="restart"
                         app:lottie_speed="0.7"
@@ -76,6 +77,7 @@
                     <WebView
                         app:layout_behavior="@string/appbar_scrolling_view_behavior"
                         android:id="@+id/webView"
+                        android:fitsSystemWindows="true"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"/>
 

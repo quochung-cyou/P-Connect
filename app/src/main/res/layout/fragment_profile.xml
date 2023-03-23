@@ -200,6 +200,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/termofservices"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="15dp"
@@ -220,7 +221,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
-                android:text="Change Password"
+                android:text="Terms of services"
                 android:layout_marginStart="70dp"
                 android:fontFamily="@font/blinker"
                 android:textColor="@color/black"
