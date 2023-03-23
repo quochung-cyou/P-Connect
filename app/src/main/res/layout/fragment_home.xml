@@ -72,30 +72,53 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <ImageView
-            android:layout_width="100dp"
-            android:src="@drawable/gamecate"
-            android:layout_height="100dp"></ImageView>
 
-        <ImageView
-            android:layout_marginStart="20dp"
-            android:layout_width="100dp"
-            android:src="@drawable/sportcate"
-            android:layout_height="100dp">
-        </ImageView>
+                <ImageButton
+                        android:layout_width="100dp"
+                        android:scaleType="fitCenter"
+                        android:background="@null"
+                        android:id="@+id/techcate"
+                        android:src="@drawable/techcate"
+                        android:layout_height="100dp">
+                </ImageButton>
 
-         <ImageView
+                <ImageButton
+                    android:layout_marginStart="20dp"
+                    android:layout_width="100dp"
+                    android:scaleType="fitCenter"
+                    android:background="@null"
+                    android:id="@+id/newcate"
+                    android:src="@drawable/newcate"
+                    android:layout_height="100dp">
+                </ImageButton>
+
+         <ImageButton
              android:layout_marginStart="20dp"
              android:layout_width="100dp"
-             android:src="@drawable/headlinecate"
+             android:scaleType="fitCenter"
+             android:background="@null"
+             android:id="@+id/sportcate"
+             android:src="@drawable/sportcate"
              android:layout_height="100dp">
-         </ImageView>
-         <ImageView
+         </ImageButton>
+         <ImageButton
              android:layout_marginStart="20dp"
              android:layout_width="100dp"
-             android:src="@drawable/gamecate"
+             android:scaleType="fitCenter"
+             android:background="@null"
+             android:id="@+id/financecate"
+             android:src="@drawable/financecate"
              android:layout_height="100dp">
-         </ImageView>
+         </ImageButton>
+         <ImageButton
+             android:layout_marginStart="20dp"
+             android:layout_width="100dp"
+             android:scaleType="fitCenter"
+             android:background="@null"
+             android:id="@+id/foodcate"
+             android:src="@drawable/foodcate"
+             android:layout_height="100dp">
+        </ImageButton>
         </LinearLayout>
         </HorizontalScrollView>
 

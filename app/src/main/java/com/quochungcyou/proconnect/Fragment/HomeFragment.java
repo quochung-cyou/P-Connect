@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -51,9 +53,11 @@ public class HomeFragment extends Fragment {
     private DatabaseReference databaseReference;
     RoundedImageView avatarImage;
     TextView welcomeMessage;
-    public static final String API_KEY = "fdd4be279a254b22b191425efe19514b";
     PostAdapter adapter;
     LottieAnimationView loadPost;
+    ImageButton techcate, newcate, sportcate, financecate, foodcate;
+    Call<ResultModel> call;
+    APIInterface apiInterface;
 
 
     @Override
@@ -89,46 +93,66 @@ public class HomeFragment extends Fragment {
         welcomeMessage = view.findViewById(R.id.welcomeMessage);
         avatarImage = view.findViewById(R.id.thumbnailavatar);
         loadPost = view.findViewById(R.id.loadPost);
+        techcate = view.findViewById(R.id.techcate);
+        newcate = view.findViewById(R.id.newcate);
+        sportcate = view.findViewById(R.id.sportcate);
+        financecate = view.findViewById(R.id.financecate);
+        foodcate = view.findViewById(R.id.foodcate);
+        apiInterface  = APIHelper.getApiClient("https://api.newscatcherapi.com/", getContext()).create(APIInterface.class);
+
+
 
         postlist = new ArrayList<>();
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        adapter = new PostAdapter(getActivity() , postlist);
-        recyclerView.setItemAnimator(new SlideLeftAlphaAnimator());
 
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
+        techcate.setOnClickListener(v -> {
+            call = apiInterface.getLastestHeadline("3d", "VN", "tech", "10");
+            callData();
+        });
+        newcate.setOnClickListener(v -> {
+            call = apiInterface.getLastestHeadline("3d", "VN", "news", "10");
+            callData();
+        });
+        sportcate.setOnClickListener(v -> {
+            call = apiInterface.getLastestHeadline("3d", "VN", "sport", "10");
+            callData();
+        });
+        financecate.setOnClickListener(v -> {
+            call = apiInterface.getLastestHeadline("3d", "VN", "finance", "10");
+            callData();
+        });
+        foodcate.setOnClickListener(v -> {
+            call = apiInterface.getLastestHeadline("3d", "VN", "food", "10");
+            callData();
+        });
+
+
     }
 
     private void getPostList() {
-        APIInterface apiInterface = APIHelper.getApiClient().create(APIInterface.class);
-        Call<ResultModel> call;
-        call = apiInterface.getNews("technology", "publishedAt", API_KEY);
+
+        call = apiInterface.getLastestHeadline("7d", "VN", "tech", "15");
         Log.d("HomeFragment", "Call to get post list");
+        callData();
+    }
+
+    private void callData() {
         call.enqueue(new Callback<ResultModel>() {
-                @Override
-                public void onResponse(Call<ResultModel> call, Response<ResultModel> response) {
+            @Override
+            public void onResponse(Call<ResultModel> call, Response<ResultModel> response) {
 
-                    if (response.isSuccessful() && response.body().getArticle() != null) {
-                        postlist = response.body().getArticle();
-                        if (!postlist.isEmpty()) {
-                            loadPost.setVisibility(View.GONE);
-                            Log.d("HomeFragment", "done call " + postlist.size());
-                            adapter = new PostAdapter(getActivity(), postlist);
-                            recyclerView.setAdapter(adapter);
-                            adapter.notifyDataSetChanged();
-                        } else {
-                            Log.d("HomeFragment", "Empty postlist");
-                            MotionToast.Companion.createToast(getActivity(),
-                                    "Failed ☹️",
-                                    "No post available",
-                                    MotionToastStyle.ERROR,
-                                    MotionToast.GRAVITY_BOTTOM,
-                                    MotionToast.LONG_DURATION,
-                                    ResourcesCompat.getFont(getActivity(),R.font.opensanlight));
-                        }
+                if (response.isSuccessful() && Objects.requireNonNull(response.body()).getArticle() != null) {
+                    postlist = response.body().getArticle();
+                    if (!postlist.isEmpty()) {
+                        loadPost.setVisibility(View.GONE);
+                        Log.d("HomeFragment", "done call " + postlist.size());
 
+                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+                        adapter = new PostAdapter(getActivity() , postlist);
+                        recyclerView.setItemAnimator(new SlideLeftAlphaAnimator());
+                        recyclerView.setLayoutManager(layoutManager);
+                        recyclerView.setAdapter(adapter);
                     } else {
-                        Log.d("HomeFragment", "null reponse");
+                        Log.d("HomeFragment", "Empty postlist");
                         MotionToast.Companion.createToast(getActivity(),
                                 "Failed ☹️",
                                 "No post available",
@@ -137,12 +161,23 @@ public class HomeFragment extends Fragment {
                                 MotionToast.LONG_DURATION,
                                 ResourcesCompat.getFont(getActivity(),R.font.opensanlight));
                     }
+
+                } else {
+                    Log.d("HomeFragment", "null reponse " + response.isSuccessful() + " " + response.toString());
+                    MotionToast.Companion.createToast(getActivity(),
+                            "Failed ☹️",
+                            "No post available",
+                            MotionToastStyle.ERROR,
+                            MotionToast.GRAVITY_BOTTOM,
+                            MotionToast.LONG_DURATION,
+                            ResourcesCompat.getFont(getActivity(),R.font.opensanlight));
                 }
+            }
 
             @Override
             public void onFailure(Call<ResultModel> call, Throwable t) {
 
-                Log.d("error", t.getMessage());
+                Log.d("EROR", t.getMessage());
                 MotionToast.Companion.createToast(getActivity(),
                         "Failed ☹️",
                         "No post available",

@@ -4,9 +4,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class ArticleModel {
-    @SerializedName("source")
+    @SerializedName("summary")
     @Expose
-    private SourceModel source;
+    private String summary;
 
     @SerializedName("author")
     @Expose
@@ -21,26 +21,23 @@ public class ArticleModel {
     private String description;
 
 
-    @SerializedName("url")
+    @SerializedName("link")
     @Expose
     private String url;
 
-    @SerializedName("urlToImage")
+    @SerializedName("media")
     @Expose
     private String urlimage;
 
-    @SerializedName("publishedAt")
+    @SerializedName("published_date")
     @Expose
     private String time;
 
 
-    public SourceModel getSource() {
-        return source;
+    public String getSummary() {
+        return summary;
     }
-
-    public void setSource(SourceModel source) {
-        this.source = source;
-    }
+    
 
     public String getAuthor() {
         return author;

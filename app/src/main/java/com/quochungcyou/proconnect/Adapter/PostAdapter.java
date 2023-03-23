@@ -1,10 +1,13 @@
 package com.quochungcyou.proconnect.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +21,7 @@ import com.quochungcyou.proconnect.Activity.ReadActivity;
 import com.quochungcyou.proconnect.Model.ArticleModel;
 import com.quochungcyou.proconnect.R;
 import com.quochungcyou.proconnect.Utils.DateFormat;
+import com.quochungcyou.proconnect.Utils.UriParse;
 
 import java.util.List;
 
@@ -26,6 +30,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
 
     private final Context context;
     private final List<ArticleModel> postlist;
+    int lastPosition;
 
     public PostAdapter(Context context , List<ArticleModel> post){
         this.context = context;
@@ -40,6 +45,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
     }
 
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void onBindViewHolder(@NonNull PostHolder holder, int position) {
         ArticleModel post = postlist.get(position);
@@ -52,12 +58,37 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
             Glide.with(context).load(post.getUrlimage()).diskCacheStrategy(DiskCacheStrategy.ALL).priority(Priority.HIGH).placeholder(R.drawable.thumbnailnewpost).into(holder.thumbnail);
         }
 
-        holder.avatar.setImageDrawable(context.getResources().getDrawable(R.drawable.headerprofile));
+        //parse url clean
+        String url = UriParse.getUrlDomainName(post.getUrl());
 
-
-
-
+        Glide.with(context).load("https://www.google.com/s2/favicons?domain=" + url + "&sz=64")
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .priority(Priority.HIGH)
+                .placeholder(R.drawable.thumbnailnewpost)
+                .into(holder.avatar);
+        setAnimation(holder.itemView, position);
     }
+
+
+    @Override
+    public void onViewDetachedFromWindow(final PostHolder viewHolder)
+    {
+        super.onViewDetachedFromWindow(viewHolder);
+        viewHolder.itemView.clearAnimation();
+    }
+
+    private void setAnimation(View viewToAnimate, int position)
+    {
+        // If the bound view wasn't previously displayed on screen, it's animated
+        if (position > lastPosition)
+        {
+            Animation animation = AnimationUtils.loadAnimation(context, R.anim.pop_enter);
+            viewToAnimate.startAnimation(animation);
+            lastPosition = position;
+        }
+    }
+
+
 
     @Override
     public int getItemCount() {
@@ -85,7 +116,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
                 intent.putExtra("author", postlist.get(getAdapterPosition()).getAuthor());
                 intent.putExtra("image", postlist.get(getAdapterPosition()).getUrlimage());
                 intent.putExtra("date", postlist.get(getAdapterPosition()).getTime());
-                intent.putExtra("Source", postlist.get(getAdapterPosition()).getSource().getName());
+                intent.putExtra("summary", postlist.get(getAdapterPosition()).getSummary());
 
                 context.startActivity(intent);
             });

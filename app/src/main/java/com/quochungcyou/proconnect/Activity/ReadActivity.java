@@ -7,11 +7,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,16 +21,13 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.quochungcyou.proconnect.R;
-import com.quochungcyou.proconnect.Utils.DateFormat;
 
 public class ReadActivity extends AppCompatActivity {
     private String mAuthor, mDate, mImg, mSource, mTitle, mUrl;
     private AppBarLayout appBarLayout;
     private Toolbar toolbar;
-    private FrameLayout date_behavior;
-    private LinearLayout titleAppbar;
     private ImageView imageView;
-    private TextView appbar_subtitle, date, time, title;
+    private TextView date, time, title;
 
     private boolean isHideToolbarView = false;
 
@@ -48,14 +44,11 @@ public class ReadActivity extends AppCompatActivity {
     private void initVar() {
         toolbar = findViewById(R.id.toolbar);
         appBarLayout = findViewById(R.id.appbar);
+        //date = findViewById(R.id.date);
+        //title = findViewById(R.id.title);
 
-        date_behavior = findViewById(R.id.date_behavior);
-        titleAppbar = findViewById(R.id.title_appbar);
-        appbar_subtitle = findViewById(R.id.subtitle_on_appbar);
+
         final CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
-        date =  findViewById(R.id.date);
-        time = findViewById(R.id.timedocbai);
-        title = findViewById(R.id.title);
 
 
         //appBarLayout.addOnOffsetChangedListener(this);
@@ -82,9 +75,8 @@ public class ReadActivity extends AppCompatActivity {
         mDate = intent.getStringExtra("date");
         mSource = intent.getStringExtra("source");
         mAuthor = intent.getStringExtra("author");
-        appbar_subtitle.setText(mUrl);
-        date.setText(DateFormat.DateFormat(mDate));
-        title.setText(mTitle);
+        //date.setText(DateFormat.DateFormat(mDate));
+        //title.setText(mTitle);
 
 
         String str;
@@ -93,17 +85,18 @@ public class ReadActivity extends AppCompatActivity {
         } else {
             str = "";
         }
-        time.setText(this.mSource + str + " • " + DateFormat.DateToTimeFormat(this.mDate));
+        //time.setText(this.mSource + str + " • " + DateFormat.DateToTimeFormat(this.mDate));
     }
 
     private void initWebView(String str) {
         WebView webView = findViewById(R.id.webView);
         webView.getSettings().setLoadsImagesAutomatically(true);
-        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setJavaScriptEnabled(false);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setSupportZoom(true);
         webView.getSettings().setBuiltInZoomControls(true);
         webView.getSettings().setDisplayZoomControls(false);
+        webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl(str);
@@ -122,12 +115,12 @@ public class ReadActivity extends AppCompatActivity {
     public void onOffsetChanged(AppBarLayout appBarLayout2, int i) {
         float abs = ((float) Math.abs(i)) / ((float) appBarLayout2.getTotalScrollRange());
         if (abs == 1.0f && isHideToolbarView) {
-            date_behavior.setVisibility(View.GONE);
-            titleAppbar.setVisibility(View.VISIBLE);
+            //date_behavior.setVisibility(View.GONE);
+            //titleAppbar.setVisibility(View.VISIBLE);
             isHideToolbarView = !isHideToolbarView;
         } else if (abs < 1.0f && !isHideToolbarView) {
-            date_behavior.setVisibility(View.VISIBLE);
-            titleAppbar.setVisibility(View.GONE);
+            //date_behavior.setVisibility(View.VISIBLE);
+            //titleAppbar.setVisibility(View.GONE);
             isHideToolbarView = !isHideToolbarView;
         }
     }

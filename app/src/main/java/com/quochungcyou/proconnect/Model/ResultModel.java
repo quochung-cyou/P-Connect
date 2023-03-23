@@ -11,23 +11,23 @@ public class ResultModel {
     @Expose
     private String status;
 
-    @SerializedName("totalresults")
+    @SerializedName("total_hits")
     @Expose
-    private int totalresults;
+    private int total_hits;
 
     @SerializedName("articles")
     @Expose
-    private List<ArticleModel> article;
+    private List<ArticleModel> articles;
 
     public String getStatus() {
         return status;
     }
 
     public int getTotalresults() {
-        return totalresults;
+        return total_hits;
     }
 
     public List<ArticleModel> getArticle() {
-        return article;
+        return articles;
     }
 }

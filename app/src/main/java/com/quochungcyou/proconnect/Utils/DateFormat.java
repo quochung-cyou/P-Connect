@@ -35,12 +35,14 @@ public class DateFormat {
         PrettyTime p = new PrettyTime(new Locale(getCountry()));
         String isTime = null;
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'",
+            //simple date format pattern for example input 2023-03-23 07:06:43
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss",
                     Locale.ENGLISH);
+
             Date date = sdf.parse(oldstringDate);
             isTime = p.format(date);
         } catch (ParseException e) {
-            e.printStackTrace();
+            System.out.println("Exception :" + oldstringDate + " " );
         }
 
         return isTime;
@@ -48,9 +50,9 @@ public class DateFormat {
 
     public static String DateFormat(String oldstringDate){
         String newDate;
-        SimpleDateFormat dateFormat = new SimpleDateFormat("E, d MMM yyyy", new Locale(getCountry()));
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
         try {
-            Date date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(oldstringDate);
+            Date date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(oldstringDate);
             newDate = dateFormat.format(date);
         } catch (ParseException e) {
             e.printStackTrace();
