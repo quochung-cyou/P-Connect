@@ -97,12 +97,6 @@ public class ProfileFragment extends Fragment {
         });
 
         profileImage.setOnClickListener(v -> {
-            BitmapDrawable drawable = (BitmapDrawable) profileImage.getDrawable();
-            Bitmap bitmap = drawable.getBitmap();
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-            byte[] imageByteArray = stream.toByteArray();
-            ModelBase64.base64Image = Base64.encodeToString(imageByteArray, 0);
             Intent intent = new Intent(getActivity(), FullScreenImage.class);
             getActivity().overridePendingTransition(R.anim.pop_enter, R.anim.pop_exit);
             startActivity(intent);

@@ -45,7 +45,6 @@ dependencies {
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    implementation 'com.google.android.material:material:1.8.0'
 
     //UI 3rd
     implementation 'com.gauravk.bubblenavigation:bubblenavigation:1.0.7'
