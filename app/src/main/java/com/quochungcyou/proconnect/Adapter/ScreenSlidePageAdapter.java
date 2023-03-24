@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.quochungcyou.proconnect.Fragment.ChatFragment;
 import com.quochungcyou.proconnect.Fragment.HomeFragment;
 import com.quochungcyou.proconnect.Fragment.LikeFragment;
 import com.quochungcyou.proconnect.Fragment.ProfileFragment;
@@ -33,6 +34,8 @@ public class ScreenSlidePageAdapter extends FragmentStateAdapter {
         } else if (position == 1) {
             return new LikeFragment();
         } else if (position == 2) {
+            return new ChatFragment();
+        } else if (position == 3) {
             return new ProfileFragment();
         }
         return null;
@@ -40,6 +43,6 @@ public class ScreenSlidePageAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 4;
     }
 }

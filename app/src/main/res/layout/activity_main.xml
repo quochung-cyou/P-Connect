@@ -23,7 +23,7 @@
         android:elevation="8dp"
         android:orientation="horizontal"
         android:padding="12dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="30dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,6 +50,16 @@
             app:bt_icon="@drawable/ic_like"
             app:bt_shape="@drawable/transition_background_drawable_like"
             app:bt_title="Like" />
+
+        <com.gauravk.bubblenavigation.BubbleToggleView
+            android:id="@+id/l_item_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:bt_colorActive="@color/red_active"
+            app:bt_colorInactive="@color/red_inactive"
+            app:bt_icon="@drawable/ic_call"
+            app:bt_shape="@drawable/transition_background_drawable_home"
+            app:bt_title="Chat" />
 
 
         <com.gauravk.bubblenavigation.BubbleToggleView

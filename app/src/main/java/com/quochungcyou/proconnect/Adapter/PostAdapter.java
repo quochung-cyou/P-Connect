@@ -30,7 +30,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
 
     private final Context context;
     private final List<ArticleModel> postlist;
-    int lastPosition;
+    int lastPosition = -1;
 
     public PostAdapter(Context context , List<ArticleModel> post){
         this.context = context;

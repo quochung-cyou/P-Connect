@@ -109,7 +109,7 @@ public class ProfileFragment extends Fragment {
         });
 
         termofService.setOnClickListener(v -> {
-            String url = "https://github.com/quochung-cyou/P-Connect";
+            String url = "https://github.com/quochung-cyou/P-Connect/blob/master/Terms-of-Service.md";
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(url));
             startActivity(i);
