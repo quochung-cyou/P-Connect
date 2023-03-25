@@ -5,21 +5,22 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="#fbfdff"
     tools:context=".Fragment.ChatFragment">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="15dp"
+        android:paddingTop="30dp"
+        android:paddingBottom="20dp"
         android:layout_height="wrap_content">
 
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:layout_gravity="center"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_marginStart="15dp"
-
             android:src="@drawable/defaultprofile" />
 
         <TextView
@@ -44,40 +45,29 @@
             tools:ignore="ContentDescription" />
     </LinearLayout>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:background="@drawable/round_pink"
+        android:queryBackground="@android:color/transparent"
+        app:queryBackground="@android:color/transparent"
+        android:layout_below="@+id/toolbar_main"
+        android:clickable="true"
+        android:focusable="true"
+        android:inputType="text"
+        android:layoutDirection="ltr"
+        android:searchSuggestThreshold="2"
+        app:searchHintIcon="@null"
+        android:layout_height="50dp" />
 
-        <!-- NestedScrollingChild goes here (NestedScrollView, RecyclerView, etc.). -->
-        <androidx.core.widget.NestedScrollView
+
+            <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleViewUserchat"
+            android:layout_marginTop="25dp"
+            android:nestedScrollingEnabled="false"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/searchbar_scrolling_view_behavior">
-            <!-- Screen content goes here. -->
-        </androidx.core.widget.NestedScrollView>
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <com.google.android.material.search.SearchBar
-                android:id="@+id/search_bar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/searchbar_hint" />
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <com.google.android.material.search.SearchView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/searchbar_hint"
-            app:layout_anchor="@id/search_bar">
-            <!-- Search suggestions/results go here (ScrollView, RecyclerView, etc.). -->
-        </com.google.android.material.search.SearchView>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
-
-
-
+            android:layout_height="match_parent" />
 
 </LinearLayout>
