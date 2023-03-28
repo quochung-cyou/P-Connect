@@ -16,11 +16,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.quochungcyou.proconnect.APIUtils.APIHelper;
+import com.quochungcyou.proconnect.APIUtils.APIInterface;
+import com.quochungcyou.proconnect.Model.ResultModel;
 import com.quochungcyou.proconnect.R;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LogoActivity extends AppCompatActivity {
 
     VideoView videoView;
+    APIInterface apiInterface;
+    Call<ResultModel> call;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +56,9 @@ public class LogoActivity extends AppCompatActivity {
 
     public void initVar() {
         videoView = findViewById(R.id.gifLogo);
-        videoView = findViewById(R.id.gifLogo);
+
+        apiInterface  = APIHelper.getApiClient("https://newsdata.io/", LogoActivity.this).create(APIInterface.class);
+
 
         Uri video = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.logo);
         videoView.setVideoURI(video);
@@ -76,6 +87,7 @@ public class LogoActivity extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         new Handler().postDelayed(() -> {
+            getPostList();
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             if (user != null) {
                 // User is signed in
@@ -93,6 +105,39 @@ public class LogoActivity extends AppCompatActivity {
 
         }, 2000);
 
+    }
+
+    private void getPostList() {
+
+        call = apiInterface.getLastestHeadlineNoTopic("pub_1954270c22eae1320f8f448ffdf45c482fcf1", "vi");
+        preloadData();
+        call = apiInterface.getLastestHeadline("pub_1954270c22eae1320f8f448ffdf45c482fcf1", "vi", "technology");
+        preloadData();
+        call = apiInterface.getLastestHeadline("pub_1954270c22eae1320f8f448ffdf45c482fcf1", "vi", "world");
+        preloadData();
+        call = apiInterface.getLastestHeadline("pub_1954270c22eae1320f8f448ffdf45c482fcf1", "vi", "sports");
+        preloadData();
+        call = apiInterface.getLastestHeadline("pub_1954270c22eae1320f8f448ffdf45c482fcf1", "vi", "business");
+        preloadData();
+        call = apiInterface.getLastestHeadline("pub_1954270c22eae1320f8f448ffdf45c482fcf1", "vi", "entertainment");
+
+
+    }
+
+    private void preloadData() {
+        call.enqueue(new Callback<ResultModel>() {
+
+
+            @Override
+            public void onResponse(Call<ResultModel> call, Response<ResultModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<ResultModel> call, Throwable t) {
+
+            }
+        });
     }
 
 

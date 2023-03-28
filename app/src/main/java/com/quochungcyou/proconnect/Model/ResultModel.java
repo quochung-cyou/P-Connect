@@ -11,11 +11,11 @@ public class ResultModel {
     @Expose
     private String status;
 
-    @SerializedName("total_hits")
+    @SerializedName("totalResults")
     @Expose
     private int total_hits;
 
-    @SerializedName("articles")
+    @SerializedName("results")
     @Expose
     private List<ArticleModel> articles;
 

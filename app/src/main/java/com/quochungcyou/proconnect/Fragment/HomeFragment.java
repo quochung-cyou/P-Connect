@@ -97,30 +97,30 @@ public class HomeFragment extends Fragment {
         sportcate = view.findViewById(R.id.sportcate);
         financecate = view.findViewById(R.id.financecate);
         foodcate = view.findViewById(R.id.foodcate);
-        apiInterface  = APIHelper.getApiClient("https://api.newscatcherapi.com/", getContext()).create(APIInterface.class);
+        apiInterface  = APIHelper.getApiClient("https://newsdata.io/", getContext()).create(APIInterface.class);
 
 
 
         postlist = new ArrayList<>();
 
         techcate.setOnClickListener(v -> {
-            call = apiInterface.getLastestHeadline("3d", "VN", "tech", "10");
+            call = apiInterface.getLastestHeadline("pub_1954270c22eae1320f8f448ffdf45c482fcf1", "vi", "technology");
             callData();
         });
         newcate.setOnClickListener(v -> {
-            call = apiInterface.getLastestHeadline("3d", "VN", "news", "10");
+            call = apiInterface.getLastestHeadline("pub_1954270c22eae1320f8f448ffdf45c482fcf1", "vi", "world");
             callData();
         });
         sportcate.setOnClickListener(v -> {
-            call = apiInterface.getLastestHeadline("3d", "VN", "sport", "10");
+            call = apiInterface.getLastestHeadline("pub_1954270c22eae1320f8f448ffdf45c482fcf1", "vi", "sports");
             callData();
         });
         financecate.setOnClickListener(v -> {
-            call = apiInterface.getLastestHeadline("3d", "VN", "finance", "10");
+            call = apiInterface.getLastestHeadline("pub_1954270c22eae1320f8f448ffdf45c482fcf1", "vi", "business");
             callData();
         });
         foodcate.setOnClickListener(v -> {
-            call = apiInterface.getLastestHeadline("3d", "VN", "food", "10");
+            call = apiInterface.getLastestHeadline("pub_1954270c22eae1320f8f448ffdf45c482fcf1", "vi", "entertainment");
             callData();
         });
 
@@ -129,15 +129,20 @@ public class HomeFragment extends Fragment {
 
     private void getPostList() {
 
-        call = apiInterface.getLastestHeadline("7d", "VN", "tech", "15");
-        Log.d("HomeFragment", "Call to get post list");
+        call = apiInterface.getLastestHeadlineNoTopic("pub_1954270c22eae1320f8f448ffdf45c482fcf1", "vi");
+
         callData();
     }
 
+
+
     private void callData() {
+        Log.d("HomeFragment", "Calling to get post list from call data method");
         call.enqueue(new Callback<ResultModel>() {
+
             @Override
             public void onResponse(Call<ResultModel> call, Response<ResultModel> response) {
+                Log.d("HomeFragment", "null reponse " + response.isSuccessful() + " " + response.toString() + " " + response.body().getArticle().size());
 
                 if (response.isSuccessful() && Objects.requireNonNull(response.body()).getArticle() != null) {
                     postlist = response.body().getArticle();
@@ -153,7 +158,7 @@ public class HomeFragment extends Fragment {
                     } else {
                         Log.d("HomeFragment", "Empty postlist");
                         MotionToast.Companion.createToast(getActivity(),
-                                "Failed ☹️",
+                                "Not success, null ☹️",
                                 "No post available",
                                 MotionToastStyle.ERROR,
                                 MotionToast.GRAVITY_BOTTOM,
@@ -164,7 +169,7 @@ public class HomeFragment extends Fragment {
                 } else {
                     Log.d("HomeFragment", "null reponse " + response.isSuccessful() + " " + response.toString());
                     MotionToast.Companion.createToast(getActivity(),
-                            "Failed ☹️",
+                            "No Response ☹️",
                             "No post available",
                             MotionToastStyle.ERROR,
                             MotionToast.GRAVITY_BOTTOM,
@@ -176,9 +181,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void onFailure(Call<ResultModel> call, Throwable t) {
 
-                Log.d("EROR", t.getMessage());
+                Log.d("HomeFragment", t.getMessage());
                 MotionToast.Companion.createToast(getActivity(),
-                        "Failed ☹️",
+                        "Failed to fetch ☹️",
                         "No post available",
                         MotionToastStyle.ERROR,
                         MotionToast.GRAVITY_BOTTOM,

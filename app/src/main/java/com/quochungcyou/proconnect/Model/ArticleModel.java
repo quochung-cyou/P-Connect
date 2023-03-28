@@ -3,14 +3,16 @@ package com.quochungcyou.proconnect.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class ArticleModel {
-    @SerializedName("summary")
+    @SerializedName("content")
     @Expose
     private String summary;
 
-    @SerializedName("author")
+    @SerializedName("creator")
     @Expose
-    private String author;
+    private List<String> author;
 
     @SerializedName("title")
     @Expose
@@ -25,13 +27,17 @@ public class ArticleModel {
     @Expose
     private String url;
 
-    @SerializedName("media")
+    @SerializedName("image_url")
     @Expose
     private String urlimage;
 
-    @SerializedName("published_date")
+    @SerializedName("pubDate")
     @Expose
     private String time;
+
+    @SerializedName("source_id")
+    @Expose
+    private String source_id;
 
 
     public String getSummary() {
@@ -39,13 +45,14 @@ public class ArticleModel {
     }
     
 
-    public String getAuthor() {
+    public List<String> getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public String getSource_id() {
+        return source_id;
     }
+
 
     public String getTitle() {
         return title;
@@ -85,5 +92,12 @@ public class ArticleModel {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    class authorModel {
+        @SerializedName("name")
+        @Expose
+        private String name;
+
     }
 }

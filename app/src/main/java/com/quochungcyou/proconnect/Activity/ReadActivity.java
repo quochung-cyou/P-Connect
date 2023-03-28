@@ -1,35 +1,46 @@
 package com.quochungcyou.proconnect.Activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.quochungcyou.proconnect.R;
 
 public class ReadActivity extends AppCompatActivity {
-    private String mAuthor, mDate, mImg, mSource, mTitle, mUrl;
-    private AppBarLayout appBarLayout;
+    private String mAuthor;
+    private String mSource;
+    private String mTitle;
+    private String mUrl;
     private Toolbar toolbar;
-    private ImageView imageView;
-    private TextView date, time, title;
+    ProgressBar progressBar;
+    LottieAnimationView loadPost;
 
     private boolean isHideToolbarView = false;
+
+    public ReadActivity() {
+    }
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -43,7 +54,8 @@ public class ReadActivity extends AppCompatActivity {
 
     private void initVar() {
         toolbar = findViewById(R.id.toolbar);
-        appBarLayout = findViewById(R.id.appbar);
+        progressBar = findViewById(R.id.progressbar);
+        loadPost = findViewById(R.id.loadPost);
         //date = findViewById(R.id.date);
         //title = findViewById(R.id.title);
 
@@ -70,9 +82,7 @@ public class ReadActivity extends AppCompatActivity {
     private void getDataIntent() {
         Intent intent = getIntent();
         mUrl = intent.getStringExtra("url");
-        mImg = intent.getStringExtra("img");
         mTitle = intent.getStringExtra("title");
-        mDate = intent.getStringExtra("date");
         mSource = intent.getStringExtra("source");
         mAuthor = intent.getStringExtra("author");
         //date.setText(DateFormat.DateFormat(mDate));
@@ -91,15 +101,64 @@ public class ReadActivity extends AppCompatActivity {
     private void initWebView(String str) {
         WebView webView = findViewById(R.id.webView);
         webView.getSettings().setLoadsImagesAutomatically(true);
-        webView.getSettings().setJavaScriptEnabled(false);
+        webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setSupportZoom(true);
         webView.getSettings().setBuiltInZoomControls(true);
         webView.getSettings().setDisplayZoomControls(false);
         webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
-        webView.setWebViewClient(new WebViewClient());
+        webView.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int progress)
+            {
+                Log.d("progressgogo", "onProgressChanged: " + progress +"%");
+                progressBar.setVisibility(ProgressBar.VISIBLE);
+                loadPost.setVisibility(View.VISIBLE);
+                progressBar.setProgress(progress);
+                if (progress == 100) {
+                    progressBar.setVisibility(ProgressBar.GONE);
+                    loadPost.setVisibility(View.GONE);
+                    webView.setVisibility(View.VISIBLE);
+                    Animation animation = AnimationUtils.loadAnimation(ReadActivity.this, R.anim.pop_enter);
+                    webView.startAnimation(animation);
+
+                }
+
+            }
+        });
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                view.loadUrl(String.valueOf(request.getUrl()));
+                return true;
+            }
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+                progressBar.setVisibility(ProgressBar.VISIBLE);
+                loadPost.setVisibility(View.VISIBLE);
+                webView.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onPageCommitVisible(WebView view, String url) {
+                super.onPageCommitVisible(view, url);
+
+            }
+            //progress
+
+            @Override
+            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+                super.onReceivedError(view, request, error);
+                progressBar.setVisibility(ProgressBar.GONE);
+                loadPost.setVisibility(View.GONE);
+            }
+        });
         webView.loadUrl(str);
+
+
     }
 
     public void onBackPressed() {

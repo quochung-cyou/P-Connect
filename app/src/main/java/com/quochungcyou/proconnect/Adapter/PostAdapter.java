@@ -1,8 +1,11 @@
 package com.quochungcyou.proconnect.Adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +26,12 @@ import com.quochungcyou.proconnect.R;
 import com.quochungcyou.proconnect.Utils.DateFormat;
 import com.quochungcyou.proconnect.Utils.UriParse;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
 import java.util.List;
 
 
@@ -50,12 +59,51 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
     public void onBindViewHolder(@NonNull PostHolder holder, int position) {
         ArticleModel post = postlist.get(position);
         holder.title.setText(post.getTitle());
-        holder.author.setText(post.getAuthor());
+        if (post.getAuthor() != null && post.getAuthor().size() > 0) holder.author.setText(post.getAuthor().get(0));
+        else holder.author.setText(post.getSource_id());
         holder.date.setText(DateFormat.DateFormat(post.getTime()));
+
         if (post.getUrlimage() == null) {
-            holder.thumbnail.setImageDrawable(context.getResources().getDrawable(R.drawable.thumbnailnewpost));
+            new Thread(new Runnable() {
+
+                @Override
+                public void run() {
+                    String imageUrl = null;
+                    Document doc;
+                    try {
+                        doc = Jsoup
+                                .connect(post.getUrl())
+                                .ignoreContentType(true)
+                                .timeout(5 * 1000)
+                                .get();
+                    } catch (IOException e) {
+                        return;
+                    }
+                    Elements elements = doc.select("meta");
+                    for (Element e : elements) {
+                        imageUrl = e.attr("content");
+                        //OR more specifically you can check meta property.
+                        if (e.attr("property").equalsIgnoreCase("og:image")) {
+                            imageUrl = e.attr("content");
+                            break;
+                        }
+                    }
+                    Log.d("PostAdapter", "Done loading " + imageUrl);
+                    if (imageUrl != null) {
+                        Activity tmp = (Activity) context;
+                        String finalImageUrl = imageUrl;
+                        tmp.runOnUiThread(() -> Glide.with(context).load(finalImageUrl).diskCacheStrategy(DiskCacheStrategy.ALL).priority(Priority.HIGH).placeholder(R.drawable.thumbnailnewpost).into(holder.thumbnail));
+                    } else {
+                        Activity tmp = (Activity) context;
+                        String finalImageUrl = imageUrl;
+                        tmp.runOnUiThread(() -> Glide.with(context).load(context.getDrawable(R.drawable.thumbnailnewpost)).diskCacheStrategy(DiskCacheStrategy.ALL).priority(Priority.HIGH).placeholder(R.drawable.thumbnailnewpost).into(holder.thumbnail));
+                    }
+                }
+            }).start();
+
+
         } else {
-            Glide.with(context).load(post.getUrlimage()).diskCacheStrategy(DiskCacheStrategy.ALL).priority(Priority.HIGH).placeholder(R.drawable.thumbnailnewpost).into(holder.thumbnail);
+            Glide.with(context).load("https:" + post.getUrlimage()).diskCacheStrategy(DiskCacheStrategy.ALL).priority(Priority.HIGH).placeholder(R.drawable.thumbnailnewpost).into(holder.thumbnail);
         }
 
         //parse url clean
@@ -68,6 +116,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
                 .into(holder.avatar);
         setAnimation(holder.itemView, position);
     }
+
+
 
 
     @Override
@@ -113,10 +163,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
                 Intent intent = new Intent(context, ReadActivity.class);
                 intent.putExtra("url", postlist.get(getAdapterPosition()).getUrl());
                 intent.putExtra("title", postlist.get(getAdapterPosition()).getTitle());
-                intent.putExtra("author", postlist.get(getAdapterPosition()).getAuthor());
-                intent.putExtra("image", postlist.get(getAdapterPosition()).getUrlimage());
-                intent.putExtra("date", postlist.get(getAdapterPosition()).getTime());
-                intent.putExtra("summary", postlist.get(getAdapterPosition()).getSummary());
+                //intent.putExtra("author", postlist.get(getAdapterPosition()).getAuthor().get(0));
+                //intent.putExtra("image", postlist.get(getAdapterPosition()).getUrlimage());
+                //intent.putExtra("date", postlist.get(getAdapterPosition()).getTime());
+                //intent.putExtra("summary", postlist.get(getAdapterPosition()).getSummary());
 
                 context.startActivity(intent);
             });

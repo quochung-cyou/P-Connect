@@ -11,27 +11,19 @@ import retrofit2.http.Query;
 public interface APIInterface {
 
 
-    @GET("v2/latest_headlines")
-    @Headers({
-            "x-api-key: jYQA6FU8H_1-apVX4JNv6Yog7dMOVAoQXpY8aUhdjOk",
-    })
+    @GET("api/1/news")
     Call<ResultModel> getLastestHeadline(
 
-            @Query("when") String when,
-            @Query("countries") String countries,
-            @Query("topic") String topic,
-            @Query("page_size") String pageSize
+            @Query("apikey") String apikey,
+            @Query("country") String countries,
+            @Query("category") String topic
     );
 
-    @GET("v2/latest_headlines")
-    @Headers({
-            "x-api-key: jYQA6FU8H_1-apVX4JNv6Yog7dMOVAoQXpY8aUhdjOk",
-    })
+    @GET("api/1/news")
     Call<ResultModel> getLastestHeadlineNoTopic(
 
-            @Query("when") String when,
-            @Query("countries") String countries,
-            @Query("page_size") String pageSize
+            @Query("apikey") String apikey,
+            @Query("country") String countries
     );
 
 

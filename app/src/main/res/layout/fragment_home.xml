@@ -158,9 +158,9 @@
             tools:layout_editor_absoluteY="0dp"></com.airbnb.lottie.LottieAnimationView>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:paddingBottom="90dp"
             android:id="@+id/recycleViewNew"
             android:layout_marginTop="25dp"
-            android:layout_marginStart="20dp"
             android:nestedScrollingEnabled="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

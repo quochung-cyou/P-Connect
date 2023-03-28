@@ -67,6 +67,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.android.volley:volley:1.2.1'
     implementation 'org.ocpsoft.prettytime:prettytime:5.0.4.Final'
+    implementation 'org.jsoup:jsoup:1.15.4'
 
 
 

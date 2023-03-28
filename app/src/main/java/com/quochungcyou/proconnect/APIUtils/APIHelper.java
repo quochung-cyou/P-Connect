@@ -105,7 +105,7 @@ public class APIHelper {
             Response response = chain.proceed(chain.request());
 
             CacheControl cacheControl = new CacheControl.Builder()
-                    .maxAge(5, TimeUnit.MINUTES) // 5 minutes cache
+                    .maxAge(30, TimeUnit.MINUTES) // 5 minutes cache
                     .build();
 
             return response.newBuilder()
