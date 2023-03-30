@@ -51,7 +51,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     MaterialButton updateFunction;
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-    FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+    final FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
     ProgressWheel progressWheel;
     ImageView profileImage;
     TextInputEditText editName, editStudentID, editClass, editUsername, editDateofbirth, editPhone, editLocation;

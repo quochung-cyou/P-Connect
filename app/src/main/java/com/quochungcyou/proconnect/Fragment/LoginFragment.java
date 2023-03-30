@@ -2,7 +2,6 @@ package com.quochungcyou.proconnect.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.core.text.HtmlCompat;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -79,7 +79,7 @@ public class LoginFragment extends Fragment {
         ViewCompat.setTransitionName(loginLayout, "loginTrans");
 
         String text = "<font color=#7A7A7A>Don’t have account? </font> <font color=#B12341><u>Sign up here!</u></font>";
-        gotoSignup.setText(Html.fromHtml(text));
+        gotoSignup.setText(HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_LEGACY));
 
 
 

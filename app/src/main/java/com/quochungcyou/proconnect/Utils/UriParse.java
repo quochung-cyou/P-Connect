@@ -2,7 +2,7 @@ package com.quochungcyou.proconnect.Utils;
 
 public class UriParse {
     public static String getUrlDomainName(String url) {
-        String domainName = new String(url);
+        String domainName = url;
 
         int index = domainName.indexOf("://");
 

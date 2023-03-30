@@ -3,6 +3,7 @@ package com.quochungcyou.proconnect.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -13,27 +14,35 @@ import android.view.animation.AnimationUtils;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.quochungcyou.proconnect.R;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.util.Locale;
+import java.util.concurrent.ExecutionException;
+
 public class ReadActivity extends AppCompatActivity {
-    private String mAuthor;
     private String mSource;
     private String mTitle;
     private String mUrl;
-    private Toolbar toolbar;
     ProgressBar progressBar;
     LottieAnimationView loadPost;
 
@@ -53,11 +62,9 @@ public class ReadActivity extends AppCompatActivity {
     }
 
     private void initVar() {
-        toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         progressBar = findViewById(R.id.progressbar);
         loadPost = findViewById(R.id.loadPost);
-        //date = findViewById(R.id.date);
-        //title = findViewById(R.id.title);
 
 
         final CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
@@ -84,9 +91,7 @@ public class ReadActivity extends AppCompatActivity {
         mUrl = intent.getStringExtra("url");
         mTitle = intent.getStringExtra("title");
         mSource = intent.getStringExtra("source");
-        mAuthor = intent.getStringExtra("author");
-        //date.setText(DateFormat.DateFormat(mDate));
-        //title.setText(mTitle);
+        String mAuthor = intent.getStringExtra("author");
 
 
         String str;
@@ -100,7 +105,11 @@ public class ReadActivity extends AppCompatActivity {
 
     private void initWebView(String str) {
         WebView webView = findViewById(R.id.webView);
-        webView.getSettings().setLoadsImagesAutomatically(true);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            webView.setRendererPriorityPolicy(WebView.RENDERER_PRIORITY_IMPORTANT, true);
+        }
+        webView.getSettings().setSavePassword(false);
+        webView.getSettings().setSupportMultipleWindows(false);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setSupportZoom(true);
@@ -147,6 +156,8 @@ public class ReadActivity extends AppCompatActivity {
                 super.onPageCommitVisible(view, url);
 
             }
+
+
             //progress
 
             @Override
@@ -155,10 +166,63 @@ public class ReadActivity extends AppCompatActivity {
                 progressBar.setVisibility(ProgressBar.GONE);
                 loadPost.setVisibility(View.GONE);
             }
+
+            //load image by glide for faster loading
+            @Nullable
+            @Override
+            public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+                String url = request.getUrl().toString();
+                if(url == null){
+                    return super.shouldInterceptRequest(view, request);
+                }
+                if (url.toLowerCase(Locale.ROOT).contains(".jpg") || url.toLowerCase(Locale.ROOT).contains(".jpeg")) {
+                    try {
+                        Bitmap bitmap = Glide.with(webView).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL).load(url).submit().get();
+                        return new WebResourceResponse("image/jpg", "UTF-8",getBitmapInputStream(bitmap, Bitmap.CompressFormat.JPEG));
+
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } else if(url.toLowerCase(Locale.ROOT).contains(".png")){
+                    Bitmap bitmap = null;
+                    try {
+                        bitmap = Glide.with(webView).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL).load(url).submit().get();
+                        return new WebResourceResponse("image/png", "UTF-8",getBitmapInputStream(bitmap, Bitmap.CompressFormat.PNG));
+                    } catch (ExecutionException e) {
+                        throw new RuntimeException(e);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                } else if(url.toLowerCase(Locale.ROOT).contains(".webp")){
+                    Bitmap bitmap = null;
+                    try {
+                        bitmap = Glide.with(webView).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL).load(url).submit().get();
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                            return new WebResourceResponse("image/webp", "UTF-8",getBitmapInputStream(bitmap, Bitmap.CompressFormat.WEBP_LOSSY));
+                        }
+                    } catch (ExecutionException e) {
+                        throw new RuntimeException(e);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                return super.shouldInterceptRequest(view, request);
+            }
+
         });
         webView.loadUrl(str);
 
 
+    }
+
+    private InputStream getBitmapInputStream(Bitmap bitmap, Bitmap.CompressFormat compressFormat) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(compressFormat, 80, byteArrayOutputStream);
+        byte[] bitmapData = byteArrayOutputStream.toByteArray();
+        return new ByteArrayInputStream(bitmapData);
     }
 
     public void onBackPressed() {
@@ -174,12 +238,8 @@ public class ReadActivity extends AppCompatActivity {
     public void onOffsetChanged(AppBarLayout appBarLayout2, int i) {
         float abs = ((float) Math.abs(i)) / ((float) appBarLayout2.getTotalScrollRange());
         if (abs == 1.0f && isHideToolbarView) {
-            //date_behavior.setVisibility(View.GONE);
-            //titleAppbar.setVisibility(View.VISIBLE);
             isHideToolbarView = !isHideToolbarView;
         } else if (abs < 1.0f && !isHideToolbarView) {
-            //date_behavior.setVisibility(View.VISIBLE);
-            //titleAppbar.setVisibility(View.GONE);
             isHideToolbarView = !isHideToolbarView;
         }
     }

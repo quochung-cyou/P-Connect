@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -142,7 +143,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onResponse(Call<ResultModel> call, Response<ResultModel> response) {
-                Log.d("HomeFragment", "null reponse " + response.isSuccessful() + " " + response.toString() + " " + response.body().getArticle().size());
+                Log.d("HomeFragment", "null reponse " + response.isSuccessful() + " " + response + " " + response.body().getArticle().size());
 
                 if (response.isSuccessful() && Objects.requireNonNull(response.body()).getArticle() != null) {
                     postlist = response.body().getArticle();
@@ -167,7 +168,7 @@ public class HomeFragment extends Fragment {
                     }
 
                 } else {
-                    Log.d("HomeFragment", "null reponse " + response.isSuccessful() + " " + response.toString());
+                    Log.d("HomeFragment", "null reponse " + response.isSuccessful() + " " + response);
                     MotionToast.Companion.createToast(getActivity(),
                             "No Response ☹️",
                             "No post available",
@@ -207,7 +208,7 @@ public class HomeFragment extends Fragment {
                     databaseReference.child("name").setValue("Guess");
                 }
                 String text = "<font color=#7A7A7A>Welcome Back, </font> <font color=#B12341><u>" + name + "</u></font> " + "\uD83D\uDC4B";
-                welcomeMessage.setText(Html.fromHtml(text));
+                welcomeMessage.setText(HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_LEGACY));
 
 
                 String avatar = snapshot.child("avatar").getValue(String.class);

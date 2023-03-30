@@ -1,11 +1,8 @@
 package com.quochungcyou.proconnect.Fragment;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,9 +30,7 @@ import com.quochungcyou.proconnect.Activity.AuthenActivity;
 import com.quochungcyou.proconnect.Activity.EditProfileActivity;
 import com.quochungcyou.proconnect.Activity.FullScreenImage;
 import com.quochungcyou.proconnect.R;
-import com.quochungcyou.proconnect.Utils.ModelBase64;
 
-import java.io.ByteArrayOutputStream;
 import java.util.Objects;
 
 import www.sanju.motiontoast.MotionToast;

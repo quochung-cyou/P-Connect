@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,7 +25,7 @@ public class ForgotPasswordFragment extends Fragment {
     TextInputEditText email;
 
     MaterialButton resetpassFunction;
-    FirebaseAuth fAuth = FirebaseAuth.getInstance();
+    final FirebaseAuth fAuth = FirebaseAuth.getInstance();
 
 
     @Override
@@ -87,15 +86,13 @@ public class ForgotPasswordFragment extends Fragment {
             return;
         }
 
-        fAuth.sendPasswordResetEmail(email.getText().toString().trim()).addOnSuccessListener(task -> {
-            MotionToast.Companion.createToast(getActivity(),
-                    "Success 😊",
-                    "Sent reset email to your email address",
-                    MotionToastStyle.SUCCESS,
-                    MotionToast.GRAVITY_BOTTOM,
-                    MotionToast.LONG_DURATION,
-                    ResourcesCompat.getFont(getActivity(),R.font.opensanlight));
-        }).addOnFailureListener(task -> {
+        fAuth.sendPasswordResetEmail(email.getText().toString().trim()).addOnSuccessListener(task -> MotionToast.Companion.createToast(getActivity(),
+                "Success 😊",
+                "Sent reset email to your email address",
+                MotionToastStyle.SUCCESS,
+                MotionToast.GRAVITY_BOTTOM,
+                MotionToast.LONG_DURATION,
+                ResourcesCompat.getFont(getActivity(),R.font.opensanlight))).addOnFailureListener(task -> {
             MotionToast.Companion.createToast(getActivity(),
                     "Failed ☹️",
                     "Some error happened",

@@ -20,16 +20,11 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.transition.Transition;
 import androidx.transition.TransitionInflater;
 
-import com.google.android.material.transition.platform.MaterialContainerTransform;
 import com.quochungcyou.proconnect.R;
 
 public class AuthenFragment extends Fragment {
 
     private VideoView videoView;
-    private TextView title;
-    private TextView subtitle;
-    private Button loginButton;
-    private Button registerButton;
     private LinearLayout loginTrans, regisTrans;
 
 
@@ -58,49 +53,43 @@ public class AuthenFragment extends Fragment {
 
     public void initVar(View view) {
         videoView = view.findViewById(R.id.videoViewLogin);
-        title = view.findViewById(R.id.fragmentLoginTitle);
-        subtitle = view.findViewById(R.id.fragmentLoginSubTitle);
-        loginButton = view.findViewById(R.id.fragmentLogin_LoginButton);
-        registerButton = view.findViewById(R.id.fragmentLogin_RegisterButton);
+        TextView title = view.findViewById(R.id.fragmentLoginTitle);
+        TextView subtitle = view.findViewById(R.id.fragmentLoginSubTitle);
+        Button loginButton = view.findViewById(R.id.fragmentLogin_LoginButton);
+        Button registerButton = view.findViewById(R.id.fragmentLogin_RegisterButton);
         loginTrans = view.findViewById(R.id.transformLogin);
         regisTrans = view.findViewById(R.id.transformRegister);
         runVideoStart();
 
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                LoginFragment loginFragment = new LoginFragment();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        loginButton.setOnClickListener(view12 -> {
+            LoginFragment loginFragment = new LoginFragment();
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 
-                ViewCompat.setTransitionName(loginTrans, "loginTrans");
-                Transition transition = TransitionInflater.from(requireContext())
-                        .inflateTransition(R.transition.shared_image);
-                setSharedElementReturnTransition(transition);
+            ViewCompat.setTransitionName(loginTrans, "loginTrans");
+            Transition transition = TransitionInflater.from(requireContext())
+                    .inflateTransition(R.transition.shared_image);
+            setSharedElementReturnTransition(transition);
 
-                transaction.addSharedElement(loginTrans, "loginTrans");
-                transaction.setReorderingAllowed(true);
+            transaction.addSharedElement(loginTrans, "loginTrans");
+            transaction.setReorderingAllowed(true);
 
-                transaction.replace(R.id.authenFrameLayout, loginFragment).addToBackStack(null).commit();
+            transaction.replace(R.id.authenFrameLayout, loginFragment).addToBackStack(null).commit();
 
-            }
         });
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();;
-                RegisterFragment registerFragment = new RegisterFragment();
-                ViewCompat.setTransitionName(regisTrans, "regisTrans");
-                Transition transition = TransitionInflater.from(requireContext())
-                        .inflateTransition(R.transition.shared_image);
-                setSharedElementReturnTransition(transition);
+        registerButton.setOnClickListener(view1 -> {
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            RegisterFragment registerFragment = new RegisterFragment();
+            ViewCompat.setTransitionName(regisTrans, "regisTrans");
+            Transition transition = TransitionInflater.from(requireContext())
+                    .inflateTransition(R.transition.shared_image);
+            setSharedElementReturnTransition(transition);
 
-                transaction.addSharedElement(regisTrans, "regisTrans");
-                transaction.setReorderingAllowed(true);
+            transaction.addSharedElement(regisTrans, "regisTrans");
+            transaction.setReorderingAllowed(true);
 
-                transaction.replace(R.id.authenFrameLayout, registerFragment).addToBackStack(null);
-                transaction.commit();
-            }
+            transaction.replace(R.id.authenFrameLayout, registerFragment).addToBackStack(null);
+            transaction.commit();
         });
     }
 
@@ -108,24 +97,18 @@ public class AuthenFragment extends Fragment {
         //Handle the first animation
         Uri video = Uri.parse("android.resource://"+getActivity().getPackageName()+"/"+R.raw.login_bg);
         videoView.setVideoURI(video);
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
+        videoView.setOnPreparedListener(mp -> {
 
-                mp.setOnInfoListener(new MediaPlayer.OnInfoListener() {
-                    @Override
-                    public boolean onInfo(MediaPlayer mp, int what, int extra) {
+            mp.setOnInfoListener((mp1, what, extra) -> {
 
-                        if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
-                            // video started; hide the placeholder.
-                            videoView.setBackgroundColor(Color.TRANSPARENT);
-                            return true;
-                        }
-                        return false;
-                    }
-                });
-                mp.start();
-            }
+                if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
+                    // video started; hide the placeholder.
+                    videoView.setBackgroundColor(Color.TRANSPARENT);
+                    return true;
+                }
+                return false;
+            });
+            mp.start();
         });
     }
 

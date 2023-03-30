@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.core.text.HtmlCompat;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -73,7 +74,7 @@ public class RegisterFragment extends Fragment {
         ViewCompat.setTransitionName(registerLayout, "regisTrans");
 
         String text = "<font color=#7A7A7A>Already have account? </font> <font color=#B12341><u>Sign in here!</u></font>";
-        gotoSignin.setText(Html.fromHtml(text));
+        gotoSignin.setText(HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_LEGACY));
 
         gotoForgotPassword.setOnClickListener(v -> {
             Log.d("Debug", "Go to Forgot Password");

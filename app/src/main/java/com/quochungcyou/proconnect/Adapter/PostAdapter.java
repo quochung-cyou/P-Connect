@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,40 +63,34 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
         holder.date.setText(DateFormat.DateFormat(post.getTime()));
 
         if (post.getUrlimage() == null) {
-            new Thread(new Runnable() {
-
-                @Override
-                public void run() {
-                    String imageUrl = null;
-                    Document doc;
-                    try {
-                        doc = Jsoup
-                                .connect(post.getUrl())
-                                .ignoreContentType(true)
-                                .timeout(5 * 1000)
-                                .get();
-                    } catch (IOException e) {
-                        return;
-                    }
-                    Elements elements = doc.select("meta");
-                    for (Element e : elements) {
+            new Thread(() -> {
+                String imageUrl = null;
+                Document doc;
+                try {
+                    doc = Jsoup
+                            .connect(post.getUrl())
+                            .ignoreContentType(true)
+                            .timeout(5 * 1000)
+                            .get();
+                } catch (IOException e) {
+                    return;
+                }
+                Elements elements = doc.select("meta");
+                for (Element e : elements) {
+                    imageUrl = e.attr("content");
+                    //OR more specifically you can check meta property.
+                    if (e.attr("property").equalsIgnoreCase("og:image")) {
                         imageUrl = e.attr("content");
-                        //OR more specifically you can check meta property.
-                        if (e.attr("property").equalsIgnoreCase("og:image")) {
-                            imageUrl = e.attr("content");
-                            break;
-                        }
+                        break;
                     }
-                    Log.d("PostAdapter", "Done loading " + imageUrl);
-                    if (imageUrl != null) {
-                        Activity tmp = (Activity) context;
-                        String finalImageUrl = imageUrl;
-                        tmp.runOnUiThread(() -> Glide.with(context).load(finalImageUrl).diskCacheStrategy(DiskCacheStrategy.ALL).priority(Priority.HIGH).placeholder(R.drawable.thumbnailnewpost).into(holder.thumbnail));
-                    } else {
-                        Activity tmp = (Activity) context;
-                        String finalImageUrl = imageUrl;
-                        tmp.runOnUiThread(() -> Glide.with(context).load(context.getDrawable(R.drawable.thumbnailnewpost)).diskCacheStrategy(DiskCacheStrategy.ALL).priority(Priority.HIGH).placeholder(R.drawable.thumbnailnewpost).into(holder.thumbnail));
-                    }
+                }
+                Log.d("PostAdapter", "Done loading " + imageUrl);
+                Activity tmp = (Activity) context;
+                if (imageUrl != null) {
+                    String finalImageUrl = imageUrl;
+                    tmp.runOnUiThread(() -> Glide.with(context).load(finalImageUrl).diskCacheStrategy(DiskCacheStrategy.ALL).priority(Priority.HIGH).placeholder(R.drawable.thumbnailnewpost).into(holder.thumbnail));
+                } else {
+                    tmp.runOnUiThread(() -> Glide.with(context).load(context.getDrawable(R.drawable.thumbnailnewpost)).diskCacheStrategy(DiskCacheStrategy.ALL).priority(Priority.HIGH).placeholder(R.drawable.thumbnailnewpost).into(holder.thumbnail));
                 }
             }).start();
 
@@ -121,7 +114,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
 
 
     @Override
-    public void onViewDetachedFromWindow(final PostHolder viewHolder)
+    public void onViewDetachedFromWindow(@NonNull final PostHolder viewHolder)
     {
         super.onViewDetachedFromWindow(viewHolder);
         viewHolder.itemView.clearAnimation();
@@ -147,9 +140,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
 
     public class PostHolder extends RecyclerView.ViewHolder {
 
-        RoundedImageView avatar;
-        TextView author, title, date;
-        RoundedImageView thumbnail;
+        final RoundedImageView avatar;
+        final TextView author;
+        final TextView title;
+        final TextView date;
+        final RoundedImageView thumbnail;
 
 
         public PostHolder(@NonNull View itemView) {
@@ -163,10 +158,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
                 Intent intent = new Intent(context, ReadActivity.class);
                 intent.putExtra("url", postlist.get(getAdapterPosition()).getUrl());
                 intent.putExtra("title", postlist.get(getAdapterPosition()).getTitle());
-                //intent.putExtra("author", postlist.get(getAdapterPosition()).getAuthor().get(0));
-                //intent.putExtra("image", postlist.get(getAdapterPosition()).getUrlimage());
-                //intent.putExtra("date", postlist.get(getAdapterPosition()).getTime());
-                //intent.putExtra("summary", postlist.get(getAdapterPosition()).getSummary());
 
                 context.startActivity(intent);
             });

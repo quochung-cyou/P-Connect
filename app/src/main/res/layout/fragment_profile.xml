@@ -173,14 +173,16 @@
             android:clickable="true"
             android:layout_marginEnd="15dp"
             app:cardCornerRadius="10dp"
-            app:cardBackgroundColor="@color/white">
+            app:cardBackgroundColor="@color/white"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_gravity="start|center_vertical"
                 android:layout_marginStart="20dp"
-                android:src="@drawable/settings_18" />
+                android:src="@drawable/settings_18"
+                android:contentDescription="TODO" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -196,7 +198,8 @@
                 android:layout_height="16dp"
                 android:layout_gravity="end|center_vertical"
                 android:layout_marginEnd="20dp"
-                android:src="@drawable/rightarrow"></ImageView>
+                android:src="@drawable/rightarrow"
+                android:contentDescription="TODO"></ImageView>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -209,14 +212,16 @@
             android:clickable="true"
             android:layout_marginEnd="15dp"
             app:cardCornerRadius="10dp"
-            app:cardBackgroundColor="@color/white">
+            app:cardBackgroundColor="@color/white"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_gravity="start|center_vertical"
                 android:layout_marginStart="20dp"
-                android:src="@drawable/lock_18" />
+                android:src="@drawable/lock_18"
+                android:contentDescription="TODO" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -232,7 +237,8 @@
                 android:layout_height="16dp"
                 android:layout_gravity="end|center_vertical"
                 android:layout_marginEnd="20dp"
-                android:src="@drawable/rightarrow"></ImageView>
+                android:src="@drawable/rightarrow"
+                android:contentDescription="TODO"></ImageView>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -246,14 +252,16 @@
             android:clickable="true"
             android:layout_marginEnd="15dp"
             app:cardCornerRadius="10dp"
-            app:cardBackgroundColor="@color/white">
+            app:cardBackgroundColor="@color/white"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_gravity="start|center_vertical"
                 android:layout_marginStart="20dp"
-                android:src="@drawable/globe_18" />
+                android:src="@drawable/globe_18"
+                android:contentDescription="TODO" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -269,7 +277,8 @@
                 android:layout_height="16dp"
                 android:layout_gravity="end|center_vertical"
                 android:layout_marginEnd="20dp"
-                android:src="@drawable/rightarrow"></ImageView>
+                android:src="@drawable/rightarrow"
+                android:contentDescription="TODO"></ImageView>
         </androidx.cardview.widget.CardView>
 
         <com.google.android.material.button.MaterialButton

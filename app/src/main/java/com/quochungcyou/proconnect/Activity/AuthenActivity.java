@@ -8,10 +8,8 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowInsets;
 import android.view.WindowInsetsController;
-import android.view.WindowManager;
 
 import com.quochungcyou.proconnect.Fragment.AuthenFragment;
 import com.quochungcyou.proconnect.R;

@@ -71,7 +71,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
         return postlist.size();
     }
 
-    public class UserHolder extends RecyclerView.ViewHolder {
+    public static class UserHolder extends RecyclerView.ViewHolder {
 
         RoundedImageView avatar;
         TextView author, title, date;

@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class DateFormat {
 
-    public static ColorDrawable[] vibrantLightColorList =
+    public static final ColorDrawable[] vibrantLightColorList =
             {
                     new ColorDrawable(Color.parseColor("#ffeead")),
                     new ColorDrawable(Color.parseColor("#93cfb3")),
@@ -48,7 +48,7 @@ public class DateFormat {
         return isTime;
     }
 
-    public static String DateFormat(String oldstringDate){
+    public DateFormat(String oldstringDate){
         String newDate;
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
         try {
@@ -64,7 +64,7 @@ public class DateFormat {
 
     public static String getCountry(){
         Locale locale = Locale.getDefault();
-        String country = String.valueOf(locale.getCountry());
+        String country = locale.getCountry();
         return country.toLowerCase();
     }
 }

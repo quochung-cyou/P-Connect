@@ -25,7 +25,8 @@
                 android:id="@+id/gobackArrow"
                 android:layout_gravity="center"
                 android:src="@drawable/goback"
-                app:tint="@color/white">
+                app:tint="@color/white"
+                android:contentDescription="TODO">
             </ImageView>
 
             <TextView

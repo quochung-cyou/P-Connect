@@ -53,7 +53,6 @@
         android:background="@drawable/round_pink"
         android:queryBackground="@android:color/transparent"
         app:queryBackground="@android:color/transparent"
-        android:layout_below="@+id/toolbar_main"
         android:clickable="true"
         android:focusable="true"
         android:inputType="text"

@@ -94,7 +94,7 @@ public class ArticleModel {
         this.time = time;
     }
 
-    class authorModel {
+    static class authorModel {
         @SerializedName("name")
         @Expose
         private String name;

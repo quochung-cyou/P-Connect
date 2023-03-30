@@ -62,24 +62,18 @@ public class LogoActivity extends AppCompatActivity {
 
         Uri video = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.logo);
         videoView.setVideoURI(video);
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
+        videoView.setOnPreparedListener(mp -> {
 
-                mp.setOnInfoListener(new MediaPlayer.OnInfoListener() {
-                    @Override
-                    public boolean onInfo(MediaPlayer mp, int what, int extra) {
+            mp.setOnInfoListener((mp1, what, extra) -> {
 
-                        if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
-                            // video started; hide the placeholder.
-                            videoView.setBackgroundColor(Color.TRANSPARENT);
-                            return true;
-                        }
-                        return false;
-                    }
-                });
-                mp.start();
-            }
+                if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
+                    // video started; hide the placeholder.
+                    videoView.setBackgroundColor(Color.TRANSPARENT);
+                    return true;
+                }
+                return false;
+            });
+            mp.start();
         });
     }
 

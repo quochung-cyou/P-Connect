@@ -1,7 +1,6 @@
 package com.quochungcyou.proconnect.Fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,24 +71,16 @@ public class ChatFragment extends Fragment {
 
     private void initSearchView() {
 
-        searchView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchView.setIconified(false);
-            }
-        });
+        searchView.setOnClickListener(v -> searchView.setIconified(false));
 
-        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if (!b) {
-                    if (searchView.getQuery().toString().length() < 1) {
-                        searchView.setIconified(true);
-                    }
-
-                    searchView.clearFocus();
-
+        searchView.setOnQueryTextFocusChangeListener((view, b) -> {
+            if (!b) {
+                if (searchView.getQuery().toString().length() < 1) {
+                    searchView.setIconified(true);
                 }
+
+                searchView.clearFocus();
+
             }
         });
         //endregion
