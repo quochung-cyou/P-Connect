@@ -2,6 +2,7 @@ package com.quochungcyou.proconnect.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.makeramen.roundedimageview.RoundedImageView;
+import com.quochungcyou.proconnect.Activity.SendMessageActivity;
 import com.quochungcyou.proconnect.Model.UserModel;
 import com.quochungcyou.proconnect.R;
 
@@ -20,6 +22,7 @@ import java.util.List;
 
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
+
 
     private final Context context;
     private final List<UserModel> postlist;
@@ -71,7 +74,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
         return postlist.size();
     }
 
-    public static class UserHolder extends RecyclerView.ViewHolder {
+    public class UserHolder extends RecyclerView.ViewHolder {
 
         RoundedImageView avatar;
         TextView author, title, date;
@@ -80,6 +83,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
 
         public UserHolder(@NonNull View itemView) {
             super(itemView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, SendMessageActivity.class);
+                    context.startActivity(intent);
+                }
+            });
 
         }
     }

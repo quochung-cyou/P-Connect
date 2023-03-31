@@ -47,6 +47,7 @@ public class ReadActivity extends AppCompatActivity {
     LottieAnimationView loadPost;
 
     private boolean isHideToolbarView = false;
+    private boolean doneLoading = false;
 
     public ReadActivity() {
     }
@@ -129,8 +130,12 @@ public class ReadActivity extends AppCompatActivity {
                     progressBar.setVisibility(ProgressBar.GONE);
                     loadPost.setVisibility(View.GONE);
                     webView.setVisibility(View.VISIBLE);
-                    Animation animation = AnimationUtils.loadAnimation(ReadActivity.this, R.anim.pop_enter);
-                    webView.startAnimation(animation);
+                    if (doneLoading == false) {
+                        doneLoading = true;
+                        Animation animation = AnimationUtils.loadAnimation(ReadActivity.this, R.anim.pop_enter);
+                        webView.startAnimation(animation);
+                    }
+
 
                 }
 

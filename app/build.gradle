@@ -69,16 +69,19 @@ dependencies {
     implementation 'org.ocpsoft.prettytime:prettytime:5.0.4.Final'
     implementation 'org.jsoup:jsoup:1.15.4'
 
+    //QR Scanner
+    implementation 'com.google.android.gms:play-services-code-scanner:16.0.0'
+
 
 
     //Firebase
     implementation platform('com.google.firebase:firebase-bom:31.2.3')
     implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.google.firebase:firebase-auth:21.1.0'
+    implementation 'com.google.firebase:firebase-auth:21.2.0'
     implementation 'com.google.android.gms:play-services-gcm:17.0.0'
     implementation 'com.google.firebase:firebase-database'
     implementation 'com.google.firebase:firebase-storage-ktx'
-    implementation 'com.google.firebase:firebase-firestore:24.4.4'
+    implementation 'com.google.firebase:firebase-firestore:24.4.5'
     //Real time database
 
 }

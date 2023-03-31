@@ -8,9 +8,11 @@ import org.ocpsoft.prettytime.PrettyTime;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class DateFormat {
 
@@ -48,7 +50,7 @@ public class DateFormat {
         return isTime;
     }
 
-    public DateFormat(String oldstringDate){
+    public static String DateFormat(String oldstringDate){
         String newDate;
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
         try {
@@ -66,5 +68,15 @@ public class DateFormat {
         Locale locale = Locale.getDefault();
         String country = locale.getCountry();
         return country.toLowerCase();
+    }
+
+    public static String militoHour(Long millis) {
+        //mili second to hh:mm
+        Calendar c= Calendar.getInstance();
+        c.setTimeInMillis(millis);
+        int hours=c.get(Calendar.HOUR);
+        int minutes=c.get(Calendar.MINUTE);
+        return String.format("%02d:%02d", hours, minutes);
+
     }
 }

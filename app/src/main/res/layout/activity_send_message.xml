@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.SendMessageActivity">
+
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="15dp"
+        android:background="@drawable/shadowbottomlinear"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:layout_marginStart="10dp"
+            android:layout_gravity="center"
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:tint="@color/gray"
+            android:src="@drawable/ic_back_button"/>
+
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="20dp"
+            android:layout_alignParentStart="true"
+            app:riv_corner_radius="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/headerprofile"
+            android:id="@+id/thumbnailavatar">
+        </com.makeramen.roundedimageview.RoundedImageView>
+
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="30dp"
+            android:fontFamily="@font/robotobold"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:text="Nguyen Quoc Hung" />
+
+
+
+    </LinearLayout>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleViewChatMessage"
+        android:layout_marginTop="25dp"
+        android:nestedScrollingEnabled="false"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+
+
+
+
+
+</LinearLayout>
