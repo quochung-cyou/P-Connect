@@ -1,4 +1,4 @@
-package com.quochungcyou.proconnect.Fragment;
+package com.quochungcyou.proconnect.Fragment.AuthenActivity;
 
 import android.os.Bundle;
 import android.text.TextUtils;

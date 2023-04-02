@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mikepenz.itemanimators.SlideLeftAlphaAnimator;
-import com.quochungcyou.proconnect.Adapter.MessageAdapter;
+import com.quochungcyou.proconnect.Adapter.RecylerViewAdapter.MessageAdapter;
 import com.quochungcyou.proconnect.Model.MessageModel;
 import com.quochungcyou.proconnect.R;
 

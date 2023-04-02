@@ -19,7 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.quochungcyou.proconnect.Adapter.ScreenSlidePageAdapter;
+import com.quochungcyou.proconnect.Adapter.ViewPagerAdapter.MainActivityBar;
 import com.quochungcyou.proconnect.R;
 
 import java.util.Objects;
@@ -27,7 +27,7 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
     private ViewPager2 viewPager;
     private BubbleNavigationLinearView bubbleNavigationLinearView;
-    private ScreenSlidePageAdapter pagerAdapter;
+    private MainActivityBar pagerAdapter;
     private DatabaseReference databaseReference;
 
 
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private void initVar() {
         viewPager = findViewById(R.id.view_pager);
         bubbleNavigationLinearView = findViewById(R.id.bottom_navigation_view_linear);
-        pagerAdapter = new ScreenSlidePageAdapter(this);
+        pagerAdapter = new MainActivityBar(this);
         //viewPager.setOffscreenPageLimit(2);
 
     }

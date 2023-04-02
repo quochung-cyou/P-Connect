@@ -71,6 +71,7 @@ dependencies {
 
     //QR Scanner
     implementation 'com.google.android.gms:play-services-code-scanner:16.0.0'
+    implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
 
 
 

@@ -1,4 +1,4 @@
-package com.quochungcyou.proconnect.Fragment;
+package com.quochungcyou.proconnect.Fragment.MainActivity;
 
 import android.content.Intent;
 import android.net.Uri;

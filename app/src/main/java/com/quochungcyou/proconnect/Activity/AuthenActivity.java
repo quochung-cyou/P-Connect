@@ -1,17 +1,16 @@
 package com.quochungcyou.proconnect.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowInsets;
 import android.view.WindowInsetsController;
 
-import com.quochungcyou.proconnect.Fragment.AuthenFragment;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.quochungcyou.proconnect.Fragment.AuthenActivity.AuthenFragment;
 import com.quochungcyou.proconnect.R;
 
 public class AuthenActivity extends AppCompatActivity {
@@ -44,8 +43,6 @@ public class AuthenActivity extends AppCompatActivity {
     }
 
     public void initFragment() {
-        Fragment mFragment;
-        mFragment = new AuthenFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.authenFrameLayout, new AuthenFragment());

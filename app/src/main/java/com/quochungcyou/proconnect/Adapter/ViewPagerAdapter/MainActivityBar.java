@@ -1,4 +1,4 @@
-package com.quochungcyou.proconnect.Adapter;
+package com.quochungcyou.proconnect.Adapter.ViewPagerAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -7,22 +7,22 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.quochungcyou.proconnect.Fragment.ChatFragment;
-import com.quochungcyou.proconnect.Fragment.HomeFragment;
-import com.quochungcyou.proconnect.Fragment.LikeFragment;
-import com.quochungcyou.proconnect.Fragment.ProfileFragment;
+import com.quochungcyou.proconnect.Fragment.MainActivity.ChatFragment;
+import com.quochungcyou.proconnect.Fragment.MainActivity.HomeFragment;
+import com.quochungcyou.proconnect.Fragment.MainActivity.LikeFragment;
+import com.quochungcyou.proconnect.Fragment.MainActivity.ProfileFragment;
 
-public class ScreenSlidePageAdapter extends FragmentStateAdapter {
+public class MainActivityBar extends FragmentStateAdapter {
 
-    public ScreenSlidePageAdapter(@NonNull FragmentActivity fragmentActivity) {
+    public MainActivityBar(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
 
-    public ScreenSlidePageAdapter(@NonNull Fragment fragment) {
+    public MainActivityBar(@NonNull Fragment fragment) {
         super(fragment);
     }
 
-    public ScreenSlidePageAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
+    public MainActivityBar(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
     }
 

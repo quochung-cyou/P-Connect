@@ -1,4 +1,4 @@
-package com.quochungcyou.proconnect.Adapter;
+package com.quochungcyou.proconnect.Adapter.RecylerViewAdapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -44,7 +44,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void onBindViewHolder(@NonNull UserHolder holder, int position) {
-        UserModel post = postlist.get(position);
 
     }
 
@@ -83,12 +82,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
 
         public UserHolder(@NonNull View itemView) {
             super(itemView);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, SendMessageActivity.class);
-                    context.startActivity(intent);
-                }
+            itemView.setOnClickListener(v -> {
+                Intent intent = new Intent(context, SendMessageActivity.class);
+                context.startActivity(intent);
             });
 
         }

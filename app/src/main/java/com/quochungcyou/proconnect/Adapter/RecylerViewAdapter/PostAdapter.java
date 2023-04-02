@@ -1,4 +1,4 @@
-package com.quochungcyou.proconnect.Adapter;
+package com.quochungcyou.proconnect.Adapter.RecylerViewAdapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

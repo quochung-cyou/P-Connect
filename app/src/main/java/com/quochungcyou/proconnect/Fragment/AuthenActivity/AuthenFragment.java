@@ -1,4 +1,4 @@
-package com.quochungcyou.proconnect.Fragment;
+package com.quochungcyou.proconnect.Fragment.AuthenActivity;
 
 import android.graphics.Color;
 import android.media.MediaPlayer;
@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
@@ -53,8 +52,6 @@ public class AuthenFragment extends Fragment {
 
     public void initVar(View view) {
         videoView = view.findViewById(R.id.videoViewLogin);
-        TextView title = view.findViewById(R.id.fragmentLoginTitle);
-        TextView subtitle = view.findViewById(R.id.fragmentLoginSubTitle);
         Button loginButton = view.findViewById(R.id.fragmentLogin_LoginButton);
         Button registerButton = view.findViewById(R.id.fragmentLogin_RegisterButton);
         loginTrans = view.findViewById(R.id.transformLogin);

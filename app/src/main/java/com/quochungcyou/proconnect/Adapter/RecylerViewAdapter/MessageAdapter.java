@@ -1,4 +1,4 @@
-package com.quochungcyou.proconnect.Adapter;
+package com.quochungcyou.proconnect.Adapter.RecylerViewAdapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -43,7 +43,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
     @Override
     public void onBindViewHolder(@NonNull MessageHolder holder, int position) {
         MessageModel message = messageList.get(position);
-        if (Integer.valueOf(message.getSender()) % 2 == 0) { //ís sender
+        if (Integer.parseInt(message.getSender()) % 2 == 0) { //ís sender
             holder.receiveLayout.setVisibility(View.GONE);
             holder.sendLayout.setVisibility(View.VISIBLE);
             holder.messageSend.setText(message.getMessage());

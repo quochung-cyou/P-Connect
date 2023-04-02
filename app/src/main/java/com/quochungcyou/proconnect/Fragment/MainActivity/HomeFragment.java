@@ -1,7 +1,6 @@
-package com.quochungcyou.proconnect.Fragment;
+package com.quochungcyou.proconnect.Fragment.MainActivity;
 
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +30,7 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import com.mikepenz.itemanimators.SlideLeftAlphaAnimator;
 import com.quochungcyou.proconnect.APIUtils.APIHelper;
 import com.quochungcyou.proconnect.APIUtils.APIInterface;
-import com.quochungcyou.proconnect.Adapter.PostAdapter;
+import com.quochungcyou.proconnect.Adapter.RecylerViewAdapter.PostAdapter;
 import com.quochungcyou.proconnect.Model.ArticleModel;
 import com.quochungcyou.proconnect.Model.ResultModel;
 import com.quochungcyou.proconnect.R;

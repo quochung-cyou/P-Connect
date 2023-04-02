@@ -1,5 +1,6 @@
-package com.quochungcyou.proconnect.Fragment;
+package com.quochungcyou.proconnect.Fragment.MainActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +13,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mikepenz.itemanimators.SlideLeftAlphaAnimator;
-import com.quochungcyou.proconnect.Adapter.UserAdapter;
+import com.quochungcyou.proconnect.Activity.QRActivity;
+import com.quochungcyou.proconnect.Adapter.RecylerViewAdapter.UserAdapter;
 import com.quochungcyou.proconnect.Model.UserModel;
 import com.quochungcyou.proconnect.R;
 
@@ -26,6 +29,7 @@ public class ChatFragment extends Fragment {
     SearchView searchView;
     List<UserModel> userList;
     UserAdapter adapter;
+    FloatingActionButton addButton;
 
 
     @Nullable
@@ -52,10 +56,30 @@ public class ChatFragment extends Fragment {
     private void initVar() {
         recyclerView = getView().findViewById(R.id.recycleViewUserchat);
         searchView = getView().findViewById(R.id.searchView);
+        addButton = getView().findViewById(R.id.addFriend);
         initSearchView();
+        initRecyclerView();
 
+
+
+        addButton.setOnClickListener(v -> {
+            Intent intentMainActivity = new Intent(getActivity(), QRActivity.class);
+            getActivity().overridePendingTransition(R.anim.zoom_in, R.anim.zoom_out);
+            startActivity(intentMainActivity);
+
+
+        });
+
+
+
+
+
+
+    }
+
+
+    private void initRecyclerView() {
         userList = new ArrayList<>();
-
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         //add some test user
         for (int i = 0; i < 10; i++) {

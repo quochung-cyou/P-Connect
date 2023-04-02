@@ -1,5 +1,6 @@
 package com.quochungcyou.proconnect.Activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -30,7 +31,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.quochungcyou.proconnect.R;
 
 import java.io.ByteArrayInputStream;
@@ -62,13 +62,12 @@ public class ReadActivity extends AppCompatActivity {
         initWebView(mUrl);
     }
 
+    @SuppressLint("CheckResult")
     private void initVar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         progressBar = findViewById(R.id.progressbar);
         loadPost = findViewById(R.id.loadPost);
 
-
-        final CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
 
 
         //appBarLayout.addOnOffsetChangedListener(this);
@@ -92,15 +91,7 @@ public class ReadActivity extends AppCompatActivity {
         mUrl = intent.getStringExtra("url");
         mTitle = intent.getStringExtra("title");
         mSource = intent.getStringExtra("source");
-        String mAuthor = intent.getStringExtra("author");
 
-
-        String str;
-        if (mAuthor != null) {
-            str = " • " + mAuthor;
-        } else {
-            str = "";
-        }
         //time.setText(this.mSource + str + " • " + DateFormat.DateToTimeFormat(this.mDate));
     }
 
@@ -109,9 +100,8 @@ public class ReadActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             webView.setRendererPriorityPolicy(WebView.RENDERER_PRIORITY_IMPORTANT, true);
         }
-        webView.getSettings().setSavePassword(false);
         webView.getSettings().setSupportMultipleWindows(false);
-        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setJavaScriptEnabled(false);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setSupportZoom(true);
         webView.getSettings().setBuiltInZoomControls(true);
@@ -130,7 +120,7 @@ public class ReadActivity extends AppCompatActivity {
                     progressBar.setVisibility(ProgressBar.GONE);
                     loadPost.setVisibility(View.GONE);
                     webView.setVisibility(View.VISIBLE);
-                    if (doneLoading == false) {
+                    if (!doneLoading) {
                         doneLoading = true;
                         Animation animation = AnimationUtils.loadAnimation(ReadActivity.this, R.anim.pop_enter);
                         webView.startAnimation(animation);
@@ -177,40 +167,31 @@ public class ReadActivity extends AppCompatActivity {
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
                 String url = request.getUrl().toString();
-                if(url == null){
-                    return super.shouldInterceptRequest(view, request);
-                }
                 if (url.toLowerCase(Locale.ROOT).contains(".jpg") || url.toLowerCase(Locale.ROOT).contains(".jpeg")) {
                     try {
                         Bitmap bitmap = Glide.with(webView).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL).load(url).submit().get();
                         return new WebResourceResponse("image/jpg", "UTF-8",getBitmapInputStream(bitmap, Bitmap.CompressFormat.JPEG));
 
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
+                    } catch (ExecutionException | InterruptedException e) {
                         e.printStackTrace();
                     }
                 } else if(url.toLowerCase(Locale.ROOT).contains(".png")){
-                    Bitmap bitmap = null;
+                    Bitmap bitmap;
                     try {
                         bitmap = Glide.with(webView).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL).load(url).submit().get();
                         return new WebResourceResponse("image/png", "UTF-8",getBitmapInputStream(bitmap, Bitmap.CompressFormat.PNG));
-                    } catch (ExecutionException e) {
-                        throw new RuntimeException(e);
-                    } catch (InterruptedException e) {
+                    } catch (ExecutionException | InterruptedException e) {
                         throw new RuntimeException(e);
                     }
 
                 } else if(url.toLowerCase(Locale.ROOT).contains(".webp")){
-                    Bitmap bitmap = null;
+                    Bitmap bitmap;
                     try {
                         bitmap = Glide.with(webView).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL).load(url).submit().get();
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                             return new WebResourceResponse("image/webp", "UTF-8",getBitmapInputStream(bitmap, Bitmap.CompressFormat.WEBP_LOSSY));
                         }
-                    } catch (ExecutionException e) {
-                        throw new RuntimeException(e);
-                    } catch (InterruptedException e) {
+                    } catch (ExecutionException | InterruptedException e) {
                         throw new RuntimeException(e);
                     }
                 }
@@ -243,9 +224,9 @@ public class ReadActivity extends AppCompatActivity {
     public void onOffsetChanged(AppBarLayout appBarLayout2, int i) {
         float abs = ((float) Math.abs(i)) / ((float) appBarLayout2.getTotalScrollRange());
         if (abs == 1.0f && isHideToolbarView) {
-            isHideToolbarView = !isHideToolbarView;
+            isHideToolbarView = false;
         } else if (abs < 1.0f && !isHideToolbarView) {
-            isHideToolbarView = !isHideToolbarView;
+            isHideToolbarView = true;
         }
     }
 
@@ -275,4 +256,5 @@ public class ReadActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(menuItem);
     }
+
 }
