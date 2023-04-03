@@ -13,12 +13,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.android.gms.maps.model.Circle;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.quochungcyou.proconnect.Activity.SendMessageActivity;
 import com.quochungcyou.proconnect.Model.UserModel;
 import com.quochungcyou.proconnect.R;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
@@ -44,6 +50,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void onBindViewHolder(@NonNull UserHolder holder, int position) {
+        UserModel userModel = postlist.get(position);
+        holder.name.setText(userModel.getName());
+        holder.lastmessage.setText(userModel.getLastMessage());
+        Glide.with(context).load(userModel.getProfileImageUrl()).diskCacheStrategy(DiskCacheStrategy.ALL).priority(Priority.HIGH).into(holder.avatar);
 
     }
 
@@ -75,13 +85,18 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
 
     public class UserHolder extends RecyclerView.ViewHolder {
 
-        RoundedImageView avatar;
-        TextView author, title, date;
-        RoundedImageView thumbnail;
+        CircleImageView avatar;
+        TextView name, lastmessage, time;
+
 
 
         public UserHolder(@NonNull View itemView) {
             super(itemView);
+            avatar = itemView.findViewById(R.id.avatar);
+            name = itemView.findViewById(R.id.name);
+            lastmessage = itemView.findViewById(R.id.lastmessage);
+            time = itemView.findViewById(R.id.time);
+
             itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(context, SendMessageActivity.class);
                 context.startActivity(intent);

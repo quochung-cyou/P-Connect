@@ -52,7 +52,46 @@
 
     </LinearLayout>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <androidx.cardview.widget.CardView
+
+            android:layout_width="300dp"
+            app:cardBackgroundColor="#FDCE84"
+            android:layout_marginTop="60dp"
+            android:id="@+id/emailLoginCardview"
+            android:layout_marginStart="40dp"
+            app:cardCornerRadius="10dp"
+            android:layout_height="60dp">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                app:boxBackgroundColor="#FDCE84"
+                app:boxStrokeWidth="0dp"
+                android:textColorHint="@color/black"
+                app:placeholderTextColor="@color/black"
+                app:boxStrokeWidthFocused="0dp"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:id="@+id/emailLogin"
+                    android:background="#FDCE84"
+                    android:textColorHint="@color/black"
+                    android:textColor="@color/black"
+                    android:autofillHints="emailAddress"
+                    android:hint="Enter your email"
+                    android:textSize="14dp"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/robotolight"
+                    android:layout_height="match_parent">
+
+                </com.google.android.material.textfield.TextInputEditText>
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewChatMessage"
@@ -60,6 +99,8 @@
         android:nestedScrollingEnabled="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    </FrameLayout>
 
 
 

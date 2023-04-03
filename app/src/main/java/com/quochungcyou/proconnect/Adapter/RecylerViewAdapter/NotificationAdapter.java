@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -50,7 +52,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     public void onBindViewHolder(@NonNull NotificationHolder holder, int position) {
         NotificationModel notificationModel = messageList.get(position);
         holder.fullname.setText(notificationModel.getFullname());
-        Glide.with(context).load(notificationModel.getAvatarurl()).into(holder.avatar);
+        Glide.with(context).load(notificationModel.getAvatarurl()).diskCacheStrategy(DiskCacheStrategy.ALL).priority(Priority.HIGH).into(holder.avatar);
 
         NotificationActivity notificationActivity = (NotificationActivity) context;
 
