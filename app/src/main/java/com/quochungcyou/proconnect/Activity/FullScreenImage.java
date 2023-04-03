@@ -35,8 +35,8 @@ public class FullScreenImage extends AppCompatActivity {
 
     private void updateData() {
         ImageView imgFullImage = findViewById(R.id.fullScreenImage);
-
-        databaseReference = FirebaseDatabase.getInstance().getReference("users" + "/" + Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
+        String useruid = getIntent().getExtras().getString("useruid");
+        databaseReference = FirebaseDatabase.getInstance().getReference("users" + "/" + useruid);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

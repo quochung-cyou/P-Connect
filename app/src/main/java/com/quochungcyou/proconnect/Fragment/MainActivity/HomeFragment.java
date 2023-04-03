@@ -1,11 +1,13 @@
 package com.quochungcyou.proconnect.Fragment.MainActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,6 +32,7 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import com.mikepenz.itemanimators.SlideLeftAlphaAnimator;
 import com.quochungcyou.proconnect.APIUtils.APIHelper;
 import com.quochungcyou.proconnect.APIUtils.APIInterface;
+import com.quochungcyou.proconnect.Activity.NotificationActivity;
 import com.quochungcyou.proconnect.Adapter.RecylerViewAdapter.PostAdapter;
 import com.quochungcyou.proconnect.Model.ArticleModel;
 import com.quochungcyou.proconnect.Model.ResultModel;
@@ -57,6 +60,7 @@ public class HomeFragment extends Fragment {
     ImageButton techcate, newcate, sportcate, financecate, foodcate;
     Call<ResultModel> call;
     APIInterface apiInterface;
+    ImageView notificon;
 
 
     @Override
@@ -77,13 +81,43 @@ public class HomeFragment extends Fragment {
         initVar(view);
         updateData();
         getPostList();
+
     }
 
-    @Override
-    public void onResume() {
+    private void updateNotifications() {
+        String myname = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("relation" + "/" + myname + "/friend"); //tạo từ quan hệ bản thân
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Boolean haveNotif = false;
+                if (snapshot.exists()) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        Log.d("HomeFragment", dataSnapshot.getValue(String.class));
+                        if (dataSnapshot.getValue(String.class).equals("ongoing")) {
+                            notificon.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.notificonhave, null));
+                            haveNotif = true;
+                        }
+                    }
+                }
+                if (!haveNotif) {
+                    notificon.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.notif, null));
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
+        @Override
+    public void onResume() {
         super.onResume();
         updateData();
+        updateNotifications();
 
     }
 
@@ -97,6 +131,7 @@ public class HomeFragment extends Fragment {
         sportcate = view.findViewById(R.id.sportcate);
         financecate = view.findViewById(R.id.financecate);
         foodcate = view.findViewById(R.id.foodcate);
+        notificon = view.findViewById(R.id.notificon);
         apiInterface  = APIHelper.getApiClient("https://newsdata.io/", getContext()).create(APIInterface.class);
 
 
@@ -122,6 +157,12 @@ public class HomeFragment extends Fragment {
         foodcate.setOnClickListener(v -> {
             call = apiInterface.getLastestHeadline("pub_1954270c22eae1320f8f448ffdf45c482fcf1", "vi", "entertainment");
             callData();
+        });
+
+        notificon.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), NotificationActivity.class);
+            getActivity().overridePendingTransition(R.anim.pop_enter, R.anim.pop_enter);
+            startActivity(intent);
         });
 
 

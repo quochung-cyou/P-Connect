@@ -156,6 +156,41 @@
 
     </LinearLayout>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleViewPost"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="25dp"
+            android:nestedScrollingEnabled="false" />
+
+        <com.google.android.material.button.MaterialButton
+            android:drawableStart="@drawable/baseline_qr_code_scanner_24"
+            android:drawableTint="@color/white"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_marginTop="45dp"
+            android:layout_marginBottom="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_width="150dp"
+            android:layout_height="75dp"
+            android:layout_gravity="bottom|right"
+            android:text="Add Friend"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/green_active"
+            app:cornerRadius="20dp"
+            android:fontFamily="@font/robotomedium"
+            android:id="@+id/addFriend">
+        </com.google.android.material.button.MaterialButton>
+
+    </FrameLayout>
+
+
 
 
 

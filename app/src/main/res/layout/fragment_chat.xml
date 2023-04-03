@@ -77,10 +77,11 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addFriend"
-            android:src="@drawable/baseline_add_24"
+            android:src="@drawable/baseline_qr_code_scanner_24"
+            android:backgroundTint="@color/blue_active"
             android:layout_width="wrap_content"
-            android:layout_marginBottom="105dp"
-            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="125dp"
+            android:layout_marginEnd="35dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"></com.google.android.material.floatingactionbutton.FloatingActionButton>
 

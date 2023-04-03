@@ -35,6 +35,18 @@ public class ArticleModel {
     @Expose
     private String time;
 
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public void setAuthor(List<String> author) {
+        this.author = author;
+    }
+
+    public void setSource_id(String source_id) {
+        this.source_id = source_id;
+    }
+
     @SerializedName("source_id")
     @Expose
     private String source_id;

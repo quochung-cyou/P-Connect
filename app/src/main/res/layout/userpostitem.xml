@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="20dp"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="20dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="15dp"
+    android:layout_height="wrap_content">
+
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_height="wrap_content">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/avatar"
+                    android:layout_gravity="center"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="15dp"
+                    android:src="@drawable/defaultprofile" />
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15dp"
+                    android:layout_width="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/robotoblack"
+                    android:id="@+id/fullname"
+                    android:textColor="@color/black"
+                    android:layout_height="wrap_content"
+                    android:text="Nguyen Quoc Hung" />
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:layout_width="wrap_content"
+                    android:textSize="9sp"
+                    android:fontFamily="@font/robotolight"
+                    android:id="@+id/username"
+                    android:textColor="@color/black"
+                    android:layout_height="wrap_content"
+                    android:text="\@quochungcyou" />
+            </LinearLayout>
+            
+            
+            <ImageView
+                android:id="@+id/postimage"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/headerread"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"></ImageView>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15dp"
+                    android:layout_width="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/robotoblack"
+                    android:id="@+id/fullname1"
+                    android:textColor="@color/black"
+                    android:layout_height="wrap_content"
+                    android:text="Nguyen Quoc Hung" />
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:layout_width="wrap_content"
+                    android:textSize="9sp"
+                    android:fontFamily="@font/robotolight"
+                    android:id="@+id/username1"
+                    android:textColor="@color/black"
+                    android:layout_height="wrap_content"
+                    android:text="\@quochungcyou" />
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_gravity="start"
+                android:layout_marginStart="15dp"
+                android:layout_width="wrap_content"
+                android:textSize="11sp"
+                android:fontFamily="@font/robotolight"
+                android:id="@+id/message"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:text="My cat looking at the sun" />
+
+
+            <View
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="0.01dp"
+                android:background="#cbcdd1"></View>
+
+            <FrameLayout
+                android:layout_marginTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:drawableLeft="@drawable/ic_like"
+                    android:drawablePadding="10dp"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="15dp"
+                    android:layout_width="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/robotoregular"
+                    android:id="@+id/likecount"
+                    android:textColor="@color/black"
+                    android:layout_height="20dp"
+                    android:text="24" />
+
+                <TextView
+
+                    android:drawableLeft="@drawable/baseline_message_24"
+                    android:drawablePadding="10dp"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="15dp"
+                    android:layout_width="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/robotoregular"
+                    android:id="@+id/commentcount"
+                    android:textColor="@color/black"
+                    android:layout_height="20dp"
+                    android:text="24" />
+
+
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+

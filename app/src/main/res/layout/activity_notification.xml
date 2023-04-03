@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".Activity.NotificationActivity">
+
+    <LinearLayout
+        android:background="#4955DA"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:orientation="horizontal">
+
+
+        <ImageView
+
+            android:layout_marginStart="20dp"
+            android:layout_gravity="center"
+            android:id="@+id/back_button"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            app:tint="@color/white"
+            android:src="@drawable/baseline_clear_24"/>
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_marginEnd="52dp"
+            android:id="@+id/loadPost"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="girlwithphone.json"
+            app:lottie_loop="true"
+            android:scaleType="fitCenter"
+            app:lottie_speed="0.7"
+            app:lottie_cacheComposition="true"
+            app:lottie_renderMode="hardware"
+            app:lottie_repeatMode="restart"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"></com.airbnb.lottie.LottieAnimationView>
+    </LinearLayout>
+
+    <TextView
+        android:background="@color/white"
+        android:id="@+id/notificationtext"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:fontFamily="@font/robotomedium"
+        android:textColor="@color/gray"
+        android:layout_height="match_parent"
+        android:text="You have no new notification" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:background="@color/white"
+        android:id="@+id/recyclerviewnotif"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>

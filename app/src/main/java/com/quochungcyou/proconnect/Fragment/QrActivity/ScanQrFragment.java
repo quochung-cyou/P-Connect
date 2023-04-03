@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +32,7 @@ import www.sanju.motiontoast.MotionToastStyle;
 public class ScanQrFragment extends Fragment {
 
     MaterialButton scanQrButton, scanGalleryButton;
+    ImageView backButton;
 
 
     @Override
@@ -59,6 +61,11 @@ public class ScanQrFragment extends Fragment {
     public void initVar(View view) {
         scanGalleryButton = view.findViewById(R.id.scangallery);
         scanQrButton = view.findViewById(R.id.scancamera);
+        backButton = view.findViewById(R.id.back_button);
+
+        backButton.setOnClickListener(v -> getActivity().onBackPressed());
+
+
         GmsBarcodeScannerOptions options = new GmsBarcodeScannerOptions.Builder()
                 .setBarcodeFormats(
                         Barcode.FORMAT_QR_CODE)
@@ -80,8 +87,6 @@ public class ScanQrFragment extends Fragment {
                                             Log.d("lmao", "user found");
                                             Intent intent = new Intent(getActivity(), OtherPeopleProfile.class);
                                             intent.putExtra("useruid", useruid);
-                                            //zoom animation
-                                            getActivity().overridePendingTransition(R.anim.zoom_in, R.anim.zoom_out);
                                             startActivity(intent);
 
                                         } else {

@@ -59,6 +59,7 @@ public class MyQrFragment extends Fragment {
     TextView username, shareimage, saveimage, useruidtext;
     ImageView qrimage;
     Bitmap globalqrcode;
+    ImageView backButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -90,6 +91,11 @@ public class MyQrFragment extends Fragment {
         shareimage = view.findViewById(R.id.share_image);
         saveimage = view.findViewById(R.id.save_image);
         useruidtext = view.findViewById(R.id.useruid);
+        backButton = view.findViewById(R.id.back_button);
+
+        backButton.setOnClickListener(v -> {
+            getActivity().onBackPressed();
+        });
 
 
         useruidtext.setText("User UID " + FirebaseAuth.getInstance().getCurrentUser().getUid());

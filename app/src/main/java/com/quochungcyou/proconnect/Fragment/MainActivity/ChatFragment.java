@@ -59,9 +59,6 @@ public class ChatFragment extends Fragment {
         addButton = getView().findViewById(R.id.addFriend);
         initSearchView();
         initRecyclerView();
-
-
-
         addButton.setOnClickListener(v -> {
             Intent intentMainActivity = new Intent(getActivity(), QRActivity.class);
             getActivity().overridePendingTransition(R.anim.zoom_in, R.anim.zoom_out);
@@ -69,11 +66,6 @@ public class ChatFragment extends Fragment {
 
 
         });
-
-
-
-
-
 
     }
 
