@@ -44,7 +44,7 @@ public class ChatFragment extends Fragment {
 
     RecyclerView recyclerView;
     SearchView searchView;
-    List<UserModel> userList;
+    List<UserModel> userList = new ArrayList<>();
     UserAdapter adapter;
     FloatingActionButton addButton;
     CircleImageView selfavatar;
@@ -72,7 +72,6 @@ public class ChatFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        initVar();
         updateData();
         initSearchView();
         initRecyclerView();
@@ -86,11 +85,6 @@ public class ChatFragment extends Fragment {
         selfname = getView().findViewById(R.id.selfname);
         loadpost = getView().findViewById(R.id.loadPost);
 
-        userList = new ArrayList<>();
-        userList.clear();
-
-
-
 
         addButton.setOnClickListener(v -> {
             Intent intentMainActivity = new Intent(getActivity(), QRActivity.class);
@@ -99,6 +93,12 @@ public class ChatFragment extends Fragment {
 
 
         });
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        adapter = new UserAdapter(getActivity() , userList);
+        recyclerView.setItemAnimator(new SlideLeftAlphaAnimator());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
 
     }
 
@@ -140,17 +140,14 @@ public class ChatFragment extends Fragment {
     //update user list
     private void initRecyclerView() {
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        adapter = new UserAdapter(getActivity() , userList);
-        recyclerView.setItemAnimator(new SlideLeftAlphaAnimator());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
 
         String myname = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("relation" + "/" + myname + "/friend"); //tạo từ quan hệ bản thân
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                userList.clear();
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     if (dataSnapshot.getValue().toString().equals("friend")) {
@@ -162,7 +159,7 @@ public class ChatFragment extends Fragment {
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 String name = snapshot.child("name").getValue().toString();
                                 String profileImageUrl = snapshot.child("avatar").getValue().toString();
-                                UserModel userModel = new UserModel(name, "", profileImageUrl, uid);
+                                UserModel userModel = new UserModel(name, "", profileImageUrl, uid, 0L);
                                 DatabaseReference lastMsgRef = FirebaseDatabase.getInstance().getReference("relation" + "/" + myname + "/chat/" + uid);
                                 //Lấy câu chat cuối
                                 lastMsgRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -182,13 +179,26 @@ public class ChatFragment extends Fragment {
                                                 lastMessage.setSendername(name);
                                                 lastMessage.setSenderavatar(profileImageUrl);
                                             }
-                                            Log.d("ChatFragment", "Last message " + lastMessage.getSendername().toString().trim() + " " + lastMessage.getMessage().toString().trim());
+                                            //Log.d("ChatFragment", "Last message " + lastMessage.getSendername().toString().trim() + " " + lastMessage.getMessage().toString().trim());
                                             userModel.setLastMessage(lastMessage.getSendername().toString().trim() + ": " + lastMessage.getMessage().toString().trim());
+                                            userModel.setTimelastMessage(lastMessage.getTime());
+                                        } else {
+                                            userModel.setTimelastMessage(System.currentTimeMillis());
                                         }
 
                                         userList.add(userModel);
-                                        adapter.notifyDataSetChanged();
+                                        userList.sort((o1, o2) -> {
+                                            if (o1.getTimelastMessage() > o2.getTimelastMessage()) {
+                                                return -1;
+                                            } else if (o1.getTimelastMessage() < o2.getTimelastMessage()) {
+                                                return 1;
+                                            } else {
+                                                return 0;
+                                            }
+                                        });
                                         loadpost.setVisibility(View.GONE);
+                                        adapter.notifyDataSetChanged();
+
                                     }
 
                                     @Override

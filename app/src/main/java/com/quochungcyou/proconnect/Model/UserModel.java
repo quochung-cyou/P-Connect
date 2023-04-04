@@ -5,14 +5,23 @@ public class UserModel {
     String lastMessage;
     String profileImageUrl;
     String useruid;
+    Long timelastMessage;
     boolean isOnline = false;
 
-
-    public UserModel(String name, String lastMessage, String profileImageUrl, String useruid) {
+    public UserModel(String name, String lastMessage, String profileImageUrl, String useruid, Long timelastMessage) {
         this.name = name;
         this.lastMessage = lastMessage;
         this.profileImageUrl = profileImageUrl;
         this.useruid = useruid;
+        this.timelastMessage = timelastMessage;
+    }
+
+    public Long getTimelastMessage() {
+        return timelastMessage;
+    }
+
+    public void setTimelastMessage(Long timelastMessage) {
+        this.timelastMessage = timelastMessage;
     }
 
     public String getUseruid() {

@@ -21,7 +21,7 @@
         <item name="colorControlActivated">@android:color/darker_gray</item>
         <item name="colorControlHighlight">@android:color/darker_gray</item>
         <item name="android:textColor">@color/gray</item>
-        <item name="android:textSize">11sp</item>
+        <item name="android:textSize">8sp</item>
         <item name="colorPrimary">@color/gray</item>
     </style>
 

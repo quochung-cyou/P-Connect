@@ -121,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
         pagerAdapter.createFragment(0);
         pagerAdapter.createFragment(1);
         pagerAdapter.createFragment(2);
-        pagerAdapter.createFragment(3);
 
         viewPager.setAdapter(pagerAdapter);
         AccordionTransformer transformation = new AccordionTransformer();

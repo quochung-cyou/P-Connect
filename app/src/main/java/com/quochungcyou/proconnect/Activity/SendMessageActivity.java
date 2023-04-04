@@ -2,12 +2,17 @@ package com.quochungcyou.proconnect.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,6 +51,7 @@ public class SendMessageActivity extends AppCompatActivity {
     String selfavatar, targetavatar;
     ImageView avatartargetimage;
     TextView targetnametextview;
+    CardView typeCardView;
 
 
     @Override
@@ -100,6 +106,7 @@ public class SendMessageActivity extends AppCompatActivity {
         sendicon = findViewById(R.id.sendicon);
         avatartargetimage = findViewById(R.id.avatartargetimage);
         targetnametextview = findViewById(R.id.targetnametextview);
+        typeCardView = findViewById(R.id.typeCardView);
 
 
 
@@ -120,6 +127,8 @@ public class SendMessageActivity extends AppCompatActivity {
 
         emojiicon.setOnClickListener(v -> emojiPopup.toggle());
         back_button.setOnClickListener(v -> onBackPressed());
+
+
 
 
     }

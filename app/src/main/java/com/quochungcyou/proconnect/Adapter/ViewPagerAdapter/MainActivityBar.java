@@ -32,10 +32,8 @@ public class MainActivityBar extends FragmentStateAdapter {
         if (position == 0) {
             return new HomeFragment();
         } else if (position == 1) {
-            return new LikeFragment();
-        } else if (position == 2) {
             return new ChatFragment();
-        } else if (position == 3) {
+        } else if (position == 2) {
             return new ProfileFragment();
         }
         return null;
@@ -43,6 +41,6 @@ public class MainActivityBar extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 3;
     }
 }

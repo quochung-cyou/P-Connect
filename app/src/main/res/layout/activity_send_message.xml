@@ -84,7 +84,7 @@
             app:cardBackgroundColor="#0C1724"
             app:cardCornerRadius="15dp"
             android:layout_gravity="center_vertical"
-            android:id="@+id/emailLoginCardview"
+            android:id="@+id/typeCardView"
             android:layout_height="50dp">
 
             <LinearLayout
@@ -102,9 +102,11 @@
                 app:hintTextAppearance="@style/EditTextHint"
                 app:placeholderTextColor="@color/white"
                 app:boxStrokeWidthFocused="0dp"
+
                 android:layout_height="match_parent">
 
                 <com.aghajari.emojiview.view.AXEmojiEditText
+                    android:inputType="textCapSentences|textMultiLine"
                     android:background="@color/zxing_transparent"
                     android:imeOptions="actionSend"
                     android:layout_gravity="center"
@@ -113,7 +115,6 @@
                     android:layout_height="match_parent"
                     android:textColorHint="@color/white"
                     android:textColor="@color/white"
-                    android:autofillHints="emailAddress"
                     android:hint="Type a message"
                     android:textSize="16sp"
                     android:fontFamily="@font/opensanregular" />
