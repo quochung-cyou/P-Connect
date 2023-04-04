@@ -55,18 +55,16 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
         if (message.getReceiver().equals(selfuid)) { //ís sender
             holder.receiveLayout.setVisibility(View.GONE);
             holder.sendLayout.setVisibility(View.VISIBLE);
-            holder.messageSend.setText(message.getMessage());
-            holder.time.setText(DateFormat.militoHour(message.getTime()));
-            holder.timeSend.setText(DateFormat.militoHour(message.getTime()));
-            holder.sendername.setText(message.getSendername());
+            holder.messageSend.setText(message.getMessage().trim());
+            holder.timeSend.setText(DateFormat.militoHour(message.getTime()).trim());
+            //holder.sendername.setText(message.getSendername().trim());
             Glide.with(context).load(message.getSenderavatar()).diskCacheStrategy(DiskCacheStrategy.ALL).priority(Priority.HIGH).into(holder.avatarsend);
         } else { //is receiver
             holder.sendLayout.setVisibility(View.GONE);
             holder.receiveLayout.setVisibility(View.VISIBLE);
             holder.messageReceive.setText(message.getMessage());
-            holder.time.setText(DateFormat.militoHour(message.getTime()));
-            holder.timeReceive.setText(DateFormat.militoHour(message.getTime()));
-            holder.receivername.setText(message.getSendername());
+            holder.timeReceive.setText(DateFormat.militoHour(message.getTime()).trim());
+            //holder.receivername.setText(message.getSendername());
             Glide.with(context).load(message.getSenderavatar()).diskCacheStrategy(DiskCacheStrategy.ALL).priority(Priority.HIGH).into(holder.avatarreceive);
         }
     }
@@ -103,7 +101,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
 
         final TextView messageSend;
         final TextView messageReceive;
-        final TextView time, timeSend, timeReceive, sendername, receivername;
+        final TextView timeSend, timeReceive;
         final LinearLayout sendLayout, receiveLayout;
         CircleImageView avatarsend, avatarreceive;
 
@@ -112,15 +110,15 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
             super(itemView);
             messageReceive = itemView.findViewById(R.id.messageReceive);
             messageSend = itemView.findViewById(R.id.messagesend);
-            time = itemView.findViewById(R.id.time);
+            //time = itemView.findViewById(R.id.time);
             sendLayout = itemView.findViewById(R.id.sendLayout);
             receiveLayout = itemView.findViewById(R.id.receivedLayout);
             avatarsend = itemView.findViewById(R.id.avatarsend);
             avatarreceive = itemView.findViewById(R.id.avatarreceive);
             timeSend = itemView.findViewById(R.id.timeinmessagesend);
             timeReceive = itemView.findViewById(R.id.timeinmessagereceive);
-            sendername = itemView.findViewById(R.id.sendername);
-            receivername = itemView.findViewById(R.id.receivename);
+            //sendername = itemView.findViewById(R.id.sendername);
+            //receivername = itemView.findViewById(R.id.receivename);
 
 
         }

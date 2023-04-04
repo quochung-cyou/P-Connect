@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -29,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.mikepenz.itemanimators.SlideLeftAlphaAnimator;
 import com.quochungcyou.proconnect.Activity.QRActivity;
 import com.quochungcyou.proconnect.Adapter.RecylerViewAdapter.UserAdapter;
+import com.quochungcyou.proconnect.Model.MessageModel;
 import com.quochungcyou.proconnect.Model.UserModel;
 import com.quochungcyou.proconnect.R;
 
@@ -47,6 +49,9 @@ public class ChatFragment extends Fragment {
     FloatingActionButton addButton;
     CircleImageView selfavatar;
     TextView selfname;
+
+    String selfFullname, selfFullAvatar;
+    LottieAnimationView loadpost;
 
 
     @Nullable
@@ -79,6 +84,10 @@ public class ChatFragment extends Fragment {
         addButton = getView().findViewById(R.id.addFriend);
         selfavatar = getView().findViewById(R.id.selfavatar);
         selfname = getView().findViewById(R.id.selfname);
+        loadpost = getView().findViewById(R.id.loadPost);
+
+        userList = new ArrayList<>();
+        userList.clear();
 
 
 
@@ -93,19 +102,22 @@ public class ChatFragment extends Fragment {
 
     }
 
+
+    //update to top bar of user
     private void updateData() {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users" + "/" + Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String name = snapshot.child("name").getValue(String.class);
+                String name = snapshot.child("name").getValue(String.class).toString().trim();
                 if (name == null || name.isEmpty()) {
                     name = "Guess";
                     databaseReference.child("name").setValue("Guess");
                 }
                 selfname.setText(name);
+                selfFullname = name;
 
-                String avatar = snapshot.child("avatar").getValue(String.class);
+                String avatar = snapshot.child("avatar").getValue(String.class).toString().trim();
                 if (avatar != null && !avatar.isEmpty()) {
                     Glide.with(getActivity())
                             .load(avatar)
@@ -114,6 +126,7 @@ public class ChatFragment extends Fragment {
                             .priority(Priority.HIGH)
                             .placeholder(R.drawable.loadinganim).into(selfavatar);
                 }
+                selfFullAvatar = avatar;
 
             }
 
@@ -124,9 +137,9 @@ public class ChatFragment extends Fragment {
         });
     }
 
-
+    //update user list
     private void initRecyclerView() {
-        userList = new ArrayList<>();
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         adapter = new UserAdapter(getActivity() , userList);
         recyclerView.setItemAnimator(new SlideLeftAlphaAnimator());
@@ -150,8 +163,40 @@ public class ChatFragment extends Fragment {
                                 String name = snapshot.child("name").getValue().toString();
                                 String profileImageUrl = snapshot.child("avatar").getValue().toString();
                                 UserModel userModel = new UserModel(name, "", profileImageUrl, uid);
-                                userList.add(userModel);
-                                adapter.notifyDataSetChanged();
+                                DatabaseReference lastMsgRef = FirebaseDatabase.getInstance().getReference("relation" + "/" + myname + "/chat/" + uid);
+                                //Lấy câu chat cuối
+                                lastMsgRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        ArrayList<MessageModel> messageList = new ArrayList<>();
+                                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                            MessageModel messageModel = dataSnapshot.getValue(MessageModel.class);
+                                            messageList.add(messageModel);
+                                        }
+                                        if (messageList.size() != 0) {
+                                            MessageModel lastMessage = messageList.get(messageList.size() - 1);
+                                            if (lastMessage.getSender().equals(myname)) {
+                                                lastMessage.setSendername(selfFullname);
+                                                lastMessage.setSenderavatar(selfFullAvatar);
+                                            } else {
+                                                lastMessage.setSendername(name);
+                                                lastMessage.setSenderavatar(profileImageUrl);
+                                            }
+                                            Log.d("ChatFragment", "Last message " + lastMessage.getSendername().toString().trim() + " " + lastMessage.getMessage().toString().trim());
+                                            userModel.setLastMessage(lastMessage.getSendername().toString().trim() + ": " + lastMessage.getMessage().toString().trim());
+                                        }
+
+                                        userList.add(userModel);
+                                        adapter.notifyDataSetChanged();
+                                        loadpost.setVisibility(View.GONE);
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                             }
 
                             @Override

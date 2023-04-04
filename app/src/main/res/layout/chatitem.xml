@@ -6,14 +6,8 @@
     android:layout_marginTop="1dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/time"
-        android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:gravity="center"
-        android:textSize="12sp"
-        tools:text="11:40" />
     <LinearLayout
+        android:visibility="visible"
         android:layout_alignParentStart="true"
         android:id="@+id/sendLayout"
         android:layout_width="wrap_content"
@@ -24,38 +18,14 @@
 
 
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_gravity="start"
-            android:layout_marginStart="3dp"
-            android:id="@+id/avatarsend"
-            android:layout_marginBottom="3dp"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/defaultprofile"></de.hdodenhof.circleimageview.CircleImageView>
-        <androidx.cardview.widget.CardView
-            app:cardCornerRadius="10dp"
-            android:layout_marginStart="3dp"
-            android:layout_gravity="end"
-            app:cardBackgroundColor="@color/gray"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+
             <LinearLayout
+                android:paddingRight="40dp"
+                android:layout_marginStart="35dp"
+                android:background="@drawable/itemleftchat"
                 android:layout_width="wrap_content"
                 android:orientation="vertical"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/sendername"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:maxWidth="240dp"
-                    android:fontFamily="@font/robotomedium"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="3dp"
-                    android:paddingRight="12dp"
-                    android:text="Ngáo"
-                    android:textColor="@android:color/white"
-                    android:textSize="10sp" />
                 <TextView
                     android:id="@+id/messagesend"
                     android:fontFamily="@font/robotoregular"
@@ -64,9 +34,9 @@
                     android:layout_gravity="start"
                     android:textAlignment="textStart"
                     android:maxWidth="200dp"
+                    android:layout_marginTop="10dp"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
-                    android:paddingBottom="6dp"
                     android:text="Đây cũng là một tin nhắn dài"
                     android:textColor="@android:color/white"
                     android:textSize="13sp" />
@@ -75,21 +45,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
+                    android:layout_marginTop="5dp"
                     android:maxWidth="240dp"
                     android:fontFamily="@font/robotomedium"
                     android:paddingStart="8dp"
-                    android:layout_marginBottom="3dp"
+                    android:layout_marginBottom="10dp"
                     android:paddingTop="3dp"
+                    android:layout_marginStart="5dp"
                     android:paddingEnd="12dp"
                     android:text="11:40"
                     android:textColor="@android:color/white"
-                    android:textSize="12sp" />
+                    android:textSize="9sp" />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_gravity="start"
+            android:layout_marginStart="3dp"
+            android:id="@+id/avatarsend"
+            android:layout_marginBottom="3dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/defaultprofile"></de.hdodenhof.circleimageview.CircleImageView>
+
+
     </LinearLayout>
 
 
     <LinearLayout
+        android:visibility="gone"
         android:id="@+id/receivedLayout"
         android:layout_alignParentEnd="true"
         android:layout_width="wrap_content"
@@ -100,38 +82,16 @@
 
 
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_gravity="end"
-            android:layout_marginEnd="3dp"
-            android:id="@+id/avatarreceive"
-            android:layout_marginBottom="3dp"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/defaultprofile"></de.hdodenhof.circleimageview.CircleImageView>
-        <androidx.cardview.widget.CardView
-            app:cardCornerRadius="10dp"
-            android:layout_marginEnd="3dp"
-            android:layout_gravity="end"
-            app:cardBackgroundColor="@color/blue_inactive"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+
+
         <LinearLayout
+
+            android:background="@drawable/itemrightchat"
+            android:layout_marginEnd="30dp"
+            android:layout_gravity="end"
             android:layout_width="wrap_content"
             android:orientation="vertical"
             android:layout_height="wrap_content">
-        <TextView
-                android:id="@+id/receivename"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:maxWidth="240dp"
-                android:fontFamily="@font/robotomedium"
-                android:paddingStart="12dp"
-                android:paddingTop="3dp"
-                android:paddingEnd="10dp"
-                android:text="Quoc Hung"
-                android:textColor="@android:color/white"
-                android:textSize="10sp" />
         <TextView
             android:id="@+id/messageReceive"
             android:fontFamily="@font/robotoregular"
@@ -139,11 +99,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:textAlignment="textStart"
-            android:maxWidth="200dp"
+            android:layout_marginTop="10dp"
+            android:maxWidth="300dp"
             android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:paddingBottom="6dp"
-            android:text="Đây là một tin nhắn khá là dài"
+            android:paddingEnd="50dp"
+            android:text="Đây là một tin nhắn khá là diii"
             android:textColor="@android:color/white"
             android:textSize="13sp" />
             <TextView
@@ -152,15 +112,24 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:maxWidth="240dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/robotomedium"
                 android:paddingStart="8dp"
-                android:layout_marginBottom="3dp"
-                android:paddingTop="3dp"
-                android:paddingEnd="12dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="10dp"
                 android:text="11:40"
                 android:textColor="@android:color/white"
-                android:textSize="12sp" />
+                android:textSize="9sp" />
         </LinearLayout>
-        </androidx.cardview.widget.CardView>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_gravity="end"
+            android:layout_marginEnd="3dp"
+            android:id="@+id/avatarreceive"
+            android:layout_marginBottom="3dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/defaultprofile"></de.hdodenhof.circleimageview.CircleImageView>
+
     </LinearLayout>
 </RelativeLayout>

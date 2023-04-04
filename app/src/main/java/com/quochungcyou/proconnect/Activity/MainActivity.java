@@ -102,6 +102,12 @@ public class MainActivity extends AppCompatActivity {
                 if (location == null || location.isEmpty()) {
                     databaseReference.child("location").setValue("No data");
                 }
+                //check avatar is null or empty then set as no data
+                String avatar = snapshot.child("avatar").getValue(String.class);
+                if (avatar == null || avatar.isEmpty()) {
+                    databaseReference.child("avatar").setValue("https://i.imgur.com/8favNFn.png");
+                }
+
             }
 
             @Override

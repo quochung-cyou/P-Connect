@@ -5,69 +5,89 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#1A2C47"
     tools:context=".Activity.SendMessageActivity">
+
+
+    <LinearLayout
+        android:background="@drawable/round_down_white_full"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="0.9"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:background="@drawable/shadowbottomlinear"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_marginStart="10dp"
+                android:layout_gravity="center"
+                android:id="@+id/back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:tint="@color/gray"
+                android:src="@drawable/ic_back_button"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="20dp"
+                android:layout_alignParentStart="true"
+                app:riv_corner_radius="16dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/headerprofile"
+                android:id="@+id/avatartargetimage">
+            </de.hdodenhof.circleimageview.CircleImageView>
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:textSize="16sp"
+                android:id="@+id/targetnametextview"
+                android:layout_marginStart="30dp"
+                android:fontFamily="@font/robotobold"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:text="Nguyen Quoc Hung" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:paddingBottom="60dp"
+            android:id="@+id/recycleViewChatMessage"
+            android:nestedScrollingEnabled="false"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
 
 
     <LinearLayout
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="15dp"
-        android:background="@drawable/shadowbottomlinear"
-        android:orientation="horizontal">
-
-
-        <ImageView
-            android:layout_marginStart="10dp"
-            android:layout_gravity="center"
-            android:id="@+id/back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:tint="@color/gray"
-            android:src="@drawable/ic_back_button"/>
-
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="20dp"
-            android:layout_alignParentStart="true"
-            app:riv_corner_radius="16dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/headerprofile"
-            android:id="@+id/avatartargetimage">
-        </de.hdodenhof.circleimageview.CircleImageView>
-
-        <TextView
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:textSize="16sp"
-            android:id="@+id/targetnametextview"
-            android:layout_marginStart="30dp"
-            android:fontFamily="@font/robotobold"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content"
-            android:text="Nguyen Quoc Hung" />
-
-
-
-    </LinearLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:background="#ebf0f6"
-        android:layout_height="match_parent">
+        android:layout_weight="0.1"
+        android:layout_height="0dp">
 
 
 
         <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_gravity="bottom"
+            android:paddingBottom="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.8"
+            app:cardBackgroundColor="#0C1724"
+            app:cardCornerRadius="15dp"
+            android:layout_gravity="center_vertical"
             android:id="@+id/emailLoginCardview"
-            android:layout_height="60dp">
+            android:layout_height="50dp">
 
             <LinearLayout
-                android:background="@drawable/roundlightred"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             <com.google.android.material.textfield.TextInputLayout
@@ -75,30 +95,29 @@
                 android:layout_gravity="center"
                 android:layout_width="0dp"
                 android:layout_weight="0.7"
-                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundColor="@color/zxing_transparent"
                 app:boxStrokeWidth="0dp"
-                android:textColorHint="@color/gray"
-                app:placeholderTextColor="@color/gray"
+                android:textColorHint="@color/white"
+                app:hintAnimationEnabled="true"
+                app:hintTextAppearance="@style/EditTextHint"
+                app:placeholderTextColor="@color/white"
                 app:boxStrokeWidthFocused="0dp"
                 android:layout_height="match_parent">
 
                 <com.aghajari.emojiview.view.AXEmojiEditText
+                    android:background="@color/zxing_transparent"
                     android:imeOptions="actionSend"
                     android:layout_gravity="center"
                     android:id="@+id/chatMessage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textColorHint="@color/gray"
-                    android:textColor="@color/black"
+                    android:textColorHint="@color/white"
+                    android:textColor="@color/white"
                     android:autofillHints="emailAddress"
-                    android:hint="Type a text"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/robotoregular" />
-
-
-
+                    android:hint="Type a message"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/opensanregular" />
             </com.google.android.material.textfield.TextInputLayout>
-
             <ImageView
                 android:layout_gravity="end|center_vertical"
                 android:layout_marginEnd="10dp"
@@ -107,44 +126,28 @@
                 android:layout_height="32dp"
                 android:src="@drawable/baseline_emoji_emotions_24"
                 app:tint="@color/blue_grey_active"></ImageView>
-
-            <ImageView
-                android:layout_gravity="end|center_vertical"
-                android:layout_marginEnd="10dp"
-                android:id="@+id/galleryicon"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/baseline_image_24"
-                app:tint="@color/blue_grey_active"></ImageView>
-
-                <ImageView
-                    android:layout_gravity="end|center_vertical"
-                    android:layout_marginEnd="10dp"
-                    android:id="@+id/sendicon"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/baseline_send_24"
-                    app:tint="@color/blue_active"></ImageView>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
 
+        <de.hdodenhof.circleimageview.CircleImageView
+
+            android:layout_marginStart="20dp"
+            android:background="@drawable/circle_button"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/sendicon"
+            android:padding="6dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.1"
+            android:layout_height="36dp"
+            android:src="@drawable/baseline_send_8">
+
+        </de.hdodenhof.circleimageview.CircleImageView>
 
 
 
-
-
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:paddingBottom="60dp"
-        android:id="@+id/recycleViewChatMessage"
-        android:layout_marginTop="25dp"
-        android:nestedScrollingEnabled="false"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    </FrameLayout>
+    </LinearLayout>
 
 
 

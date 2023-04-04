@@ -50,16 +50,16 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
     @Override
     public void onBindViewHolder(@NonNull UserHolder holder, int position) {
         UserModel userModel = postlist.get(position);
-        holder.name.setText(userModel.getName());
-        holder.lastmessage.setText(userModel.getLastMessage());
+        holder.name.setText(userModel.getName().trim());
+        holder.lastmessage.setText(userModel.getLastMessage().trim());
         Glide.with(context).load(userModel.getProfileImageUrl()).diskCacheStrategy(DiskCacheStrategy.ALL).priority(Priority.HIGH).into(holder.avatar);
 
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, SendMessageActivity.class);
             intent.putExtra("selfuid", FirebaseAuth.getInstance().getCurrentUser().getUid());
-            intent.putExtra("targetuid", userModel.getUseruid());
-            intent.putExtra("targetname", userModel.getName());
-            intent.putExtra("targetavatar", userModel.getProfileImageUrl());
+            intent.putExtra("targetuid", userModel.getUseruid().trim());
+            intent.putExtra("targetname", userModel.getName().trim());
+            intent.putExtra("targetavatar", userModel.getProfileImageUrl().trim());
 
             context.startActivity(intent);
         });

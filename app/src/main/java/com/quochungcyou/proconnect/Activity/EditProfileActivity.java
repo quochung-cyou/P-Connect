@@ -72,6 +72,12 @@ public class EditProfileActivity extends AppCompatActivity {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                     | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         initVar();
         passData();
     }

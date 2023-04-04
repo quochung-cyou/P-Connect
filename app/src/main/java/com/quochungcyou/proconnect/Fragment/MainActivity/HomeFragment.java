@@ -193,7 +193,6 @@ public class HomeFragment extends Fragment {
 
                         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
                         adapter = new PostAdapter(getActivity() , postlist);
-                        recyclerView.setItemAnimator(new SlideLeftAlphaAnimator());
                         recyclerView.setLayoutManager(layoutManager);
                         recyclerView.setAdapter(adapter);
                     } else {
