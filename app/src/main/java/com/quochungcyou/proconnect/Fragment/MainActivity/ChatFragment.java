@@ -149,7 +149,7 @@ public class ChatFragment extends Fragment {
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 String name = snapshot.child("name").getValue().toString();
                                 String profileImageUrl = snapshot.child("avatar").getValue().toString();
-                                UserModel userModel = new UserModel(name, "", profileImageUrl);
+                                UserModel userModel = new UserModel(name, "", profileImageUrl, uid);
                                 userList.add(userModel);
                                 adapter.notifyDataSetChanged();
                             }

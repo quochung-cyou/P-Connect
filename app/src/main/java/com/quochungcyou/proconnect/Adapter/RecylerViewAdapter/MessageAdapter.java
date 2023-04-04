@@ -2,6 +2,7 @@ package com.quochungcyou.proconnect.Adapter.RecylerViewAdapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +14,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.firebase.auth.FirebaseAuth;
 import com.quochungcyou.proconnect.Model.MessageModel;
 import com.quochungcyou.proconnect.R;
 import com.quochungcyou.proconnect.Utils.DateFormat;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageHolder> {
@@ -25,6 +32,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
     private final Context context;
     private final List<MessageModel> messageList;
     int lastPosition = -1;
+    String selfuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
     public MessageAdapter(Context context , List<MessageModel> post){
         this.context = context;
@@ -43,16 +51,23 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
     @Override
     public void onBindViewHolder(@NonNull MessageHolder holder, int position) {
         MessageModel message = messageList.get(position);
-        if (Integer.parseInt(message.getSender()) % 2 == 0) { //ís sender
+        Log.d("MessageAdapter", message.getSendername() + " " + message.getTargetname() + " " + message.getMessage());
+        if (message.getReceiver().equals(selfuid)) { //ís sender
             holder.receiveLayout.setVisibility(View.GONE);
             holder.sendLayout.setVisibility(View.VISIBLE);
             holder.messageSend.setText(message.getMessage());
+            holder.time.setText(DateFormat.militoHour(message.getTime()));
             holder.timeSend.setText(DateFormat.militoHour(message.getTime()));
+            holder.sendername.setText(message.getSendername());
+            Glide.with(context).load(message.getSenderavatar()).diskCacheStrategy(DiskCacheStrategy.ALL).priority(Priority.HIGH).into(holder.avatarsend);
         } else { //is receiver
             holder.sendLayout.setVisibility(View.GONE);
             holder.receiveLayout.setVisibility(View.VISIBLE);
             holder.messageReceive.setText(message.getMessage());
-            holder.timeReceiver.setText(DateFormat.militoHour(message.getTime()));
+            holder.time.setText(DateFormat.militoHour(message.getTime()));
+            holder.timeReceive.setText(DateFormat.militoHour(message.getTime()));
+            holder.receivername.setText(message.getSendername());
+            Glide.with(context).load(message.getSenderavatar()).diskCacheStrategy(DiskCacheStrategy.ALL).priority(Priority.HIGH).into(holder.avatarreceive);
         }
     }
 
@@ -88,19 +103,25 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
 
         final TextView messageSend;
         final TextView messageReceive;
-        final TextView timeSend;
-        final TextView timeReceiver;
+        final TextView time, timeSend, timeReceive, sendername, receivername;
         final LinearLayout sendLayout, receiveLayout;
+        CircleImageView avatarsend, avatarreceive;
 
 
         public MessageHolder(@NonNull View itemView) {
             super(itemView);
             messageReceive = itemView.findViewById(R.id.messageReceive);
-            messageSend = itemView.findViewById(R.id.messageTextSend);
-            timeSend = itemView.findViewById(R.id.timeTextSend);
-            timeReceiver = itemView.findViewById(R.id.timeTextReceived);
+            messageSend = itemView.findViewById(R.id.messagesend);
+            time = itemView.findViewById(R.id.time);
             sendLayout = itemView.findViewById(R.id.sendLayout);
             receiveLayout = itemView.findViewById(R.id.receivedLayout);
+            avatarsend = itemView.findViewById(R.id.avatarsend);
+            avatarreceive = itemView.findViewById(R.id.avatarreceive);
+            timeSend = itemView.findViewById(R.id.timeinmessagesend);
+            timeReceive = itemView.findViewById(R.id.timeinmessagereceive);
+            sendername = itemView.findViewById(R.id.sendername);
+            receivername = itemView.findViewById(R.id.receivename);
+
 
         }
     }

@@ -16,8 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.google.android.gms.maps.model.Circle;
-import com.makeramen.roundedimageview.RoundedImageView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.quochungcyou.proconnect.Activity.SendMessageActivity;
 import com.quochungcyou.proconnect.Model.UserModel;
 import com.quochungcyou.proconnect.R;
@@ -54,6 +53,17 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
         holder.name.setText(userModel.getName());
         holder.lastmessage.setText(userModel.getLastMessage());
         Glide.with(context).load(userModel.getProfileImageUrl()).diskCacheStrategy(DiskCacheStrategy.ALL).priority(Priority.HIGH).into(holder.avatar);
+
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(context, SendMessageActivity.class);
+            intent.putExtra("selfuid", FirebaseAuth.getInstance().getCurrentUser().getUid());
+            intent.putExtra("targetuid", userModel.getUseruid());
+            intent.putExtra("targetname", userModel.getName());
+            intent.putExtra("targetavatar", userModel.getProfileImageUrl());
+
+            context.startActivity(intent);
+        });
+
 
     }
 
@@ -96,11 +106,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
             name = itemView.findViewById(R.id.name);
             lastmessage = itemView.findViewById(R.id.lastmessage);
             time = itemView.findViewById(R.id.time);
-
-            itemView.setOnClickListener(v -> {
-                Intent intent = new Intent(context, SendMessageActivity.class);
-                context.startActivity(intent);
-            });
 
         }
     }

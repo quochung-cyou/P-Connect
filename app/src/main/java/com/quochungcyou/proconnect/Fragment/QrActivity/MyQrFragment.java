@@ -98,7 +98,7 @@ public class MyQrFragment extends Fragment {
         });
 
 
-        useruidtext.setText("User UID " + FirebaseAuth.getInstance().getCurrentUser().getUid());
+        useruidtext.setText("User UID: " + FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         updateData();
         generateQr();

@@ -27,7 +27,7 @@
             android:src="@drawable/ic_back_button"/>
 
 
-        <com.makeramen.roundedimageview.RoundedImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_marginStart="20dp"
@@ -35,13 +35,14 @@
             app:riv_corner_radius="16dp"
             android:scaleType="centerCrop"
             android:src="@drawable/headerprofile"
-            android:id="@+id/thumbnailavatar">
-        </com.makeramen.roundedimageview.RoundedImageView>
+            android:id="@+id/avatartargetimage">
+        </de.hdodenhof.circleimageview.CircleImageView>
 
         <TextView
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:textSize="16sp"
+            android:id="@+id/targetnametextview"
             android:layout_marginStart="30dp"
             android:fontFamily="@font/robotobold"
             android:textColor="@color/black"
@@ -54,46 +55,89 @@
 
     <FrameLayout
         android:layout_width="match_parent"
+        android:background="#ebf0f6"
         android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
 
-            android:layout_width="300dp"
-            app:cardBackgroundColor="#FDCE84"
-            android:layout_marginTop="60dp"
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_gravity="bottom"
             android:id="@+id/emailLoginCardview"
-            android:layout_marginStart="40dp"
-            app:cardCornerRadius="10dp"
             android:layout_height="60dp">
-            <com.google.android.material.textfield.TextInputLayout
+
+            <LinearLayout
+                android:background="@drawable/roundlightred"
                 android:layout_width="match_parent"
-                app:boxBackgroundColor="#FDCE84"
+                android:layout_height="match_parent">
+            <com.google.android.material.textfield.TextInputLayout
+                android:imeOptions="actionSend"
+                android:layout_gravity="center"
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
+                app:boxBackgroundColor="@color/white"
                 app:boxStrokeWidth="0dp"
-                android:textColorHint="@color/black"
-                app:placeholderTextColor="@color/black"
+                android:textColorHint="@color/gray"
+                app:placeholderTextColor="@color/gray"
                 app:boxStrokeWidthFocused="0dp"
                 android:layout_height="match_parent">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.aghajari.emojiview.view.AXEmojiEditText
+                    android:imeOptions="actionSend"
+                    android:layout_gravity="center"
+                    android:id="@+id/chatMessage"
                     android:layout_width="match_parent"
-                    android:id="@+id/emailLogin"
-                    android:background="#FDCE84"
-                    android:textColorHint="@color/black"
+                    android:layout_height="match_parent"
+                    android:textColorHint="@color/gray"
                     android:textColor="@color/black"
                     android:autofillHints="emailAddress"
-                    android:hint="Enter your email"
-                    android:textSize="14dp"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/robotolight"
-                    android:layout_height="match_parent">
+                    android:hint="Type a text"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/robotoregular" />
 
-                </com.google.android.material.textfield.TextInputEditText>
 
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="10dp"
+                android:id="@+id/emojiicon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/baseline_emoji_emotions_24"
+                app:tint="@color/blue_grey_active"></ImageView>
+
+            <ImageView
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="10dp"
+                android:id="@+id/galleryicon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/baseline_image_24"
+                app:tint="@color/blue_grey_active"></ImageView>
+
+                <ImageView
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="10dp"
+                    android:id="@+id/sendicon"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/baseline_send_24"
+                    app:tint="@color/blue_active"></ImageView>
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+
+
+
+
+
+
+
+
     <androidx.recyclerview.widget.RecyclerView
+        android:paddingBottom="60dp"
         android:id="@+id/recycleViewChatMessage"
         android:layout_marginTop="25dp"
         android:nestedScrollingEnabled="false"

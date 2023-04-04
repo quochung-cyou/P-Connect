@@ -1,76 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_marginTop="1dp"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="1dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/time"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:id="@+id/sendLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/timeTextSend"
-                android:layout_width="match_parent"
-                android:layout_height="36dp"
-                android:gravity="center"
-                android:textSize="12sp"
-                tools:text="11:40" />
-
-            <TextView
-                android:id="@+id/messageTextSend"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginStart="12dp"
-                android:background="@drawable/rounded_rectangle_secondary"
-                android:maxWidth="240dp"
-                android:paddingLeft="12dp"
-                android:paddingTop="6dp"
-                android:paddingRight="12dp"
-                android:paddingBottom="6dp"
-                android:text="This is message send"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-
+        android:layout_height="36dp"
+        android:gravity="center"
+        android:textSize="12sp"
+        tools:text="11:40" />
     <LinearLayout
-        android:id="@+id/receivedLayout"
-        android:layout_width="match_parent"
+        android:layout_alignParentStart="true"
+        android:id="@+id/sendLayout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/timeTextReceived"
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:gravity="center"
-            android:textSize="12sp"
-            tools:text="11:40" />
 
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_gravity="start"
+            android:layout_marginStart="3dp"
+            android:id="@+id/avatarsend"
+            android:layout_marginBottom="3dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/defaultprofile"></de.hdodenhof.circleimageview.CircleImageView>
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="10dp"
+            android:layout_marginStart="3dp"
+            android:layout_gravity="end"
+            app:cardBackgroundColor="@color/gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/sendername"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:maxWidth="240dp"
+                    android:fontFamily="@font/robotomedium"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="3dp"
+                    android:paddingRight="12dp"
+                    android:text="Ngáo"
+                    android:textColor="@android:color/white"
+                    android:textSize="10sp" />
+                <TextView
+                    android:id="@+id/messagesend"
+                    android:fontFamily="@font/robotoregular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:textAlignment="textStart"
+                    android:maxWidth="200dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="6dp"
+                    android:text="Đây cũng là một tin nhắn dài"
+                    android:textColor="@android:color/white"
+                    android:textSize="13sp" />
+                <TextView
+                    android:id="@+id/timeinmessagesend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:maxWidth="240dp"
+                    android:fontFamily="@font/robotomedium"
+                    android:paddingStart="8dp"
+                    android:layout_marginBottom="3dp"
+                    android:paddingTop="3dp"
+                    android:paddingEnd="12dp"
+                    android:text="11:40"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/receivedLayout"
+        android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_gravity="end"
+            android:layout_marginEnd="3dp"
+            android:id="@+id/avatarreceive"
+            android:layout_marginBottom="3dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/defaultprofile"></de.hdodenhof.circleimageview.CircleImageView>
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="10dp"
+            android:layout_marginEnd="3dp"
+            android:layout_gravity="end"
+            app:cardBackgroundColor="@color/blue_inactive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+        <TextView
+                android:id="@+id/receivename"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:maxWidth="240dp"
+                android:fontFamily="@font/robotomedium"
+                android:paddingStart="12dp"
+                android:paddingTop="3dp"
+                android:paddingEnd="10dp"
+                android:text="Quoc Hung"
+                android:textColor="@android:color/white"
+                android:textSize="10sp" />
         <TextView
             android:id="@+id/messageReceive"
+            android:fontFamily="@font/robotoregular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginEnd="12dp"
-            android:background="@drawable/rounded_rectangle_primary"
-            android:maxWidth="240dp"
-            android:paddingLeft="12dp"
-            android:paddingTop="6dp"
-            android:paddingRight="12dp"
+            android:layout_gravity="start"
+            android:textAlignment="textStart"
+            android:maxWidth="200dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
             android:paddingBottom="6dp"
-            android:text="Sample Message"
+            android:text="Đây là một tin nhắn khá là dài"
             android:textColor="@android:color/white"
-            android:textSize="16sp" />
+            android:textSize="13sp" />
+            <TextView
+                android:id="@+id/timeinmessagereceive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:maxWidth="240dp"
+                android:fontFamily="@font/robotomedium"
+                android:paddingStart="8dp"
+                android:layout_marginBottom="3dp"
+                android:paddingTop="3dp"
+                android:paddingEnd="12dp"
+                android:text="11:40"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 </RelativeLayout>

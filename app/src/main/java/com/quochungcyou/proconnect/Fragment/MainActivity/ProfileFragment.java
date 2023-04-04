@@ -93,6 +93,7 @@ public class ProfileFragment extends Fragment {
 
         profileImage.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), FullScreenImage.class);
+            intent.putExtra("useruid", mAuth.getCurrentUser().getUid());
             getActivity().overridePendingTransition(R.anim.pop_enter, R.anim.pop_exit);
             startActivity(intent);
         });

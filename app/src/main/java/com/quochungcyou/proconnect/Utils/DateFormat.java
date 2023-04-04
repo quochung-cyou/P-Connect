@@ -74,7 +74,7 @@ public class DateFormat {
         //mili second to hh:mm
         Calendar c= Calendar.getInstance();
         c.setTimeInMillis(millis);
-        int hours=c.get(Calendar.HOUR);
+        int hours=c.get(Calendar.HOUR_OF_DAY);
         int minutes=c.get(Calendar.MINUTE);
         return String.format("%02d:%02d", hours, minutes);
 

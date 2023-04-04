@@ -85,4 +85,13 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:24.4.5'
     //Real time database
 
+
+    //Keyboard
+    def emojiViewVersion = "1.5.2"
+    def emojiViewProvider = "AppleProvider"
+
+    implementation "io.github.aghajari:AXEmojiView:$emojiViewVersion"
+    implementation "io.github.aghajari:AXEmojiView-$emojiViewProvider:$emojiViewVersion"
+    implementation "io.github.aghajari:AXEmojiView-Microsoft3DProvider:$emojiViewVersion"
+
 }

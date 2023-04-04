@@ -4,18 +4,23 @@ public class UserModel {
     String name;
     String lastMessage;
     String profileImageUrl;
+    String useruid;
     boolean isOnline = false;
 
-    public UserModel(String name, String lastMessage, String profileImageUrl, boolean isOnline) {
+
+    public UserModel(String name, String lastMessage, String profileImageUrl, String useruid) {
         this.name = name;
         this.lastMessage = lastMessage;
         this.profileImageUrl = profileImageUrl;
-        this.isOnline = isOnline;
+        this.useruid = useruid;
     }
-    public UserModel(String name, String lastMessage, String profileImageUrl) {
-        this.name = name;
-        this.lastMessage = lastMessage;
-        this.profileImageUrl = profileImageUrl;
+
+    public String getUseruid() {
+        return useruid;
+    }
+
+    public void setUseruid(String useruid) {
+        this.useruid = useruid;
     }
 
     public String getName() {
