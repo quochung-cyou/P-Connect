@@ -37,8 +37,13 @@ Additionally, the code is clean and organized with an MVC structure to ensure ma
 
 
 ## Demo image
-![](mockup.png)
-
+![](mockup/1.jpg)
+![](mockup/2.jpg)
+![](mockup/3.jpg)
+![](mockup/4.jpg)
+![](mockup/5.jpg)
+![](mockup/6.jpg)
+![](mockup/7.jpg)
 ## License Information
 
 * This software is licensed under MIT License.
