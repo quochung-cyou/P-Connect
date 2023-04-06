@@ -33,6 +33,22 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
     private final List<UserModel> postlist;
     int lastPosition = -1;
 
+    public Context getContext() {
+        return context;
+    }
+
+    public List<UserModel> getPostlist() {
+        return postlist;
+    }
+
+    public int getLastPosition() {
+        return lastPosition;
+    }
+
+    public void setLastPosition(int lastPosition) {
+        this.lastPosition = lastPosition;
+    }
+
     public UserAdapter(Context context , List<UserModel> post){
         this.context = context;
         postlist = post;

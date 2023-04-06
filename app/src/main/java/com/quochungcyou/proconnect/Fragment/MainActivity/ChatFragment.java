@@ -143,11 +143,13 @@ public class ChatFragment extends Fragment {
 
         String myname = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("relation" + "/" + myname + "/friend"); //tạo từ quan hệ bản thân
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                loadpost.setVisibility(View.VISIBLE);
                 userList.clear();
+                recyclerView.setVisibility(View.GONE);
+                adapter.setLastPosition(-1);
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     if (dataSnapshot.getValue().toString().equals("friend")) {
@@ -197,6 +199,7 @@ public class ChatFragment extends Fragment {
                                             }
                                         });
                                         loadpost.setVisibility(View.GONE);
+                                        recyclerView.setVisibility(View.VISIBLE);
                                         adapter.notifyDataSetChanged();
 
                                     }

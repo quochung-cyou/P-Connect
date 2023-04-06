@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,21 +92,27 @@ public class AuthenFragment extends Fragment {
     }
 
     public void runVideoStart() {
+        //videoView.setVisibility(View.GONE);
         //Handle the first animation
         Uri video = Uri.parse("android.resource://"+getActivity().getPackageName()+"/"+R.raw.login_bg);
         videoView.setVideoURI(video);
         videoView.setOnPreparedListener(mp -> {
+            Log.d("VideoView", "VideoView prepared");
 
             mp.setOnInfoListener((mp1, what, extra) -> {
 
                 if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
                     // video started; hide the placeholder.
+                    Log.d("VideoView", "VideoView started");
                     videoView.setBackgroundColor(Color.TRANSPARENT);
+                    //videoView.setVisibility(View.VISIBLE);
+
                     return true;
                 }
                 return false;
             });
             mp.start();
+
         });
     }
 

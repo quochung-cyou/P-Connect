@@ -138,6 +138,10 @@ public class SendMessageActivity extends AppCompatActivity {
         databaseReference.push().setValue(new MessageModel(System.currentTimeMillis(), message, sender, receiver, selfavatar, targetavatar, selfname, targetname));
         DatabaseReference databaseReferenceTarget = FirebaseDatabase.getInstance().getReference("relation" + "/" + targetuid + "/chat/" + selfuid);
         databaseReferenceTarget.push().setValue(new MessageModel(System.currentTimeMillis(), message, sender, receiver, selfavatar, targetavatar, selfname, targetname));
+
+        //send notification to android
+
+
     }
 
 
